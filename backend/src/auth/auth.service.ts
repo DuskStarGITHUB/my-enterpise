@@ -1,5 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/**
+ * =====================================================
+ *  NAME    : auth.service.ts
+ *  DESCRIPTION: AUTH FUNCTIONS FOR ACTIONS IN DB PRIMARY
+ * =====================================================
+ */
+
+// DEPENDENCIES
 import {
   Injectable,
   UnauthorizedException,
@@ -10,12 +18,15 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { users } from '../../prisma/client';
 
+// SERVICE
 @Injectable()
 export class AuthService {
+  // PRISMA PROPS
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
   ) {}
+  // LOG CREATE
   private async logAction(
     user_id: number | null,
     action: string,
@@ -29,13 +40,12 @@ export class AuthService {
       },
     });
   }
-
+  // GET USER VALIDATION PASSWORD
   async validateUser(
     email: string,
     password: string,
   ): Promise<Omit<users, 'password'> | null> {
-    if (!email || !password)
-      throw new BadRequestException('Email and password required');
+    if (!email || !password) throw new BadRequestException('DATA UNKNOWN');
     const user = await this.prisma.users.findUnique({ where: { email } });
     if (!user) return null;
     const match = await bcrypt.compare(password, user.password);
@@ -43,16 +53,18 @@ export class AuthService {
     const { password: _, ...result } = user;
     return result;
   }
-
-  async register(data: { email: string; password: string; entity_id: number }) {
-    if (!data.email || !data.password || !data.entity_id)
-      throw new BadRequestException('All fields are required');
-    if (data.password.length < 8)
-      throw new BadRequestException('Password must be at least 8 characters');
+  // CREATE A USER ACCOUNT
+  async register(data: {
+    email: string;
+    password: string;
+    token: string;
+    entity_id: number;
+  }) {
+    if (data.password.length < 8) throw new BadRequestException('PASSWORD LOW');
     const exists = await this.prisma.users.findUnique({
       where: { email: data.email },
     });
-    if (exists) throw new BadRequestException('Email already registered');
+    if (exists) throw new BadRequestException('EMAIL ALREADY REGISTERED');
     const hashed = await bcrypt.hash(data.password, 10);
     const user = await this.prisma.users.create({
       data: {
@@ -70,7 +82,7 @@ export class AuthService {
     );
     return result;
   }
-
+  // CREATE PRYMARY ACCOUNT
   async start(data: {
     entity: {
       name: string;
@@ -151,14 +163,14 @@ export class AuthService {
       user: resultUser,
     };
   }
-
+  // LOGIN
   async login(user: Omit<users, 'password'>) {
     const payload = {
       email: user.email,
       sub: user.id_user,
       role: user.role_id,
     };
-    const access_token = this.jwtService.sign(payload, { expiresIn: '1h' });
+    const access_token = this.jwtService.sign(payload, { expiresIn: '1hr' });
     const r_token = this.jwtService.sign(payload, { expiresIn: '7d' });
     const existing = await this.prisma.tokens.findFirst({
       where: { user_id: user.id_user },
@@ -196,7 +208,7 @@ export class AuthService {
     await this.logAction(user.id_user, 'login', `User logged in`);
     return { access_token, r_token };
   }
-
+  // REFRESH LOGIN TOKEN
   async refreshToken(r_token: string) {
     if (!r_token) throw new BadRequestException('r_token required');
     const record = await this.prisma.tokens.findFirst({
@@ -226,7 +238,7 @@ export class AuthService {
     await this.logAction(record.user_id, 'refresh_token', `Token refreshed`);
     return { access_token: new_access, r_token: new_r };
   }
-
+  // REVOKE TOKEN
   async revokeToken(r_token: string) {
     if (!r_token) throw new BadRequestException('r_token required');
     const record = await this.prisma.tokens.findFirst({
@@ -248,17 +260,18 @@ export class AuthService {
     await this.logAction(record.user_id, 'revoke_token', `Token revoked`);
     return { revoked: true };
   }
-
+  // VALIDATE TOKEN
   async validateToken(token: string) {
-    if (!token) throw new BadRequestException('Token required');
+    if (!token) throw new BadRequestException('TOKEN REQUIRE');
     const r = await this.prisma.tokens.findFirst({
       where: { r_token: token, revoked: 0 },
     });
+    const payload = await this.jwtService.verifyAsync(token);
     if (r)
       return {
         valid: true,
         type: 'r_token',
-        payload: await this.jwtService.verifyAsync(token),
+        payload: payload,
       };
     const a = await this.prisma.tokens.findFirst({
       where: { access_token: token, revoked: 0 },
@@ -267,8 +280,8 @@ export class AuthService {
       return {
         valid: true,
         type: 'access_token',
-        payload: await this.jwtService.verifyAsync(token),
+        payload: payload,
       };
-    throw new UnauthorizedException('Token not found');
+    throw new UnauthorizedException('DATA UNKNOWN');
   }
 }

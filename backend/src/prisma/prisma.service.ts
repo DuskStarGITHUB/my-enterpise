@@ -1,6 +1,15 @@
+/**
+ * =====================================================
+ *  NAME    : prisma.service.ts
+ *  DESCRIPTION: PRISMA CONNECTION SERVICE
+ * =====================================================
+ */
+
+// DEPENDENCIES
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '../../prisma/client';
 
+// SERVICE
 @Injectable()
 export class PrismaService
   extends PrismaClient

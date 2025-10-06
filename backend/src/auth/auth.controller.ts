@@ -1,6 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/**
+ * =====================================================
+ *  NAME    : auth.controller.ts
+ *  DESCRIPTION: AUTH ENDPOINTS "/auth/*"
+ * =====================================================
+ */
+
+// DEPENDENCIES
 import {
   Controller,
   Post,
@@ -12,64 +20,34 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
-class LoginDto {
-  email: string;
-  password: string;
-}
-
-class RegisterDto {
-  email: string;
-  password: string;
-  entity_id: number;
-}
-
-class StartDto {
-  entity: {
-    name: string;
-    type: string;
-    description: string;
-    number: string;
-    size: string;
-    logo_url: string;
-  };
-  user: {
-    email: string;
-    password: string;
-  };
-}
-
-class RefreshDto {
-  r_token: string;
-}
-
-class RevokeDto {
-  r_token: string;
-}
-
+// CONTROLLER
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+  // ALL CALLS IN "/auth/action"
   @Post('action')
   async action(@Body() body: { action: string; data: any }) {
     const { action, data } = body;
-    if (!action || !data)
-      throw new BadRequestException('Action and data are required');
+    if (!action || !data) throw new BadRequestException('DATA UNKNOWN');
     switch (action) {
+      // LOGIN
       case 'login': {
         if (!data.email || !data.password)
-          throw new BadRequestException('Email and password required');
+          throw new BadRequestException('DATA UNKNOWN');
         const user = await this.authService.validateUser(
           data.email,
           data.password,
         );
-        if (!user) throw new UnauthorizedException('Invalid credentials');
+        if (!user) throw new UnauthorizedException('INVALID CREDENTIALS');
         return this.authService.login(user);
       }
+      // REGISTER USER ACCOUNT
       case 'register': {
-        if (!data.email || !data.password || !data.entity_id)
-          throw new BadRequestException('All fields are required');
+        if (!data.email || !data.password || !data.token)
+          throw new BadRequestException('DATA UNKNOWN');
         return this.authService.register(data);
       }
+      // REGISTER ACCOUNT PRYMARY
       case 'start': {
         const entityFields = [
           'name',
@@ -81,77 +59,56 @@ export class AuthController {
         ];
         for (const f of entityFields)
           if (!data.entity?.[f])
-            throw new BadRequestException(`Entity field '${f}' is required`);
+            throw new BadRequestException(`DATA ENTITIE FIELD '${f}' UNKNOWN`);
         if (!data.user?.email || !data.user?.password)
-          throw new BadRequestException('User email and password required');
+          throw new BadRequestException('DATA UNKNOWN USER');
         return this.authService.start(data);
       }
+      // VALIDATE TOKEN
       case 'validate': {
         if (typeof data !== 'string')
-          throw new BadRequestException('Token required as string');
+          throw new BadRequestException('TOKEN REQUIRE IN TYPE STRING');
         return this.authService.validateToken(data);
       }
+      // REFRESH
       case 'refresh': {
         if (typeof data !== 'string')
           throw new BadRequestException('Refresh token required as string');
         return this.authService.refreshToken(data);
       }
+      // REVOKE TOKEN
       case 'revoke': {
         if (typeof data !== 'string')
           throw new BadRequestException('Refresh token required as string');
         return this.authService.revokeToken(data);
       }
+      // ACTION ERR
       default:
-        throw new BadRequestException(`Unknown action: ${action}`);
+        throw new BadRequestException(`UNKNOWN ACTION: ${action}`);
     }
   }
   @Post('login')
-  login(@Body() body: LoginDto) {
-    if (!body.email || !body.password)
-      throw new BadRequestException('Email and password required');
-    throw new ForbiddenException('Direct access blocked, use /auth/action');
+  login() {
+    throw new ForbiddenException('Direct access blocked');
   }
   @Post('register')
-  register(@Body() body: RegisterDto) {
-    if (!body.email || !body.password || !body.entity_id)
-      throw new BadRequestException('All fields are required');
-    throw new ForbiddenException('Direct access blocked, use /auth/action');
+  register() {
+    throw new ForbiddenException('Direct access blocked');
   }
   @Post('start')
-  start(@Body() body: StartDto) {
-    const entityFields = [
-      'name',
-      'type',
-      'description',
-      'number',
-      'size',
-      'logo_url',
-    ];
-    for (const field of entityFields) {
-      if (!body.entity[field])
-        throw new BadRequestException(`Entity field '${field}' is required`);
-    }
-    if (!body.user.email || !body.user.password)
-      throw new BadRequestException('User email and password required');
-    throw new ForbiddenException('Direct access blocked, use /auth/action');
+  start() {
+    throw new ForbiddenException('Direct access blocked');
   }
   @Post('validate')
-  validate(@Headers('authorization') authHeader: string) {
-    if (!authHeader)
-      throw new BadRequestException('Authorization header required');
-    const [type, token] = authHeader.split(' ');
-    if (type !== 'Bearer' || !token)
-      throw new BadRequestException('Invalid Authorization header format');
-    throw new ForbiddenException('Direct access blocked, use /auth/action');
+  validate() {
+    throw new ForbiddenException('Direct access blocked');
   }
   @Post('refresh')
-  refresh(@Body() body: RefreshDto) {
-    if (!body.r_token) throw new BadRequestException('r_token required');
-    throw new ForbiddenException('Direct access blocked, use /auth/action');
+  refresh() {
+    throw new ForbiddenException('Direct access blocked');
   }
   @Post('revoke')
-  revoke(@Body() body: RevokeDto) {
-    if (!body.r_token) throw new BadRequestException('r_token required');
-    throw new ForbiddenException('Direct access blocked, use /auth/action');
+  revoke() {
+    throw new ForbiddenException('Direct access blocked');
   }
 }

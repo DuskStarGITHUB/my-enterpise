@@ -1,7 +1,7 @@
 /**
  * =====================================================
  *  NAME    : app.module.ts
- *  DESCRIPTION: server join modules
+ *  DESCRIPTION: NEST MODULES PACKAGER
  * =====================================================
  */
 

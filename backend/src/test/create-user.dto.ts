@@ -1,6 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+/**
+ * =====================================================
+ *  NAME    : create.user.dto.ts
+ *  DESCRIPTION: GIVE TYPES FOR DB TEST USER
+ * =====================================================
+ */
+
+// DEPENDENCIES
 import { IsEmail, IsString, IsOptional, IsNumber } from 'class-validator';
 
+// CLASS
 export class CreateUserDto {
   @IsString()
   nombre: string;
