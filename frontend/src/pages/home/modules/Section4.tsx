@@ -66,7 +66,7 @@ const Section4: React.FC<Section4Props> = ({ t }) => {
         alt="background"
         className="absolute inset-0 w-full h-full object-cover -z-10"
       />
-      <div className="h-full w-full flex flex-col items-center justify-center bg-black/10 dark:bg-black/80 backdrop-blur-lg">
+      <div className="p-15 h-full w-full flex flex-col items-center justify-center bg-black/10 dark:bg-black/80 backdrop-blur-lg">
         <div className="relative z-10 max-w-6xl w-full px-6 py-16 bg-white/10 rounded-xl shadow-2xl">
           <article className="text-center mb-12">
             <h5 className="text-3xl md:text-4xl font-bold text-white mb-4">
