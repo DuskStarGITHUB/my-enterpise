@@ -21,6 +21,9 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Github, Twitter, CircleCheckBig, Menu, X } from "lucide-react";
 
+// LOGIC
+type NavBarProps = { t: (key: string) => string };
+
 // ITEMS
 const documentationItems = [
   {
@@ -80,9 +83,6 @@ function ListItem({
     </li>
   );
 }
-
-// LOGIC
-type NavBarProps = { t: (key: string) => string };
 
 // NAVBAR COMPONENT
 const NavBar: React.FC<NavBarProps> = ({ t }) => {

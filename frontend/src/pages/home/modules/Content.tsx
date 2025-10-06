@@ -14,6 +14,7 @@ import Highlights from "./Highlights";
 import Section2 from "./Section2";
 import Section3 from "./Section3";
 import Section4 from "./Section4";
+import NavBarSecondary from "@/components/containers/NavBarSecondary";
 
 // LOGIC
 type ContentProps = {
@@ -25,6 +26,7 @@ const Content: React.FC<ContentProps> = ({ t }) => {
   return (
     <>
       <Section1 t={t} />
+      <NavBarSecondary t={t} />
       <Highlights t={t} />
       <Section2 t={t} />
       <Section3 t={t} />

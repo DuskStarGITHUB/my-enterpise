@@ -16,6 +16,7 @@ import "@/assets/css/fonts.css";
 import "@/assets/css/animationsHome.css";
 import Footer from "@/components/containers/Footer";
 
+
 // LOGIC
 type HomePageProps = {
   t: (key: string) => string;
