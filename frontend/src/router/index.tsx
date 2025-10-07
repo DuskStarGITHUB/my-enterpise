@@ -21,7 +21,7 @@ const Home = lazy(() => import("@/pages/home/home"));
 const NotFoundPage = lazy(() => import("@/pages/not-found"));
 const Login = lazy(() => import("@/pages/link/Login"));
 const Register = lazy(() => import("@/pages/link/Register"));
-const Dashboard = lazy(() => import("@/pages/client/Dashboard"));
+const App = lazy(() => import("@/pages/client/App"));
 
 // ROUTES
 export const Router = () => {
@@ -38,10 +38,10 @@ export const Router = () => {
     },
     { path: "/register", element: <Register t={t} /> },
     {
-      path: "/dashboard",
+      path: "/App",
       element: (
         <ProtectedRoute requireBothTokens={true}>
-          <Dashboard />
+          <App />
         </ProtectedRoute>
       ),
     },
