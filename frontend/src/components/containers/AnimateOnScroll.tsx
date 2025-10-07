@@ -43,7 +43,7 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
   return (
     <div
       ref={ref}
-      className={`flex transition-all duration-1000 ease-out transform ${
+      className={`flex transition-all duration-1500 ease-out transform ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       } ${className}`}
     >

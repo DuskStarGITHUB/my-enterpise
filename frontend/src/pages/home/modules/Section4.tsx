@@ -60,7 +60,7 @@ const Section4: React.FC<Section4Props> = ({ t }) => {
     </ul>
   );
   return (
-    <section className="min-h-screen w-full relative">
+    <section className="h-full w-full relative">
       <img
         src="/img/bg-web2.jpg"
         alt="background"

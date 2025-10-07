@@ -20,8 +20,8 @@ type Section2Props = {
 // SECTION 2
 const Section2: React.FC<Section2Props> = ({ t }) => {
   return (
-    <section className="min-h-dvh bg-gray-950 dark:bg-black grid grid-cols-2 border-blur z-1 items-center">
-      <article className="flex flex-col justify-center text-start items-start lg:p-20 space-y-4 dark:bg-white/10 z-2 h-full">
+    <section className="flex min-h-dvh w-full bg-gray-950 dark:bg-black sm:grid sm:grid-cols-2 border-blur z-1 items-center">
+      <article className="p-10 flex flex-col justify-center text-start items-start lg:p-20 space-y-4 dark:bg-white/10 z-2 min-h-dvh w-full">
         <h3 className="font-bold lg:text-6xl">{t("home.text-3")}</h3>
         <p className="lg:text-2xl font-light">{t("home.text-4")}</p>
         <Button
@@ -31,13 +31,13 @@ const Section2: React.FC<Section2Props> = ({ t }) => {
           {t("words.view")}
         </Button>
       </article>
-      <div className="h-full p-20 bg-gray-950 dark:bg-white/10 z-1 flex items-center">
-        <div className="">
+      <div className="hidden h-full p-20 bg-gray-950 dark:bg-white/10 z-1 sm:flex items-center">
+        <div>
           <AnimateOnScroll>
             <img
               src="/img/img-1.png"
               alt="image"
-              className="w-full h-full object-contain dark:invert-90 dark:opacity-60"
+              className="hidden sm:block sm:h-full object-contain dark:invert-90 dark:opacity-60"
             />
           </AnimateOnScroll>
         </div>
