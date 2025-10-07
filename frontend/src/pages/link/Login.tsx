@@ -70,7 +70,7 @@ const Login: React.FC<LoginProps> = ({ t }) => {
       console.table(data);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("r_token", data.r_token);
-      window.location.href = "/app";
+      window.location.href = "/client";
     } catch (err) {
       console.error(err);
       alert(`Try Again || ${err}`);

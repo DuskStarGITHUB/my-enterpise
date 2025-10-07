@@ -74,7 +74,7 @@ const PublicRouter: React.FC<Props> = ({
   }, [requireBothTokens]);
   if (isLoading) return <Loading />;
   if (isLoggedIn) {
-    return <Navigate to="/App" replace />;
+    return <Navigate to="/client" replace />;
   }
   return <>{children}</>;
 };

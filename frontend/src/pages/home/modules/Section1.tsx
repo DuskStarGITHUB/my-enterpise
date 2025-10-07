@@ -35,7 +35,7 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-4">
               <button
-                className="w-full sm:w-auto rounded bg-accent px-4 py-2 font-medium text-white dark:bg-gray-950 hover:cursor-pointer hover:dark:bg-black"
+                className="w-full sm:w-auto rounded bg-accent px-4 py-2 font-medium text-black dark:bg-gray-950 hover:cursor-pointer hover:dark:bg-black dark:text-white"
                 onClick={() => navigate("/login")}
               >
                 {t("words.login")}
