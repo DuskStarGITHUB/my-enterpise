@@ -15,15 +15,17 @@ const ThemeUse = () => {
   useEffect(() => {
     const themetype = localStorage.getItem("themetype");
     if (themetype) {
-      if (themetype !== "default") {
+      if (themetype !== "Default") {
         import(`@/assets/css/theme/${themetype}.css`);
       } else {
         import("@/assets/css/theme/Default.css");
       }
+      console.log(`ThemeUse: ${themetype}`);
     } else {
-      const themetype = "default";
+      const themetype = "Default";
       localStorage.setItem("themetype", themetype);
       import("@/assets/css/theme/Default.css");
+      console.log(`ThemeUse: ${themetype}`);
     }
   }, []);
   return null;
