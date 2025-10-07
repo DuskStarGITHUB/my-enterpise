@@ -1,5 +1,16 @@
+/**
+ * =====================================================
+ *  NAME    : ThemeUse.tsx
+ *  DATE      : 07/10/2025
+ *  DATE_MODIFY       : 07/10/2025
+ *  DESCRIPTION: READ THEME APPLY COLORS
+ * =====================================================
+ */
+
+// DEPENDENCIES
 import { useEffect } from "react";
 
+// COMPONENT
 const ThemeUse = () => {
   useEffect(() => {
     const themetype = localStorage.getItem("themetype");

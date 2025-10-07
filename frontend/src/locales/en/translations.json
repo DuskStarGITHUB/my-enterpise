@@ -1,4 +1,7 @@
 {
+  "global": {
+    "language": "Spanish"
+  },
   "words": {
     "login": "Login",
     "register": "Register.",

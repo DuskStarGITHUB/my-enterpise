@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : index.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 27/09/25
+ *  DATE_MODIFY       : 07/10/2025
  *  DESCRIPTION: ROUTER FOR REACT
  * =====================================================
  */
@@ -21,7 +21,7 @@ const Home = lazy(() => import("@/pages/home/home"));
 const NotFoundPage = lazy(() => import("@/pages/not-found"));
 const Login = lazy(() => import("@/pages/link/Login"));
 const Register = lazy(() => import("@/pages/link/Register"));
-const Client = lazy(() => import("@/pages/client/client"));
+const Client = lazy(() => import("@/pages/client/Client"));
 
 // ROUTES
 export const Router = () => {
@@ -41,7 +41,7 @@ export const Router = () => {
       path: "/client",
       element: (
         <ProtectedRoute requireBothTokens={true}>
-          <Client />
+          <Client t={t} />
         </ProtectedRoute>
       ),
     },

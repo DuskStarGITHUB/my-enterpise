@@ -1,4 +1,7 @@
 {
+  "global": {
+    "language": "Spanish"
+  },
   "words": {
     "login": "Iniciar Sesión",
     "register": "Registrate",
