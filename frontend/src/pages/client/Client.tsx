@@ -18,9 +18,12 @@ type ClientProps = {
 // PAGE
 const Client: React.FC<ClientProps> = ({ t }) => {
   return (
-    <>
-      <div>Client {t("global.language")}</div>
-    </>
+    <main>
+      <span>Client {t("global.language")}</span>
+      <div className="flex w-scree h-screen border-2 items-center justify-center">
+        hola
+      </div>
+    </main>
   );
 };
 

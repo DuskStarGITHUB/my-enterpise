@@ -8,8 +8,8 @@
  */
 
 // DEPENDENCIES
-import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useEffect, useState, useRef } from "react";
+import { Navigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "../assets/css/loading.css";
 import Loading from "@/components/containers/Loading";
@@ -17,16 +17,14 @@ import Loading from "@/components/containers/Loading";
 // LOGIC
 type Props = {
   children: React.ReactNode;
-  requireBothTokens?: boolean;
 };
 
-// PUBLIC ROUTER
-const PublicRouter: React.FC<Props> = ({
-  children,
-  requireBothTokens = false,
-}) => {
+// PUBLIC ROUTE
+const PublicRouter: React.FC<Props> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const location = useLocation();
+  const mountedRef = useRef(false);
   const validateToken = async (token: string) => {
     try {
       const res = await fetch("http://localhost:3001/auth/action", {
@@ -42,39 +40,94 @@ const PublicRouter: React.FC<Props> = ({
     }
   };
   useEffect(() => {
+    if (mountedRef.current) return;
+    mountedRef.current = true;
     const checkLogin = async () => {
       const access_token = localStorage.getItem("access_token");
       const r_token = localStorage.getItem("r_token");
-      if (!access_token || !r_token) {
-        setIsLoading(false);
-        return;
-      }
-      try {
-        const accessDecoded: any = jwtDecode(access_token);
-        const rDecoded: any = jwtDecode(r_token);
-        const now = Date.now() / 1000;
-        if (accessDecoded.exp < now || rDecoded.exp < now) {
-          setIsLoading(false);
-          return;
+      if (location.pathname === "/login") {
+        if (access_token && r_token) {
+          try {
+            const accessDecoded: any = jwtDecode(access_token);
+            const rDecoded: any = jwtDecode(r_token);
+            const now = Date.now() / 1000;
+            if (rDecoded.exp < now) {
+              setIsLoggedIn(false);
+            } else if (accessDecoded.exp < now) {
+              try {
+                const res = await fetch("http://localhost:3001/auth/action", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ action: "refresh", data: r_token }),
+                });
+                const data = await res.json();
+                localStorage.setItem("access_token", data.access_token);
+                localStorage.setItem("r_token", data.r_token);
+                const validAccess = await validateToken(data.access_token);
+                const validR = await validateToken(data.r_token);
+                console.log("RELOAD SESSION");
+                setIsLoggedIn(validAccess && validR);
+              } catch (err) {
+                console.error(err);
+                setIsLoggedIn(false);
+              }
+            } else {
+              const validAccess = await validateToken(access_token);
+              const validR = await validateToken(r_token);
+              setIsLoggedIn(validAccess && validR);
+            }
+          } catch {
+            setIsLoggedIn(false);
+          }
+        } else {
+          setIsLoggedIn(false);
         }
-      } catch {
-        setIsLoading(false);
-        return;
-      }
-      if (requireBothTokens) {
-        const validAccess = await validateToken(access_token);
-        const validR = await validateToken(r_token);
-        setIsLoggedIn(validAccess && validR);
       } else {
-        setIsLoggedIn(true);
+        if (!access_token || !r_token) {
+          setIsLoggedIn(false);
+        } else {
+          try {
+            const accessDecoded: any = jwtDecode(access_token);
+            const rDecoded: any = jwtDecode(r_token);
+            const now = Date.now() / 1000;
+            if (rDecoded.exp < now) {
+              setIsLoggedIn(false);
+            } else if (accessDecoded.exp < now) {
+              try {
+                const res = await fetch("http://localhost:3001/auth/action", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ action: "refresh", data: r_token }),
+                });
+                const data = await res.json();
+                localStorage.setItem("access_token", data.access_token);
+                localStorage.setItem("r_token", data.r_token);
+                console.log("RELOAD SESSION");
+                setIsLoggedIn(true);
+              } catch (err) {
+                console.error(err);
+                setIsLoggedIn(false);
+              }
+            } else {
+              const validAccess = await validateToken(access_token);
+              const validR = await validateToken(r_token);
+              setIsLoggedIn(validAccess && validR);
+            }
+          } catch {
+            setIsLoggedIn(false);
+          }
+        }
       }
       setIsLoading(false);
     };
     checkLogin();
-  }, [requireBothTokens]);
+  }, [location]);
   if (isLoading) return <Loading />;
-  if (isLoggedIn) {
+  if (location.pathname === "/login" && isLoggedIn) {
     return <Navigate to="/client" replace />;
+  }
+  if (location.pathname !== "/login" && !isLoggedIn) {
+    return <Navigate to="/login" replace />;
   }
   return <>{children}</>;
 };

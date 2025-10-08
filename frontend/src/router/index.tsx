@@ -31,7 +31,7 @@ export const Router = () => {
     {
       path: "/login",
       element: (
-        <PublicRouter requireBothTokens={true}>
+        <PublicRouter>
           <Login t={t} />
         </PublicRouter>
       ),
@@ -40,7 +40,7 @@ export const Router = () => {
     {
       path: "/client",
       element: (
-        <ProtectedRoute requireBothTokens={true}>
+        <ProtectedRoute>
           <Client t={t} />
         </ProtectedRoute>
       ),

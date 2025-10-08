@@ -75,11 +75,11 @@ export class AuthService {
       },
     });
     const { password, ...result } = user;
-    await this.logAction(
-      user.id_user,
-      'register',
-      `User registered with email ${user.email}`,
-    );
+    // await this.logAction(
+    //   user.id_user,
+    //   'register',
+    //   `User registered with email ${user.email}`,
+    // );
     return result;
   }
   // CREATE PRYMARY ACCOUNT
@@ -151,11 +151,11 @@ export class AuthService {
       },
     });
     const { password, ...resultUser } = newUser;
-    await this.logAction(
-      newUser.id_user,
-      'start',
-      `User created with entity '${newEntity.name}' and startup spot`,
-    );
+    // await this.logAction(
+    //   newUser.id_user,
+    //   'start',
+    //   `User created with entity '${newEntity.name}' and startup spot`,
+    // );
     return {
       entity: newEntity,
       spot: newSpot,
@@ -170,7 +170,7 @@ export class AuthService {
       sub: user.id_user,
       role: user.role_id,
     };
-    const access_token = this.jwtService.sign(payload, { expiresIn: '1hr' });
+    const access_token = this.jwtService.sign(payload, { expiresIn: '1h' });
     const r_token = this.jwtService.sign(payload, { expiresIn: '7d' });
     const existing = await this.prisma.tokens.findFirst({
       where: { user_id: user.id_user },
@@ -205,7 +205,7 @@ export class AuthService {
       where: { id_user: user.id_user },
       data: { last_login_at: new Date() },
     });
-    await this.logAction(user.id_user, 'login', `User logged in`);
+    // await this.logAction(user.id_user, 'login', `User logged`);
     return { access_token, r_token };
   }
   // REFRESH LOGIN TOKEN
@@ -235,7 +235,7 @@ export class AuthService {
         expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
-    await this.logAction(record.user_id, 'refresh_token', `Token refreshed`);
+    // await this.logAction(record.user_id, 'refresh_token', `Token refreshed`);
     return { access_token: new_access, r_token: new_r };
   }
   // REVOKE TOKEN
