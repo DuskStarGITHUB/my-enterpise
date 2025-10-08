@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : index.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 07/10/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: ROUTER FOR REACT
  * =====================================================
  */
@@ -14,7 +14,7 @@ import ProtectedRoute from "@/router/ProtectedRoute";
 import PublicRouter from "@/router/PublicRouter";
 import { useTranslation } from "react-i18next";
 import "../assets/css/loading.css";
-import Loading from "@/components/containers/Loading";
+import Loading from "@/components/main/Loading";
 
 // LOGIC
 const Home = lazy(() => import("@/pages/home/home"));

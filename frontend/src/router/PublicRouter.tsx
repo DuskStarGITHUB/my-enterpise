@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : PublicRouter.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 07/10/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: ROUTER VALIDATION FOR COMPONETS , DEFAULT FALSE BACKEND
  * =====================================================
  */
@@ -12,7 +12,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "../assets/css/loading.css";
-import Loading from "@/components/containers/Loading";
+import Loading from "@/components/main/Loading";
 
 // LOGIC
 type Props = {

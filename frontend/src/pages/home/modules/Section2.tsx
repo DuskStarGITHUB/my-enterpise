@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : Section2.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 27/09/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: SECTION 2 FOR HOME PAGE
  * =====================================================
  */
@@ -32,7 +32,7 @@ const Section2: React.FC<Section2Props> = ({ t }) => {
         </Button>
       </article>
       <div className="hidden h-full p-20 bg-gray-950 dark:bg-white/3 z-1 sm:flex items-center">
-        <div>
+        <span>
           <AnimateOnScroll>
             <img
               src="/img/img-1.png"
@@ -40,7 +40,7 @@ const Section2: React.FC<Section2Props> = ({ t }) => {
               className="hidden sm:block sm:h-full object-contain dark:invert-90 dark:opacity-60"
             />
           </AnimateOnScroll>
-        </div>
+        </span>
       </div>
     </section>
   );

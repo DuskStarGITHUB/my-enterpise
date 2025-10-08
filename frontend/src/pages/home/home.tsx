@@ -2,19 +2,19 @@
  * =====================================================
  *  NAME    : home.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 25/09/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: PAGE HOME
  * =====================================================
  */
 
 // DEPENDENCIES
 import React from "react";
-import NavBar from "@/components/containers/NavBar";
+import NavBar from "@/components/main/NavBar";
 import Content from "./modules/Content";
 import backgroundImage from "/img/bg-web.jpg";
 import "@/assets/css/fonts.css";
 import "@/assets/css/animationsHome.css";
-import Footer from "@/components/containers/Footer";
+import Footer from "@/components/main/Footer";
 
 
 // LOGIC
@@ -29,19 +29,19 @@ const Home: React.FC<HomePageProps> = ({ t }) => {
       {/* NAVBAR */}
       <NavBar t={t} />
       {/* MAIN CONTENT */}
-      <main className="relative flex flex-col text-white max-w-screen dark:bg-black/50">
+      <div className="relative flex flex-col text-white max-w-screen dark:bg-black/50">
         {/* BACKGROUND */}
-        <div className="fixed top-0 left-0 w-full h-full -z-10">
+        <span className="fixed top-0 left-0 w-full h-full -z-10">
           <img
             src={backgroundImage}
             alt="Background"
             className="w-full h-full object-cover"
           />
-          <div className="absolute top-0 left-0 w-full h-full bg-black/40"></div>
-        </div>
+          <span className="absolute top-0 left-0 w-full h-full bg-black/40"></span>
+        </span>
         {/* WELCOME CONTENT */}
         <Content t={t} />
-      </main>
+      </div>
       {/* FOOTER */}
       <Footer t={t} />
     </>

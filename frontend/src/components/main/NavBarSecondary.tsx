@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : NavBarSecondary.tsx
  *  DATE      : 06/10/2025
- *  DATE_MODIFY       : 06/10/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: NAVBAR INVISIBLE TO VISIBLE SCROLL
  * =====================================================
  */
@@ -26,7 +26,6 @@ type NavBarSecondaryProps = {
   t: (key: string) => string;
 };
 
-// ITEMS
 // ITEMS
 const documentationItems = [
   {
@@ -113,14 +112,14 @@ const NavBarSecondary: React.FC<NavBarSecondaryProps> = ({ t }) => {
       }`}
     >
       <div className="flex justify-center w-full">
-        <div className="flex w-full max-w-6xl justify-between items-center py-2">
-          <div className="flex-shrink-0">
+        <span className="flex w-full max-w-6xl justify-between items-center py-2">
+          <span className="flex-shrink-0">
             <img
               src={logoLight}
               alt="Logo"
               className="max-w-10 object-contain md:max-w-30"
             />
-          </div>
+          </span>
           <button
             className="sm:hidden text-white p-2"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -226,7 +225,7 @@ const NavBarSecondary: React.FC<NavBarSecondaryProps> = ({ t }) => {
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-        </div>
+        </span>
       </div>
       {mobileOpen && (
         <div className="sm:hidden bg-black/80 w-full p-4">

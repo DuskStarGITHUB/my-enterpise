@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : Section3.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 27/09/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
@@ -32,7 +32,7 @@ const iconMap = {
   card5: <Server className="w-10 h-10 text-primary" />,
 };
 
-// SECTION 2
+// SECTION 3
 const Section3: React.FC<Section3Props> = ({ t }) => {
   const cards = ["card1", "card2", "card3", "card4", "card5"];
   const sectionRef = useRef<HTMLElement>(null);
@@ -61,7 +61,7 @@ const Section3: React.FC<Section3Props> = ({ t }) => {
       ref={sectionRef}
       className="min-h-screen bg-white text-black dark:bg-black dark:text-white grid gap-6 w-full px-6 lg:px-20 py-12"
     >
-      <article className="flex flex-col text-center items-center space-y-8 z-10 w-full h-full">
+      <div className="flex flex-col text-center items-center space-y-8 z-10 w-full h-full">
         <AnimateOnScroll>
           <h4 className="font-bold text-3xl sm:text-4xl lg:text-6xl">
             {t("home.text-5")}
@@ -72,7 +72,7 @@ const Section3: React.FC<Section3Props> = ({ t }) => {
             {t("home.text-6")}
           </p>
         </AnimateOnScroll>
-      </article>
+      </div>
       <div className="w-full overflow-hidden">
         <Carousel className="w-full max-w-6xl mx-auto relative">
           <CarouselContent className="-ml-2 flex gap-6 max-h-full">

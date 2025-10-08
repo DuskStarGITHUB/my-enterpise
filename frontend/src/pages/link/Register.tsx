@@ -3,7 +3,7 @@
  * =====================================================
  *  NAME    : Register.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 28/09/25
+ *  DATE_MODIFY       : 28/09/2025
  *  DESCRIPTION: REGISTER PAGE
  * =====================================================
  */
@@ -111,8 +111,8 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
     window.location.href = "/login";
   };
   return (
-    <main className="min-h-screen flex items-center justify-center px-4">
-      <div
+    <section className="min-h-screen flex items-center justify-center px-4">
+      <span
         className={`w-full max-w-2xl transform transition-opacity duration-800 ease-out ${
           fadeIn ? "opacity-100" : "opacity-0"
         }`}
@@ -273,8 +273,8 @@ const Register: React.FC<RegisterProps> = ({ t }) => {
             </Button>
           </form>
         </Form>
-      </div>
-    </main>
+      </span>
+    </section>
   );
 };
 export default Register;

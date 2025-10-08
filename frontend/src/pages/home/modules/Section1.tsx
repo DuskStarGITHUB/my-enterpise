@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : Section1.tsx
  *  DATE      : 24/08/2025
- *  DATE_MODIFY       : 07/10/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: CONTENT SECTION 1 HOME PAGE
  * =====================================================
  */
@@ -10,8 +10,8 @@
 // DEPENDENCIES
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import ButtonLang from "@/components/containers/ButtonLang";
-import ButtonTheme from "@/components/containers/ButtonTheme";
+import ButtonLang from "@/components/main/ButtonLang";
+import ButtonTheme from "@/components/main/ButtonTheme";
 import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
 
 // LOGIC
@@ -26,7 +26,7 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
     <AnimateOnScroll>
       <section className="relative h-screen w-full flex flex-col justify-center p-6">
         <div className="grid grid-cols-2">
-          <div className="relative text-left p-4 sm:p-6 max-w-full sm:max-w-3xl left-0 sm:left-1/12 2xl:left-2/10">
+          <article className="relative text-left p-4 sm:p-6 max-w-full sm:max-w-3xl left-0 sm:left-1/12 2xl:left-2/10">
             <h1 className="mb-4 text-3xl sm:text-4xl md:text-6xl font-[Montserrat] font-medium">
               {t("home.text-1")}
             </h1>
@@ -47,7 +47,7 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
                 {t("words.register")}
               </button>
             </div>
-          </div>
+          </article>
           <div className="flex items-center justify-center">
             <div className="honeycomb hidden sm:block">
               <span></span>

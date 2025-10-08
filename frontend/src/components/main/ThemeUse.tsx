@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : ThemeUse.tsx
  *  DATE      : 07/10/2025
- *  DATE_MODIFY       : 07/10/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: READ THEME APPLY COLORS
  * =====================================================
  */
@@ -20,7 +20,7 @@ const ThemeUse = () => {
       } else {
         import("@/assets/css/theme/Default.css");
       }
-      console.log(`ThemeUse: ${themetype}`);
+      // console.log(`ThemeUse: ${themetype}`);
     } else {
       const themetype = "Default";
       localStorage.setItem("themetype", themetype);
