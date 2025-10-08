@@ -25,7 +25,7 @@ const ThemeUse = () => {
       const themetype = "Default";
       localStorage.setItem("themetype", themetype);
       import("@/assets/css/theme/Default.css");
-      console.log(`ThemeUse: ${themetype}`);
+      // console.log(`ThemeUse: ${themetype}`);
     }
   }, []);
   return null;
