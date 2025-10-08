@@ -124,7 +124,7 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
   }, [location]);
   if (isLoading) return <Loading />;
   if (location.pathname === "/login" && isLoggedIn) {
-    return <Navigate to="/client" replace />;
+    return <Navigate to="/" replace />;
   }
   if (location.pathname !== "/login" && !isLoggedIn) {
     return <Navigate to="/login" replace />;

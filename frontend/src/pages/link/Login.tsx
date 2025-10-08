@@ -4,7 +4,7 @@
  * =====================================================
  *  NAME    : Login.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 28/09/2025
+ *  DATE_MODIFY       : 08/10/2025
  *  DESCRIPTION: LOGIN PAGE
  * =====================================================
  */
@@ -70,7 +70,7 @@ const Login: React.FC<LoginProps> = ({ t }) => {
       console.table(data);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("r_token", data.r_token);
-      window.location.href = "/client";
+      window.location.href = "/";
     } catch (err) {
       console.error(err);
       alert(`Try Again || ${err}`);

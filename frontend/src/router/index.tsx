@@ -8,7 +8,7 @@
  */
 
 // DEPENDENCIES
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useRoutes } from "react-router-dom";
 import ProtectedRoute from "@/router/ProtectedRoute";
 import PublicRouter from "@/router/PublicRouter";
@@ -24,10 +24,21 @@ const Register = lazy(() => import("@/pages/link/Register"));
 const Client = lazy(() => import("@/pages/client/Client"));
 
 // ROUTES
-export const Router = () => {
+const CheckUser = () => {
   const { t } = useTranslation();
+  const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
   const routes = [
-    { path: "/", element: <Home t={t} /> },
+    {
+      path: "/",
+      element: hasVisitedBefore ? (
+        <ProtectedRoute>
+          <Client t={t} />
+        </ProtectedRoute>
+      ) : (
+        <Home t={t} />
+      ),
+    },
+    { path: "/me", element: <Home t={t} /> },
     {
       path: "/login",
       element: (
@@ -37,16 +48,21 @@ export const Router = () => {
       ),
     },
     { path: "/register", element: <Register t={t} /> },
-    {
-      path: "/client",
-      element: (
-        <ProtectedRoute>
-          <Client t={t} />
-        </ProtectedRoute>
-      ),
-    },
     { path: "*", element: <NotFoundPage t={t} /> },
   ];
-  return <Suspense fallback={<Loading />}>{useRoutes(routes)}</Suspense>;
+  useEffect(() => {
+    if (!hasVisitedBefore) localStorage.setItem("hasVisitedBefore", "true");
+  }, [hasVisitedBefore]);
+  return useRoutes(routes);
 };
+
+// ROUTER
+export const Router = () => {
+  return (
+    <Suspense fallback={<Loading />}>
+      <CheckUser />
+    </Suspense>
+  );
+};
+
 export default Router;

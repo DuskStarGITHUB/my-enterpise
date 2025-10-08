@@ -35,16 +35,16 @@ const GridSelector = ({
   let render: ((children: React.ReactNode[]) => JSX.Element) | null = null;
   if (type.match(/^\d+$/)) {
     const cols = parseInt(type);
-    gridClass = `grid grid-cols-${cols} gap-4`;
+    gridClass = `grid grid-cols-${cols}`;
     maxChildren = cols;
   } else if (type.match(/^\d+-\d+$/)) {
     const [cols, rows] = type.split("-").map(Number);
-    gridClass = `grid grid-cols-${cols} grid-rows-${rows} gap-4`;
+    gridClass = `grid grid-cols-${cols} grid-rows-${rows}`;
     maxChildren = cols * rows;
   } else {
     const gridConfig: GridConfig = {
       default: {
-        className: "grid grid-cols-2 grid-rows-1 gap-4",
+        className: "grid grid-cols-2 grid-rows-1",
         maxChildren: 2,
         render: (children) => (
           <>
@@ -54,7 +54,7 @@ const GridSelector = ({
         ),
       },
       dashboard: {
-        className: "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4",
+        className: "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4",
         maxChildren: 4,
         render: (children) => (
           <>
@@ -67,7 +67,7 @@ const GridSelector = ({
       },
       cards: {
         className:
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4",
         maxChildren: 12,
       },
     };

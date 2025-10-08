@@ -19,11 +19,11 @@ type ClientProps = {
 const Client: React.FC<ClientProps> = ({ t }) => {
   return (
     <>
-      <GridSelector type="2-1" className="bg-accent-foreground">
+      <GridSelector className="bg-accent-foreground">
         <span className="bg-black">Elemento</span>
-        <GridSelector className="bg-bg-gray">
-        <span className="bg-black">Elemento</span>
-        <span className="bg-black">Elemento</span>
+        <GridSelector className="bg-gray-500">
+          <span className="bg-black">Elemento</span>
+          <span className="bg-black">Elemento</span>
         </GridSelector>
       </GridSelector>
     </>
