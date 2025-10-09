@@ -8,23 +8,13 @@
  */
 
 // DEPENDENCIES
-import { useEffect } from "react";
-import useService from "@/hooks/useService";
+import Tag from "@/components/custom/Tag";
 
 // PAGE
 const Client = () => {
-  const { data, error, isLoading, getState } = useService("stateService");
-  useEffect(() => {
-    if (!data) {
-      getState();
-    }
-  }, []);
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error: {error.message}</div>;
   return (
     <div>
       <h1>Hola</h1>
-      <div>Estado: {JSON.stringify(data)}</div>
     </div>
   );
 };
