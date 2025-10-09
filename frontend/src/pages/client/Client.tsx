@@ -8,24 +8,24 @@
  */
 
 // DEPENDENCIES
-import GridSelector from "@/components/containers/GridSelector";
-import { useTranslation } from "react-i18next";
-
-// LOGIC
+import { useEffect } from "react";
+import useService from "@/hooks/useService";
 
 // PAGE
 const Client = () => {
-  const { t } = useTranslation();
+  const { data, error, isLoading, getState } = useService("stateService");
+  useEffect(() => {
+    if (!data) {
+      getState();
+    }
+  }, []);
+  if (isLoading) return <div>Cargando...</div>;
+  if (error) return <div>Error: {error.message}</div>;
   return (
-    <>
-      <GridSelector className="bg-accent-foreground">
-        <span className="bg-black">Elemento</span>
-        <GridSelector className="bg-gray-500">
-          <span className="bg-black">Elemento</span>
-          <span className="bg-black">Elemento</span>
-        </GridSelector>
-      </GridSelector>
-    </>
+    <div>
+      <h1>Hola</h1>
+      <div>Estado: {JSON.stringify(data)}</div>
+    </div>
   );
 };
 
