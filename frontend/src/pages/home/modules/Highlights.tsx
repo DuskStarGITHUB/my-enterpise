@@ -8,21 +8,17 @@
  */
 
 // DEPENDENCIES
-import React from "react";
 import modularIcon from "/svg/modular-icon.svg";
 import opensourceIcon from "/svg/opensource-icon.svg";
 import groupIcon from "/svg/group-icon.svg";
 import secureIcon from "/svg/secure-icon.svg";
 import serverIcon from "/svg/server-icon.svg";
 import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
-
-// LOGIC
-type HighlightsProps = {
-  t: (key: string) => string;
-};
+import { useTranslation } from "react-i18next";
 
 // HIGHLIGHTS COMPONENT
-const Highlights: React.FC<HighlightsProps> = ({ t }) => {
+const Highlights = () => {
+  const { t } = useTranslation();
   return (
     <section className="bg-gray-300 w-full text-black dark:bg-black dark:text-white min-h-[80vh] flex flex-col items-center px-6 justify-center">
       <AnimateOnScroll>

@@ -2,23 +2,19 @@
  * =====================================================
  *  NAME    : Section2.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: SECTION 2 FOR HOME PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React from "react";
 import { Button } from "@/components/ui/button";
 import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
-
-// LOGIC
-type Section2Props = {
-  t: (key: string) => string;
-};
+import { useTranslation } from "react-i18next";
 
 // SECTION 2
-const Section2: React.FC<Section2Props> = ({ t }) => {
+const Section2 = () => {
+  const { t } = useTranslation();
   return (
     <section className="flex min-h-dvh w-full bg-gray-950 dark:bg-black sm:grid sm:grid-cols-2 border-blur z-1 items-center">
       <article className="p-10 flex flex-col justify-center text-start items-start lg:p-20 space-y-4 dark:bg-white/3 z-2 min-h-dvh w-full">

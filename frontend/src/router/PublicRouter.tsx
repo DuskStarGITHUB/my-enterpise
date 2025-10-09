@@ -72,7 +72,6 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
                 setIsLoggedIn(false);
               }
             } else {
-              console.log("flag");
               const validAccess = await validateToken(access_token);
               const validR = await validateToken(r_token);
               setIsLoggedIn(validAccess && validR);

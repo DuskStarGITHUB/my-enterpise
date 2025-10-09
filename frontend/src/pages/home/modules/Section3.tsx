@@ -2,13 +2,13 @@
  * =====================================================
  *  NAME    : Section3.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -19,11 +19,8 @@ import {
 } from "@/components/ui/carousel";
 import { Layers, Code2, Users, ShieldCheck, Server } from "lucide-react";
 import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
+import { useTranslation } from "react-i18next";
 
-// LOGIC
-type Section3Props = {
-  t: (key: string) => string;
-};
 const iconMap = {
   card1: <Layers className="w-10 h-10 text-primary" />,
   card2: <Code2 className="w-10 h-10 text-primary" />,
@@ -33,7 +30,8 @@ const iconMap = {
 };
 
 // SECTION 3
-const Section3: React.FC<Section3Props> = ({ t }) => {
+const Section3 = () => {
+  const { t } = useTranslation();
   const cards = ["card1", "card2", "card3", "card4", "card5"];
   const sectionRef = useRef<HTMLElement>(null);
   const [visibleCards, setVisibleCards] = useState<number[]>([]);

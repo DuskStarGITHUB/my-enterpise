@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : NavBar.tsx
  *  DATE      : 22/09/2025
- *  DATE_MODIFY       : 25/09/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: NAVIGATION BAR COMPONENT
  * =====================================================
  */
@@ -20,9 +20,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Github, Twitter, CircleCheckBig, Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-// LOGIC
-type NavBarProps = { t: (key: string) => string };
 
 // ITEMS
 const documentationItems = [
@@ -85,7 +84,8 @@ function ListItem({
 }
 
 // NAVBAR COMPONENT
-const NavBar: React.FC<NavBarProps> = ({ t }) => {
+const NavBar = () => {
+  const { t } = useTranslation();
   const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <header className="w-full px-4 z-50 dark:bg-black/50">

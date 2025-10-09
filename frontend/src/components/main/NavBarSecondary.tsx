@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : NavBarSecondary.tsx
  *  DATE      : 06/10/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: NAVBAR INVISIBLE TO VISIBLE SCROLL
  * =====================================================
  */
@@ -20,13 +20,9 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Github, Twitter, CircleCheckBig, Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // LOGIC
-type NavBarSecondaryProps = {
-  t: (key: string) => string;
-};
-
-// ITEMS
 const documentationItems = [
   {
     title: "Alert Dialog",
@@ -86,7 +82,8 @@ function ListItem({
   );
 }
 
-const NavBarSecondary: React.FC<NavBarSecondaryProps> = ({ t }) => {
+const NavBarSecondary = () => {
+  const { t } = useTranslation();
   const [sticky, setStiky] = useState(false);
   useEffect(() => {
     const handleScroll = () => {

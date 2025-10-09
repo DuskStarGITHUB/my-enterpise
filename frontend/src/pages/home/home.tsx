@@ -2,13 +2,12 @@
  * =====================================================
  *  NAME    : home.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: PAGE HOME
  * =====================================================
  */
 
 // DEPENDENCIES
-import React from "react";
 import NavBar from "@/components/main/NavBar";
 import Content from "./modules/Content";
 import backgroundImage from "/img/bg-web.jpg";
@@ -16,18 +15,12 @@ import "@/assets/css/fonts.css";
 import "@/assets/css/animationsHome.css";
 import Footer from "@/components/main/Footer";
 
-
-// LOGIC
-type HomePageProps = {
-  t: (key: string) => string;
-};
-
 // HOME PAGE
-const Home: React.FC<HomePageProps> = ({ t }) => {
+const Home = () => {
   return (
     <>
       {/* NAVBAR */}
-      <NavBar t={t} />
+      <NavBar />
       {/* MAIN CONTENT */}
       <div className="relative flex flex-col text-white max-w-screen dark:bg-black/50">
         {/* BACKGROUND */}
@@ -40,10 +33,10 @@ const Home: React.FC<HomePageProps> = ({ t }) => {
           <span className="absolute top-0 left-0 w-full h-full bg-black/40"></span>
         </span>
         {/* WELCOME CONTENT */}
-        <Content t={t} />
+        <Content />
       </div>
       {/* FOOTER */}
-      <Footer t={t} />
+      <Footer />
     </>
   );
 };

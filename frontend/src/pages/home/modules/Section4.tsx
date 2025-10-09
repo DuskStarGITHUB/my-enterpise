@@ -2,23 +2,19 @@
  * =====================================================
  *  NAME    : Section4.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React from "react";
 import { Check } from "lucide-react";
 import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
-
-// LOGIC
-type Section4Props = {
-  t: (key: string) => string;
-};
+import { useTranslation } from "react-i18next";
 
 // SECTION 4
-const Section4: React.FC<Section4Props> = ({ t }) => {
+const Section4 = () => {
+  const { t } = useTranslation();
   const frontendArray = [
     "TypeScript",
     "React",

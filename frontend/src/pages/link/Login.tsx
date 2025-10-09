@@ -4,13 +4,13 @@
  * =====================================================
  *  NAME    : Login.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: LOGIN PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -26,14 +26,12 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { User, Lock, Gavel } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
-// LOGIC
-type LoginProps = {
-  t: (key: string) => string;
-};
 
 // PAGE
-const Login: React.FC<LoginProps> = ({ t }) => {
+const Login = () => {
+  const { t } = useTranslation();
   const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
     const timeout = setTimeout(() => setFadeIn(true), 50);

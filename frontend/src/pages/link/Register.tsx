@@ -3,13 +3,13 @@
  * =====================================================
  *  NAME    : Register.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 28/09/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: REGISTER PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -31,12 +31,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller, useWatch } from "react-hook-form";
 import { Gavel } from "lucide-react";
-
-// LOGIC
-type RegisterProps = { t: (key: string) => string };
+import { useTranslation } from "react-i18next";
 
 // PAGE
-const Register: React.FC<RegisterProps> = ({ t }) => {
+const Register = () => {
+  const { t } = useTranslation();
   const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
     const timeout = setTimeout(() => setFadeIn(true), 50);

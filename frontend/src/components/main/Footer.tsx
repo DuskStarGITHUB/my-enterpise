@@ -2,28 +2,23 @@
  * =====================================================
  *  NAME    : Footer.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 25/09/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: FOOTER WEB
  * =====================================================
  */
 
 // DEPENDENCIES
-import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Github, Twitter, CircleCheckBig } from "lucide-react";
-
-// LOGIC
-type FooterProps = {
-  t: (key: string) => string;
-};
+import { useTranslation } from "react-i18next";
 
 // FOOTER
-const Footer: React.FC<FooterProps> = ({t}) => {
+const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const companyInfo = {
     name: "My Enterpise",
-    description:
-      `${t("footer.slogan")}`
+    description: `${t("footer.slogan")}`,
   };
   const socialLinks = [
     { icon: Github, href: "/", label: "GitHub" },

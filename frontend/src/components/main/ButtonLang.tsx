@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : ButtonLang.tsx
  *  DATE      : 23/09/2025
- *  DATE_MODIFY       : 23/09/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: LANGUAGE SELECTOR BUTTON
  * =====================================================
  */
@@ -27,15 +27,16 @@ import {
 } from "@/components/ui/popover";
 import { useLang } from "@/hooks/useLang";
 import { Lang } from "@/store/tasks/langState";
+import { useTranslation } from "react-i18next";
 
 // LOGIC
 type ButtonLangProps = {
-  t: (key: string) => string;
   className?: string;
 };
 
 // COMPONENT
-const ButtonLang: React.FC<ButtonLangProps> = ({ t, className }) => {
+const ButtonLang: React.FC<ButtonLangProps> = ({ className }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
   const { lang, set } = useLang();
   const languages = [

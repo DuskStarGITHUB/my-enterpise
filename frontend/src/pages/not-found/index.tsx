@@ -2,18 +2,16 @@
  * =====================================================
  *  NAME    : index.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 28/09/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: NOT FOUND PAGE
  * =====================================================
  */
-
-// LOGIC
-type NotFoundPageProps = {
-  t: (key: string) => string;
-};
+// DEPENDENCIES
+import { useTranslation } from "react-i18next";
 
 // NOT FOUND PAGE
-const NotFoundPage: React.FC<NotFoundPageProps> = ({ t }) => {
+const NotFoundPage = () => {
+  const { t } = useTranslation();
   return (
     <section className="flex h-screen flex-col items-center justify-center text-center">
       <h1 className="mb-4 text-6xl font-semibold text-red-500">404</h1>

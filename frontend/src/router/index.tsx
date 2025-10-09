@@ -12,7 +12,6 @@ import { lazy, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import ProtectedRoute from "@/router/ProtectedRoute";
 import PublicRouter from "@/router/PublicRouter";
-import { useTranslation } from "react-i18next";
 import "../assets/css/loading.css";
 import Loading from "@/components/main/Loading";
 
@@ -25,30 +24,30 @@ const Client = lazy(() => import("@/pages/client/Client"));
 
 // ROUTES
 const CheckUser = () => {
-  const { t } = useTranslation();
   const hasVisitedBefore = localStorage.getItem("hasVisitedBefore");
   const routes = [
     {
       path: "/",
-      element: hasVisitedBefore === "true" ? (
-        <ProtectedRoute>
-          <Client t={t} />
-        </ProtectedRoute>
-      ) : (
-        <Home t={t} />
-      ),
+      element:
+        hasVisitedBefore === "true" ? (
+          <ProtectedRoute>
+            <Client />
+          </ProtectedRoute>
+        ) : (
+          <Home />
+        ),
     },
-    { path: "/me", element: <Home t={t} /> },
+    { path: "/me", element: <Home /> },
     {
       path: "/login",
       element: (
         <PublicRouter>
-          <Login t={t} />
+          <Login />
         </PublicRouter>
       ),
     },
-    { path: "/register", element: <Register t={t} /> },
-    { path: "*", element: <NotFoundPage t={t} /> },
+    { path: "/register", element: <Register /> },
+    { path: "*", element: <NotFoundPage /> },
   ];
   return useRoutes(routes);
 };
@@ -61,5 +60,4 @@ export const Router = () => {
     </Suspense>
   );
 };
-
 export default Router;

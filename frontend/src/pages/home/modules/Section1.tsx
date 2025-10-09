@@ -2,25 +2,21 @@
  * =====================================================
  *  NAME    : Section1.tsx
  *  DATE      : 24/08/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 09/10/2025
  *  DESCRIPTION: CONTENT SECTION 1 HOME PAGE
  * =====================================================
  */
 
 // DEPENDENCIES
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonLang from "@/components/main/ButtonLang";
 import ButtonTheme from "@/components/main/ButtonTheme";
 import AnimateOnScroll from "@/components/containers/AnimateOnScroll";
-
-// LOGIC
-type Section1Props = {
-  t: (key: string) => string;
-};
+import { useTranslation } from "react-i18next";
 
 // SECTION 1
-const Section1: React.FC<Section1Props> = ({ t }) => {
+const Section1 = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <AnimateOnScroll>
@@ -61,11 +57,8 @@ const Section1: React.FC<Section1Props> = ({ t }) => {
           </div>
         </div>
         <div className="absolute bottom-0 right-0">
-          <ButtonTheme t={t} />
-          <ButtonLang
-            t={t}
-            className="hover:bg-transparent hover:cursor-pointer"
-          />
+          <ButtonTheme />
+          <ButtonLang className="hover:bg-transparent hover:cursor-pointer" />
         </div>
       </section>
     </AnimateOnScroll>
