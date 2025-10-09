@@ -8,7 +8,7 @@
  */
 
 // DEPENDENCIES
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import { useRoutes } from "react-router-dom";
 import ProtectedRoute from "@/router/ProtectedRoute";
 import PublicRouter from "@/router/PublicRouter";
@@ -30,7 +30,7 @@ const CheckUser = () => {
   const routes = [
     {
       path: "/",
-      element: hasVisitedBefore ? (
+      element: hasVisitedBefore === "true" ? (
         <ProtectedRoute>
           <Client t={t} />
         </ProtectedRoute>
@@ -50,9 +50,6 @@ const CheckUser = () => {
     { path: "/register", element: <Register t={t} /> },
     { path: "*", element: <NotFoundPage t={t} /> },
   ];
-  useEffect(() => {
-    if (!hasVisitedBefore) localStorage.setItem("hasVisitedBefore", "true");
-  }, [hasVisitedBefore]);
   return useRoutes(routes);
 };
 

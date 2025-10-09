@@ -72,6 +72,7 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
                 setIsLoggedIn(false);
               }
             } else {
+              console.log("flag");
               const validAccess = await validateToken(access_token);
               const validR = await validateToken(r_token);
               setIsLoggedIn(validAccess && validR);
@@ -80,6 +81,7 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
             setIsLoggedIn(false);
           }
         } else {
+          localStorage.setItem("hasVisitedBefore", "false");
           setIsLoggedIn(false);
         }
       } else {
@@ -124,6 +126,7 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
   }, [location]);
   if (isLoading) return <Loading />;
   if (location.pathname === "/login" && isLoggedIn) {
+    localStorage.setItem("hasVisitedBefore", "true");
     return <Navigate to="/" replace />;
   }
   if (location.pathname !== "/login" && !isLoggedIn) {

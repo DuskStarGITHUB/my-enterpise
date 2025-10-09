@@ -70,6 +70,7 @@ const Login: React.FC<LoginProps> = ({ t }) => {
       console.table(data);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("r_token", data.r_token);
+      localStorage.setItem("hasVisitedBefore", "true");
       window.location.href = "/";
     } catch (err) {
       console.error(err);

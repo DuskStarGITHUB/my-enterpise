@@ -36,6 +36,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
       return data.valid;
     } catch (err) {
       console.error(err);
+      localStorage.setItem("hasVisitedBefore", "false");
       return false;
     }
   };
