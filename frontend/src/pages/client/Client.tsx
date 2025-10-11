@@ -9,14 +9,23 @@
 
 // DEPENDENCIES
 import Tag from "@/components/custom/Tag";
+import { useTranslation } from "react-i18next";
+import GridSelector from "@/components/containers/GridSelector";
 
 // PAGE
 const Client = () => {
+  const { t } = useTranslation();
   return (
-    <div>
-      <h1>Hola</h1>
-    </div>
+    <span className="flex items-center justify-center h-screen w-screen">
+      <GridSelector type="3-2">
+      <Tag text={t("global.language")} color="white" desing="full" textType="bold" />
+      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
+      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
+      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
+      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
+      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
+      </GridSelector>
+    </span>
   );
 };
-
 export default Client;

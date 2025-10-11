@@ -1,7 +1,6 @@
 {
   "global": {
-    "language-es": "Spanish",
-    "language-en": "English"
+    "language": "English"
   },
   "words": {
     "login": "Login",

@@ -88,16 +88,23 @@ const GridSelector = ({
   if (childrenArray.length > maxChildren) {
     return (
       <div className="flex justify-center items-center h-screen w-screen z-50 bg-red-500 text-white">
-        <span>Error: Child number exceeded</span>
+        <span>
+          Error: Elements number exceeded. Fix: Reduce elements inside component
+          our Generate a Grid more Big.
+        </span>
       </div>
     );
   }
   gridClass += ` ${className}`;
   return (
-    <div className={gridClass}>
+    <div className={`${gridClass}`}>
       {render
         ? render(childrenArray)
-        : childrenArray.map((child, index) => <div key={index}>{child}</div>)}
+        : childrenArray.map((child, index) => (
+            <div key={index}>
+              {child}
+            </div>
+          ))}
     </div>
   );
 };

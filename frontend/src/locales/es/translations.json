@@ -1,7 +1,6 @@
 {
   "global": {
-    "language-es": "Español",
-    "language-en": "Ingles"
+    "language": "Español"
   },
   "words": {
     "login": "Iniciar Sesión",
