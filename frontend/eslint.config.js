@@ -12,7 +12,7 @@ import eslintPluginReactRefresh from "eslint-plugin-react-refresh";
 import eslintPluginUnicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 import typescriptEslint from "typescript-eslint";
-import tailwind from "eslint-plugin-tailwindcss";
+// import tailwind from "eslint-plugin-tailwindcss";
 const patchedReactHooksPlugin = fixupPluginRules(eslintPluginReactHooks);
 const patchedImportPlugin = fixupPluginRules(eslintPluginImport);
 const baseESLintConfig = {
@@ -178,13 +178,13 @@ const unicornConfig = {
     ],
   },
 };
-const tailwindConfig = {
-  name: "tailwind-config",
-  plugins: {
-    tailwind: tailwind,
-  },
-  extends: [...tailwind.configs["flat/recommended"]],
-};
+// const tailwindConfig = {
+//   name: "tailwind-config",
+//   plugins: {
+//     tailwind: tailwind,
+//   },
+//   extends: [...tailwind.configs["flat/recommended"]],
+// };
 const eslintConfig = typescriptEslint.config(
   baseESLintConfig,
   typescriptConfig,
@@ -192,7 +192,7 @@ const eslintConfig = typescriptEslint.config(
   reactConfig,
   jsxA11yConfig,
   unicornConfig,
-  tailwindConfig
+  // tailwindConfig
 );
 eslintConfig.map((config) => {
   config.files = ["src/**/*.ts", "src/**/*.tsx"];

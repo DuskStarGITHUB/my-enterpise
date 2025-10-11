@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "init": "pnpm install --prefix frontend && npm install --prefix backend",
-    "stack": "concurrently \"pnpm --prefix frontend run dev\" \"npm --prefix backend run start:dev\"",
-    "build": "concurrently \"pnpm run build --prefix frontend\" \"npm run build --prefix backend\""
+    "init": "bun install --prefix frontend && bun install --prefix backend",
+    "stack": "concurrently \"cd frontend && bun run dev\" \"cd backend && bun run start:dev\"",
+    "build": "concurrently \"cd frontend && bun run dev\" \"cd backend && bun run start:dev\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "backend": "^0.0.0",
+    "frontend": "^2.0.0-alpha.4"
   }
 }
