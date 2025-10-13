@@ -23,12 +23,9 @@ const Section4 = () => {
     "Vite",
     "Tailwind CSS",
     "ShadCN/ui",
-    "Storybook",
     "ReactRouter",
     "RTK Query",
     "Zod",
-    "React Testing Library",
-    "Vitest",
     "Playwright",
     "react-i18next",
   ];
@@ -38,12 +35,11 @@ const Section4 = () => {
     "Express",
     "ESLint",
     "Prettier",
-    "ts-reset",
-    "Husky + Commitizen + Commitlint",
-    "Docker",
     "Prisma",
+    "JWT",
+    "BCRYPT",
   ];
-  const databaseArray = ["PHPMyAdmin", "MariaDB", "MySQL", "Redis"];
+  const databaseArray = ["PHPMyAdmin", "MariaDB", "MySQL"];
   const renderTechList = (array: Array<string>) => (
     <ul className="space-y-2">
       {array.map((tech) => (
