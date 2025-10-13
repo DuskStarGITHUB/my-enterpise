@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /**
  * =====================================================
  *  NAME    : Section4.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
@@ -42,7 +44,7 @@ const Section4 = () => {
     "Prisma",
   ];
   const databaseArray = ["PHPMyAdmin", "MariaDB", "MySQL", "Redis"];
-  const renderTechList = (array: string[]) => (
+  const renderTechList = (array: Array<string>) => (
     <ul className="space-y-2">
       {array.map((tech) => (
         <li
@@ -58,9 +60,9 @@ const Section4 = () => {
   return (
     <section className="h-full w-full relative">
       <img
-        src="/img/bg-web2.jpg"
         alt="background"
         className="absolute inset-0 w-full h-full object-cover -z-10"
+        src="/img/bg-web2.jpg"
       />
       <span className="p-15 h-full w-full flex flex-col items-center justify-center bg-black/10 dark:bg-black/80 backdrop-blur-sm">
         <span className="relative z-10 max-w-6xl w-full px-6 py-16 bg-white/10 rounded-xl shadow-2xl">

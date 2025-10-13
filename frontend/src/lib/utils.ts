@@ -1,8 +1,9 @@
+/* eslint-disable unicorn/prevent-abbreviations */
 /**
  * =====================================================
  *  NAME    : utils.ts
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 21/09/25
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: UTILS FUNCTIONS
  * =====================================================
  */

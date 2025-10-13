@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /**
  * =====================================================
  *  NAME    : Section2.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: SECTION 2 FOR HOME PAGE
  * =====================================================
  */
@@ -21,8 +23,8 @@ const Section2 = () => {
         <h3 className="font-bold lg:text-6xl">{t("home.text-3")}</h3>
         <p className="lg:text-2xl font-light">{t("home.text-4")}</p>
         <Button
-          onClick={() => (window.location.href = "/")}
           className="hover:cursor-pointer rounded bg-accent px-10 md-4 lg:px-20 lg:py-7 font-bold text-black text-3xl dark:bg-black dark:text-white"
+          onClick={() => (window.location.href = "/")}
         >
           {t("words.view")}
         </Button>
@@ -31,9 +33,9 @@ const Section2 = () => {
         <span>
           <AnimateOnScroll>
             <img
-              src="/img/img-1.png"
               alt="image"
               className="hidden sm:block sm:h-full object-contain dark:invert-90 dark:opacity-60"
+              src="/img/img-1.png"
             />
           </AnimateOnScroll>
         </span>

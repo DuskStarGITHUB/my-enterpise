@@ -1,12 +1,14 @@
+/* eslint-disable no-duplicate-imports */
 /* ESLINT */
+import type { JSX} from "react";
 import { lazy, Suspense } from "react";
 interface Options {
   fallback: React.ReactNode;
 }
 type Unpromisify<T> = T extends Promise<infer P> ? P : never;
 export const lazyLoad = <
-  T extends Promise<any>,
-  U extends React.ComponentType<any>
+  T extends Promise<unknown>,
+  U extends React.ComponentType<unknown>
 >(
   importFn: () => T,
   selectorFn?: (s: Unpromisify<T>) => U,

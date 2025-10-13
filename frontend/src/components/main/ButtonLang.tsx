@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /**
  * =====================================================
  *  NAME    : ButtonLang.tsx
  *  DATE      : 23/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: LANGUAGE SELECTOR BUTTON
  * =====================================================
  */
@@ -26,7 +27,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useLang } from "@/hooks/useLang";
-import { Lang } from "@/store/tasks/langState";
+import type { Lang } from "@/store/tasks/langState";
 import { useTranslation } from "react-i18next";
 
 // LOGIC
@@ -51,10 +52,10 @@ const ButtonLang: React.FC<ButtonLangProps> = ({ className }) => {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
-          role="combobox"
           aria-expanded={open}
           className={`w-[160px] justify-between text-white bg-transparent border-0 ${className}`}
+          role="combobox"
+          variant="outline"
         >
           {languages.find((l) => l.value === lang)?.label}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -70,7 +71,7 @@ const ButtonLang: React.FC<ButtonLangProps> = ({ className }) => {
                 <CommandItem
                   key={l.value}
                   value={l.value}
-                  onSelect={() => handleSelect(l.value)}
+                  onSelect={() => { handleSelect(l.value); }}
                 >
                   <Check
                     className={cn(

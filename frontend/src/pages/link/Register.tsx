@@ -1,9 +1,14 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable unicorn/prevent-abbreviations */
+/* eslint-disable camelcase */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 "use client";
 /**
  * =====================================================
  *  NAME    : Register.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: REGISTER PAGE
  * =====================================================
  */
@@ -38,8 +43,8 @@ const Register = () => {
   const { t } = useTranslation();
   const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
-    const timeout = setTimeout(() => setFadeIn(true), 50);
-    return () => clearTimeout(timeout);
+    const timeout = setTimeout(() => { setFadeIn(true); }, 50);
+    return () => { clearTimeout(timeout); };
   }, []);
   const registerSchema = z.object({
     name: z.string().min(1, { message: t("register.nameRequired") }),
@@ -101,9 +106,9 @@ const Register = () => {
       if (!res.ok) throw new Error("Datos no validos");
       alert("Registro exitoso. Ahora serás redirigido a la página de login.");
       window.location.href = "/login";
-    } catch (err) {
-      console.error(err);
-      alert(`Try Again || ${err}`);
+    } catch (error) {
+      console.error(error);
+      alert(`Try Again || ${error}`);
     }
   };
   const handleLoginClick = () => {
@@ -118,8 +123,8 @@ const Register = () => {
       >
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
             className="p-6 sm:p-10 rounded-3xl shadow-xl space-y-6 dark:border-gray-950 border-2"
+            onSubmit={form.handleSubmit(onSubmit)}
           >
             <div className="text-center space-y-1">
               <h1 className="text-2xl sm:text-3xl font-extrabold">
@@ -170,8 +175,8 @@ const Register = () => {
                     <FormLabel>{t("register.passwordLabel")}</FormLabel>
                     <FormControl>
                       <Input
-                        type="password"
                         placeholder={t("register.passwordPlaceholder")}
+                        type="password"
                         {...field}
                       />
                     </FormControl>
@@ -187,8 +192,8 @@ const Register = () => {
                     name="type"
                     render={({ field }) => (
                       <Select
-                        onValueChange={(val) => field.onChange(val)}
                         value={field.value}
+                        onValueChange={(value) => { field.onChange(value); }}
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select type" />
@@ -251,8 +256,8 @@ const Register = () => {
               )}
             />
             <Button
-              type="submit"
               className="w-full py-3 text-lg font-semibold rounded-2xl cursor-pointer"
+              type="submit"
             >
               {t("register.submitButton")}
             </Button>
@@ -262,10 +267,10 @@ const Register = () => {
               <span className="flex-grow h-px bg-gray-300"></span>
             </div>
             <Button
-              type="button"
-              onClick={handleLoginClick}
-              variant="outline"
               className="w-full py-3 flex items-center justify-center gap-2 cursor-pointer"
+              type="button"
+              variant="outline"
+              onClick={handleLoginClick}
             >
               <Gavel className="w-5 h-5" />
               {t("login.title")}

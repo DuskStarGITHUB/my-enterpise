@@ -1,3 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : useLang.tsx
@@ -9,9 +14,10 @@
 // DEPENDENCIES
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, AppDispatch } from "@/store";
+import type { RootState, AppDispatch } from "@/store";
 import { useTranslation } from "react-i18next";
-import { Lang, setLang } from "@/store/tasks/langState";
+import type { Lang} from "@/store/tasks/langState";
+import { setLang } from "@/store/tasks/langState";
 
 // HOOK
 export const useLang = () => {

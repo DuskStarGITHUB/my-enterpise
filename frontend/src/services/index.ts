@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : index.ts
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 09/10/25
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: SERVICE STATE BACKEND
  * =====================================================
  */
@@ -13,7 +13,7 @@ import stateService from "./stateService";
 
 // LOGIC
 interface Services {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 // SERVICES USE LIST

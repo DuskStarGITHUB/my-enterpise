@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : ButtonTheme.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: BUTTON TO CHANGE THEME
  * =====================================================
  */
@@ -20,10 +23,10 @@ const ButtonTheme = () => {
   const { theme, toggle } = useTheme();
   return (
     <Button
+      className="hover:bg-transparent text-white hover:text-white hover:cursor-pointer"
+      title="Toggle Theme"
       variant={"ghost"}
       onClick={toggle}
-      title="Toggle Theme"
-      className="hover:bg-transparent text-white hover:text-white hover:cursor-pointer"
     >
       {t("ButtonTheme.theme")}: {theme === "light" ? <Sun /> : <Moon />}
     </Button>

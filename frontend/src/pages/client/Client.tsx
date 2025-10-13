@@ -11,19 +11,50 @@
 import Tag from "@/components/custom/Tag";
 import { useTranslation } from "react-i18next";
 import GridSelector from "@/components/containers/GridSelector";
+import type { JSX } from "react";
 
 // PAGE
-const Client = () => {
+const Client = (): JSX.Element => {
   const { t } = useTranslation();
   return (
     <span className="flex items-center justify-center h-screen w-screen">
       <GridSelector type="3-2">
-      <Tag text={t("global.language")} color="white" desing="full" textType="bold" />
-      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
-      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
-      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
-      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
-      <Tag text={t("global.language")} color="black" desing="full" textType="bold" />
+        <Tag
+          color="white"
+          desing="full"
+          text={t("global.language")}
+          textType="bold"
+        />
+        <Tag
+          color="black"
+          desing="full"
+          text={t("global.language")}
+          textType="bold"
+        />
+        <Tag
+          color="black"
+          desing="full"
+          text={t("global.language")}
+          textType="bold"
+        />
+        <Tag
+          color="black"
+          desing="full"
+          text={t("global.language")}
+          textType="bold"
+        />
+        <Tag
+          color="black"
+          desing="full"
+          text={t("global.language")}
+          textType="bold"
+        />
+        <Tag
+          color="black"
+          desing="full"
+          text={t("global.language")}
+          textType="bold"
+        />
       </GridSelector>
     </span>
   );

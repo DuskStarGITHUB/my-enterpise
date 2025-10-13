@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : NavBarSecondary.tsx
  *  DATE      : 06/10/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: NAVBAR INVISIBLE TO VISIBLE SCROLL
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useState, useEffect } from "react";
+import type React from "react";
+import { useState, useEffect } from "react";
 import logoLight from "/img/logo-w-nobg.png";
 import {
   NavigationMenu,
@@ -112,14 +116,14 @@ const NavBarSecondary = () => {
         <span className="flex w-full max-w-6xl justify-between items-center py-2">
           <span className="flex-shrink-0">
             <img
-              src={logoLight}
               alt="Logo"
               className="max-w-10 object-contain md:max-w-30"
+              src={logoLight}
             />
           </span>
           <button
             className="sm:hidden text-white p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            onClick={() => { setMobileOpen(!mobileOpen); }}
           >
             {mobileOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
@@ -176,8 +180,8 @@ const NavBarSecondary = () => {
                         <li key={item.title}>
                           <NavigationMenuLink asChild>
                             <a
-                              href={item.href}
                               className="block p-2 rounded-md hover:bg-muted/10 focus:bg-muted/20 no-underline outline-none"
+                              href={item.href}
                             >
                               <div className="font-medium">{item.title}</div>
                               <div className="text-muted-foreground text-sm">
@@ -193,28 +197,28 @@ const NavBarSecondary = () => {
                 {/* ICON LINKS */}
                 <NavigationMenuItem>
                   <a
-                    href="https://github.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="items-center text-white hidden sm:flex"
+                    href="https://github.com/"
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <Github size={30} />
                   </a>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <a
-                    href="https://x.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="items-center text-white hidden sm:flex"
+                    href="https://x.com/"
+                    rel="noopener noreferrer"
+                    target="_blank"
                   >
                     <Twitter size={30} />
                   </a>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <a
-                    href="#"
                     className="items-center text-white hidden sm:flex"
+                    href="#"
                   >
                     <CircleCheckBig size={30} />
                   </a>
@@ -228,7 +232,7 @@ const NavBarSecondary = () => {
         <div className="sm:hidden bg-black/80 w-full p-4">
           <ul className="flex flex-col gap-4">
             <li>
-              <a href="/" className="text-white text-lg font-bold">
+              <a className="text-white text-lg font-bold" href="/">
                 {t("navbar.home")}
               </a>
             </li>
@@ -239,7 +243,7 @@ const NavBarSecondary = () => {
               <ul className="mt-2 ml-4 flex flex-col gap-2">
                 {documentationItems.map((item) => (
                   <li key={item.title}>
-                    <a href={item.href} className="text-white text-sm">
+                    <a className="text-white text-sm" href={item.href}>
                       {item.title}
                     </a>
                   </li>
@@ -253,7 +257,7 @@ const NavBarSecondary = () => {
               <ul className="mt-2 ml-4 flex flex-col gap-2">
                 {resourcesItems.map((item) => (
                   <li key={item.title}>
-                    <a href={item.href} className="text-white text-sm">
+                    <a className="text-white text-sm" href={item.href}>
                       {item.title}
                     </a>
                   </li>

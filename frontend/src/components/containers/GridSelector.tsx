@@ -1,13 +1,16 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : Grid.tsx
  *  DATE      : 08/10/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: GRID CONTAINER GENERATOR
  * =====================================================
  */
 
 // DEPENDENCIES
+import type { JSX } from "react";
 import React from "react";
 
 // LOGIC
@@ -15,7 +18,7 @@ interface GridConfig {
   [key: string]: {
     className: string;
     maxChildren: number;
-    render?: (children: React.ReactNode[]) => JSX.Element;
+    render?: (children: Array<React.ReactNode>) => JSX.Element;
   };
 }
 
@@ -32,7 +35,7 @@ const GridSelector = ({
   const childrenArray = React.Children.toArray(children);
   let gridClass = "";
   let maxChildren = 0;
-  let render: ((children: React.ReactNode[]) => JSX.Element) | null = null;
+  let render: ((children: Array<React.ReactNode>) => JSX.Element) | null = null;
   if (type.match(/^\d+$/)) {
     const cols = parseInt(type);
     gridClass = `grid grid-cols-${cols}`;

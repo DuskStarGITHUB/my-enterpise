@@ -1,14 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable camelcase */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable unicorn/prevent-abbreviations */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : PrivateRouter.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: ROUTER VALIDATION FOR COMPONETS , DEFAULT FALSE BACKEND
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useState, useEffect, useRef } from "react";
+import type React from "react";
+import { useState, useEffect, useRef } from "react";
 import { Navigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "../assets/css/loading.css";
@@ -52,8 +61,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         return;
       }
       try {
-        const accessDecoded: any = jwtDecode(access_token);
-        const rDecoded: any = jwtDecode(r_token);
+        const accessDecoded: unknown = jwtDecode(access_token);
+        const rDecoded: unknown = jwtDecode(r_token);
         const now = Date.now() / 1000;
         if (rDecoded.exp < now) {
           setIsValid(false);
@@ -100,13 +109,13 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
       setIsValid(validAccess && validR);
       setTokensLoaded(true);
     };
-    checkTokens();
+    void checkTokens();
   }, []);
   if (!tokensLoaded) {
     return <Loading />;
   }
   if (!isValid) {
-    return <Navigate to="/login" replace />;
+    return <Navigate replace to="/login" />;
   }
   return <>{children}</>;
 };

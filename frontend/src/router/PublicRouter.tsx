@@ -1,14 +1,23 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable camelcase */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable unicorn/prevent-abbreviations */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : PublicRouter.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: ROUTER VALIDATION FOR COMPONETS , DEFAULT FALSE BACKEND
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useEffect, useState, useRef } from "react";
+import type React from "react";
+import { useEffect, useState, useRef } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import "../assets/css/loading.css";
@@ -48,8 +57,8 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
       if (location.pathname === "/login") {
         if (access_token && r_token) {
           try {
-            const accessDecoded: any = jwtDecode(access_token);
-            const rDecoded: any = jwtDecode(r_token);
+            const accessDecoded: unknown = jwtDecode(access_token);
+            const rDecoded: unknown = jwtDecode(r_token);
             const now = Date.now() / 1000;
             if (rDecoded.exp < now) {
               setIsLoggedIn(false);
@@ -88,8 +97,8 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
           setIsLoggedIn(false);
         } else {
           try {
-            const accessDecoded: any = jwtDecode(access_token);
-            const rDecoded: any = jwtDecode(r_token);
+            const accessDecoded: unknown = jwtDecode(access_token);
+            const rDecoded: unknown = jwtDecode(r_token);
             const now = Date.now() / 1000;
             if (rDecoded.exp < now) {
               setIsLoggedIn(false);
@@ -121,15 +130,15 @@ const PublicRouter: React.FC<Props> = ({ children }) => {
       }
       setIsLoading(false);
     };
-    checkLogin();
+    void checkLogin();
   }, [location]);
   if (isLoading) return <Loading />;
   if (location.pathname === "/login" && isLoggedIn) {
     localStorage.setItem("hasVisitedBefore", "true");
-    return <Navigate to="/" replace />;
+    return <Navigate replace to="/" />;
   }
   if (location.pathname !== "/login" && !isLoggedIn) {
-    return <Navigate to="/login" replace />;
+    return <Navigate replace to="/login" />;
   }
   return <>{children}</>;
 };

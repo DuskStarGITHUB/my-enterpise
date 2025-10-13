@@ -1,8 +1,9 @@
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : ThemeProvider.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: THEME PROVIDER FOR DARK MODE AND LIGHT MODE
  * =====================================================
  */
@@ -10,8 +11,9 @@
 // DEPENDENCIES
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setTheme, Theme } from "@/store/tasks/themeState";
-import { AppDispatch } from "@/store";
+import type { Theme } from "@/store/tasks/themeState";
+import { setTheme } from "@/store/tasks/themeState";
+import type { AppDispatch } from "@/store";
 
 // THEME PROVIDER COMPONENT
 interface ThemeProviderProps {

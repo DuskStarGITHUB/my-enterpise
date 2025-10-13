@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /**
  * =====================================================
  *  NAME    : Footer.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: FOOTER WEB
  * =====================================================
  */
@@ -45,11 +47,11 @@ const Footer = () => {
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
                 aria-label={label}
                 className="p-2 hover:bg-white/10 dark:hover:bg-white/20 transition-colors rounded-md"
+                href={href}
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 <Icon className="w-6 h-6 text-black dark:text-white" />
               </a>

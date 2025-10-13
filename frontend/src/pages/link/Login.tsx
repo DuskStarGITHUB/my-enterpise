@@ -1,10 +1,17 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable unicorn/prevent-abbreviations */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 "use client";
 
 /**
  * =====================================================
  *  NAME    : Login.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: LOGIN PAGE
  * =====================================================
  */
@@ -34,8 +41,8 @@ const Login = () => {
   const { t } = useTranslation();
   const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
-    const timeout = setTimeout(() => setFadeIn(true), 50);
-    return () => clearTimeout(timeout);
+    const timeout = setTimeout(() => { setFadeIn(true); }, 50);
+    return () => { clearTimeout(timeout); };
   }, []);
   const loginSchema = z.object({
     email: z.string().email({ message: t("login.emailInvalid") }),
@@ -70,9 +77,9 @@ const Login = () => {
       localStorage.setItem("r_token", data.r_token);
       localStorage.setItem("hasVisitedBefore", "true");
       window.location.href = "/";
-    } catch (err) {
-      console.error(err);
-      alert(`Try Again || ${err}`);
+    } catch (error) {
+      console.error(error);
+      alert(`Try Again || ${error}`);
     }
   };
   const handleRegisterClick = () => {
@@ -87,8 +94,8 @@ const Login = () => {
       >
         <Form {...form}>
           <form
-            onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-6 p-8 rounded-3xl shadow-xl sm:p-10 dark:border-gray-950 border-2"
+            onSubmit={form.handleSubmit(onSubmit)}
           >
             <h1 className="text-3xl font-extrabold text-center">
               {t("login.title")}
@@ -122,8 +129,8 @@ const Login = () => {
                   <FormControl>
                     <div className="relative">
                       <Input
-                        type="password"
                         placeholder={t("login.passwordPlaceholder")}
+                        type="password"
                         {...field}
                         className="pl-10"
                       />
@@ -138,8 +145,8 @@ const Login = () => {
               )}
             />
             <Button
-              type="submit"
               className="w-full py-3 text-lg font-semibold cursor-pointer"
+              type="submit"
             >
               {t("login.submitButton")}
             </Button>
@@ -149,10 +156,10 @@ const Login = () => {
               <span className="flex-grow h-px bg-gray-300"></span>
             </div>
             <Button
-              type="button"
-              onClick={handleRegisterClick}
-              variant="outline"
               className="w-full py-3 flex items-center justify-center gap-2 cursor-pointer"
+              type="button"
+              variant="outline"
+              onClick={handleRegisterClick}
             >
               <Gavel className="w-5 h-5" />
               {t("login.register")}

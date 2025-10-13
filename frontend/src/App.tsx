@@ -2,12 +2,13 @@
  * =====================================================
  *  NAME    : App.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 21/09/25
- *  DESCRIPTION: CODE FOR REDUX JOINER WITH PROVIDE STORE, ROUTING FOR REACT
+ *  DATE_MODIFY       : 13/10/2025
+ *  DESCRIPTION: CODE FOR REDUX JOINER WITH PROVIDE STORE, ROUTING FOR REACT, THEMES AND MORE
  * =====================================================
  */
 
 // DEPENDENCIES
+import type { JSX } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import Router from "./router";

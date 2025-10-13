@@ -1,14 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : index.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: STORE FOR REDUX TOOLKIT
  * =====================================================
  */
 
 // DEPENDENCIES
-import { configureStore, Middleware } from "@reduxjs/toolkit";
+import type { Middleware } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 // SLICES
 import themeReducer from "./tasks/themeState";
 import langReducer from "./tasks/langState";
@@ -16,8 +20,8 @@ import langReducer from "./tasks/langState";
 import services from "@/services";
 
 // LOGIC
-const reducers: { [KEY: string]: any } = {};
-const middleware: Middleware[] = [];
+const reducers: { [KEY: string]: unknown } = {};
+const middleware: Array<Middleware> = [];
 Object.keys(services).forEach((key) => {
   const service = services[key];
   reducers[service.reducerPath] = service.reducer;

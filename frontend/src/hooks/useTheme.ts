@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : useTheme.tsx
@@ -10,8 +13,9 @@
 // DEPENDENCIES
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "@/store";
-import { Theme, setTheme } from "@/store/tasks/themeState";
+import type { RootState, AppDispatch } from "@/store";
+import type { Theme} from "@/store/tasks/themeState";
+import { setTheme } from "@/store/tasks/themeState";
 
 // HOOK
 export const useTheme = () => {

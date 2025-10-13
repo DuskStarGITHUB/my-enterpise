@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /**
  * =====================================================
  *  NAME    : Section3.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
@@ -34,7 +37,7 @@ const Section3 = () => {
   const { t } = useTranslation();
   const cards = ["card1", "card2", "card3", "card4", "card5"];
   const sectionRef = useRef<HTMLElement>(null);
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [visibleCards, setVisibleCards] = useState<Array<number>>([]);
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -42,8 +45,8 @@ const Section3 = () => {
           if (entry.isIntersecting) {
             cards.forEach((_, index) => {
               setTimeout(() => {
-                setVisibleCards((prev) => [...prev, index]);
-              }, index * 200); // 200ms entre tarjetas
+                setVisibleCards((previous) => [...previous, index]);
+              }, index * 200);
             });
             observer.disconnect();
           }
@@ -52,7 +55,7 @@ const Section3 = () => {
       { threshold: 0.3 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); };
   }, []);
   return (
     <section

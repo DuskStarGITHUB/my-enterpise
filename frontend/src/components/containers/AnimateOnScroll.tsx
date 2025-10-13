@@ -1,14 +1,16 @@
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : AnimatedOnScroll.tsx
  *  DATE      : 27/09/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: ANIMATION COMPONENT APPLY SCROLL
  * =====================================================
  */
 
 // DEPENDENCIES
-import React, { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 
 // LOGIC
 type AnimateOnScrollProps = {
@@ -30,7 +32,7 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setTimeout(() => setIsVisible(true), delay);
+            setTimeout(() => { setIsVisible(true); }, delay);
             observer.disconnect();
           }
         });
@@ -38,7 +40,8 @@ const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
       { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    return () => { observer.disconnect(); };
   }, [delay]);
   return (
     <span

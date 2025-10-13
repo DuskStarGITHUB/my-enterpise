@@ -2,14 +2,14 @@
  * =====================================================
  *  NAME    : stateService.ts
  *  DATE      : 09/10/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: SERVICE STATE BACKEND
  * =====================================================
  */
 
 // DEPENDENCIES
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Response } from "./types/restype";
+import type { Response } from "./types/restype";
 
 // SERVICE
 const BASE_URL = "http://localhost:3001/";

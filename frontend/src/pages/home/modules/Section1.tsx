@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /**
  * =====================================================
  *  NAME    : Section1.tsx
  *  DATE      : 24/08/2025
- *  DATE_MODIFY       : 09/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: CONTENT SECTION 1 HOME PAGE
  * =====================================================
  */

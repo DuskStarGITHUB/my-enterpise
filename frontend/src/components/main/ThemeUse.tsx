@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : ThemeUse.tsx
  *  DATE      : 07/10/2025
- *  DATE_MODIFY       : 08/10/2025
+ *  DATE_MODIFY       : 13/10/2025
  *  DESCRIPTION: READ THEME APPLY COLORS
  * =====================================================
  */
@@ -11,23 +11,22 @@
 import { useEffect } from "react";
 
 // COMPONENT
-const ThemeUse = () => {
-  useEffect(() => {
-    const themetype = localStorage.getItem("themetype");
-    if (themetype) {
-      if (themetype !== "Default") {
-        import(`@/assets/css/theme/${themetype}.css`);
-      } else {
-        import("@/assets/css/theme/Default.css");
-      }
-      // console.log(`ThemeUse: ${themetype}`);
-    } else {
-      const themetype = "Default";
-      localStorage.setItem("themetype", themetype);
-      import("@/assets/css/theme/Default.css");
-      // console.log(`ThemeUse: ${themetype}`);
-    }
-  }, []);
+const ThemeUse = ():null => {
+ useEffect(() => {
+   let themetype = localStorage.getItem("themetype");
+   if (!themetype) {
+     themetype = "Default";
+     localStorage.setItem("themetype", themetype);
+   }
+   const oldLink = document.getElementById("theme-css") as HTMLLinkElement;
+   if (oldLink) oldLink.remove();
+   const link = document.createElement("link");
+   link.rel = "stylesheet";
+   link.id = "theme-css";
+   link.href = `/themes/${themetype}.css`;
+   document.head.appendChild(link);
+ }, []);
+
   return null;
 };
 

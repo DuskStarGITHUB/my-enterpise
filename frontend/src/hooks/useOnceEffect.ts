@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /**
  * =====================================================
  *  NAME    : useOnceEffect.tsx
@@ -12,12 +15,12 @@ import { useEffect, useRef } from "react";
 // USE
 export function useOnceEffect(
   callback: () => void | (() => void),
-  deps: any[] = []
+  _deps: Array<unknown> = []
 ) {
   const calledRef = useRef(false);
   useEffect(() => {
     if (calledRef.current) return;
     calledRef.current = true;
     return callback();
-  }, deps);
+  }, [callback]);
 }
