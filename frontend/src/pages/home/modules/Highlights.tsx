@@ -22,7 +22,7 @@ import { useTranslation } from "react-i18next";
 const Highlights = () => {
   const { t } = useTranslation();
   return (
-    <section className="bg-gray-300 w-full text-black dark:bg-black dark:text-white min-h-[80vh] flex flex-col items-center px-6 justify-center">
+    <section className="bg-gray-300 w-full text-black dark:bg-accent dark:text-white min-h-[80vh] flex flex-col items-center px-6 justify-center">
       <AnimateOnScroll>
         <span className="h-full w-full flex flex-col items-center justify-center py-10">
           <h2 className="font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl lilita-one mb-12">

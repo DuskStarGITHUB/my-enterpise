@@ -55,12 +55,14 @@ const Section3 = () => {
       { threshold: 0.3 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => { observer.disconnect(); };
+    return () => {
+      observer.disconnect();
+    };
   }, []);
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen bg-white text-black dark:bg-black dark:text-white grid gap-6 w-full px-6 lg:px-20 py-12"
+      className="min-h-screen  text-black bg-accent dark:text-white grid gap-6 w-full px-6 lg:px-20 py-12"
     >
       <div className="flex flex-col text-center items-center space-y-8 z-10 w-full h-full">
         <AnimateOnScroll>

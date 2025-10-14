@@ -32,7 +32,7 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className="w-full bg-white dark:bg-black">
+    <footer className="w-full bg-accent">
       <Card className="w-full bg-transparent border-none rounded-none">
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
           <div className="flex flex-col gap-2">

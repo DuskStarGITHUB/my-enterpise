@@ -33,7 +33,7 @@ const Section1 = () => {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-4">
               <button
-                className="w-full sm:w-auto rounded bg-accent px-4 py-2 font-medium text-black dark:bg-gray-950 hover:cursor-pointer hover:dark:bg-black dark:text-white"
+                className="w-full sm:w-auto rounded  px-4 py-2 font-medium hover:cursor-pointer hover:dark:bg-black bg-primary dark:text-white"
                 onClick={() => navigate("/login")}
               >
                 {t("words.login")}
