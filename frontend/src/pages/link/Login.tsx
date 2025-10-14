@@ -94,7 +94,7 @@ const Login = () => {
       >
         <Form {...form}>
           <form
-            className="space-y-6 p-8 rounded-3xl shadow-xl sm:p-10 dark:border-gray-950 border-2"
+            className="space-y-6 p-8 rounded-3xl shadow-xl sm:p-10 border-border border-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <h1 className="text-3xl font-extrabold text-center">

@@ -5,7 +5,7 @@
  * =====================================================
  *  NAME    : Section3.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 13/10/2025
+ *  DATE_MODIFY       : 14/10/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
@@ -62,7 +62,7 @@ const Section3 = () => {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen  text-black bg-accent dark:text-white grid gap-6 w-full px-6 lg:px-20 py-12"
+      className="min-h-screen  text-black bg-background dark:text-white grid gap-6 w-full px-6 lg:px-20 py-12"
     >
       <div className="flex flex-col text-center items-center space-y-8 z-10 w-full h-full">
         <AnimateOnScroll>
@@ -77,8 +77,8 @@ const Section3 = () => {
         </AnimateOnScroll>
       </div>
       <div className="w-full overflow-hidden">
-        <Carousel className="w-full max-w-6xl mx-auto relative">
-          <CarouselContent className="-ml-2 flex gap-6 max-h-full">
+        <Carousel className="w-full max-w-6xl mx-auto relative p-10">
+          <CarouselContent className="flex gap-0 max-h-full">
             {cards.map((cardKey, index) => (
               <CarouselItem
                 key={index}
@@ -91,9 +91,9 @@ const Section3 = () => {
                       : "opacity-0 translate-y-10"
                   }`}
                 >
-                  <Card className="h-full shadow-lg hover:shadow-xl rounded-2xl">
-                    <CardContent className="flex flex-col items-start justify-start p-6 space-y-4">
-                      <div className="w-14 h-14 flex items-center justify-center rounded-full bg-primary/10">
+                  <Card className="h-full shadow-lg hover:shadow-xl rounded-2xl bg-card">
+                    <CardContent className="flex flex-col items-start justify-start p-5 space-y-4">
+                      <div className="w-14 h-14 flex items-center justify-center rounded-full bg-card">
                         {iconMap[cardKey as keyof typeof iconMap]}
                       </div>
                       <h4 className="text-xl sm:text-2xl font-bold">
@@ -108,8 +108,8 @@ const Section3 = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-20 hover:cursor-pointer dark:hover:bg-black" />
-          <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-20 hover:cursor-pointer dark:hover:bg-black" />
+          <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 -translate-x-10 z-20 hover:cursor-pointer dark:hover:bg-black" />
+          <CarouselNext className="absolute -right-5 top-1/2 -translate-y-1/2 --translate-x-10 z-20 hover:cursor-pointer dark:hover:bg-black" />
         </Carousel>
       </div>
     </section>

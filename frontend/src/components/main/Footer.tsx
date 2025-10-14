@@ -4,7 +4,7 @@
  * =====================================================
  *  NAME    : Footer.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 13/10/2025
+ *  DATE_MODIFY       : 14/10/2025
  *  DESCRIPTION: FOOTER WEB
  * =====================================================
  */
@@ -32,7 +32,7 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className="w-full bg-accent">
+    <footer className="w-full bg-background">
       <Card className="w-full bg-transparent border-none rounded-none">
         <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
           <div className="flex flex-col gap-2">

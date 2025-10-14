@@ -4,7 +4,7 @@
  * =====================================================
  *  NAME    : Section1.tsx
  *  DATE      : 24/08/2025
- *  DATE_MODIFY       : 13/10/2025
+ *  DATE_MODIFY       : 14/10/2025
  *  DESCRIPTION: CONTENT SECTION 1 HOME PAGE
  * =====================================================
  */
@@ -33,13 +33,13 @@ const Section1 = () => {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row sm:gap-4">
               <button
-                className="w-full sm:w-auto rounded  px-4 py-2 font-medium hover:cursor-pointer hover:dark:bg-black bg-primary dark:text-white"
+                className="w-full sm:w-auto rounded  px-4 py-2 font-medium hover:cursor-pointer hover:bg-primary-foreground bg-primary hover:text-primary"
                 onClick={() => navigate("/login")}
               >
                 {t("words.login")}
               </button>
               <button
-                className="w-full sm:w-auto rounded border-2 px-4 py-2 font-medium border-white hover:cursor-pointer hover:border-gray-800"
+                className="w-full sm:w-auto rounded border-2 px-4 py-2 font-medium border-accent hover:cursor-pointer hover:border-muted-foreground"
                 onClick={() => navigate("/register")}
               >
                 {t("words.register")}
@@ -59,8 +59,8 @@ const Section1 = () => {
           </div>
         </div>
         <div className="absolute bottom-0 right-0">
-          <ButtonTheme />
-          <ButtonLang className="hover:bg-transparent hover:cursor-pointer" />
+          <ButtonTheme className="rounded-none hover:border-b-2 hover:border-primary hover:bg-transparent hover:text-white" />
+          <ButtonLang className="rounded-none hover:border-b-2 hover:border-primary hover:bg-transparent hover:text-white" />
         </div>
       </section>
     </AnimateOnScroll>

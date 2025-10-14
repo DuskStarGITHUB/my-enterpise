@@ -4,7 +4,7 @@
  * =====================================================
  *  NAME    : Section4.tsx
  *  DATE      : 25/09/2025
- *  DATE_MODIFY       : 13/10/2025
+ *  DATE_MODIFY       : 14/10/2025
  *  DESCRIPTION: SECTION 3 FOR HOME PAGE
  * =====================================================
  */
@@ -54,21 +54,21 @@ const Section4 = () => {
     </ul>
   );
   return (
-    <section className="h-full w-full relative">
+    <section className="h-full w-full relative border-5 border-background">
       <img
         alt="background"
         className="absolute inset-0 w-full h-full object-cover -z-10"
         src="/img/bg-web2.jpg"
       />
-      <span className="p-15 h-full w-full flex flex-col items-center justify-center bg-black/10 dark:bg-black/20 backdrop-blur-sm">
-        <span className="relative z-10 max-w-6xl w-full px-6 py-16 bg-white/10 rounded-xl shadow-2xl">
+      <span className="p-15 h-full w-full flex flex-col items-center justify-center bg-black/10 dark:bg-black/20 backdrop-blur-sm border-2 ">
+        <span className="relative z-10 max-w-6xl w-full px-6 py-20 bg-white/10 rounded-xl shadow-2xl">
           <div className="text-center mb-12">
             <h5 className="text-3xl md:text-4xl font-bold text-white mb-4">
               {t("home.text-7")}
             </h5>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <article className="p-6 bg-white/20 rounded-xl shadow-lg hover:bg-white/30 transition-all">
+            <article className="p-10 bg-white/20 rounded-xl shadow-lg hover:bg-white/30 transition-all">
               <h6 className="font-semibold text-white mb-4 text-lg md:text-xl">
                 Frontend
               </h6>
@@ -92,5 +92,4 @@ const Section4 = () => {
     </section>
   );
 };
-
 export default Section4;

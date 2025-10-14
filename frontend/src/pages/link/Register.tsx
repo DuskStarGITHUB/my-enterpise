@@ -123,7 +123,7 @@ const Register = () => {
       >
         <Form {...form}>
           <form
-            className="p-6 sm:p-10 rounded-3xl shadow-xl space-y-6 dark:border-gray-950 border-2"
+            className="p-6 sm:p-10 rounded-3xl shadow-xl space-y-6 border-border border-2"
             onSubmit={form.handleSubmit(onSubmit)}
           >
             <div className="text-center space-y-1">
@@ -193,7 +193,9 @@ const Register = () => {
                     render={({ field }) => (
                       <Select
                         value={field.value}
-                        onValueChange={(value) => { field.onChange(value); }}
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                        }}
                       >
                         <SelectTrigger>
                           <SelectValue placeholder="Select type" />

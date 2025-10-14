@@ -3,7 +3,7 @@
  * =====================================================
  *  NAME    : ButtonLang.tsx
  *  DATE      : 23/09/2025
- *  DATE_MODIFY       : 13/10/2025
+ *  DATE_MODIFY       : 14/10/2025
  *  DESCRIPTION: LANGUAGE SELECTOR BUTTON
  * =====================================================
  */
@@ -54,7 +54,7 @@ const ButtonLang: React.FC<ButtonLangProps> = ({ className }) => {
       <PopoverTrigger asChild>
         <Button
           aria-expanded={open}
-          className={`w-[160px] justify-between text-white bg-transparent border-0 ${className}`}
+          className={`w-[160px] justify-between bg-transparent border-0 ${className} hover:cursor-pointer`}
           role="combobox"
           variant="outline"
         >
