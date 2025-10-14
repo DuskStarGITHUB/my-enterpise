@@ -72,7 +72,7 @@ const Tag: React.FC<TagProps> = ({
       else if (desing === "void")
         setDesingSelect(`${colors.border} border-2 bg-none`);
     } else setDesingSelect(`${colors.border} border-2 ${colors.bg}`);
-    setBorderSelect(border === "rounded" ? "rounded-md" : "rounded-none");
+    setBorderSelect(border === "rounded" ? "rounded-full" : "rounded-none");
   }, [color, desing, border]);
   return (
     <div
