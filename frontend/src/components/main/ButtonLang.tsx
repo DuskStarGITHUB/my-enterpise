@@ -43,6 +43,7 @@ const ButtonLang: React.FC<ButtonLangProps> = ({ className }) => {
   const languages = [
     { value: "es", label: "Español" },
     { value: "en", label: "English" },
+    { value: "ru", label: "Pусский" },
   ];
   const handleSelect = (code: string) => {
     set(code as Lang);

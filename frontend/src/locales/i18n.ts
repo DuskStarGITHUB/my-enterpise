@@ -14,6 +14,7 @@ import LanguageDetector from "i18next-browser-languagedetector";
 import Backend, { type HttpBackendOptions } from "i18next-http-backend";
 import en from "./en/translations.json";
 import es from "./es/translations.json";
+import ru from "./ru/translations.json";
 import { isProduction } from "@/lib/utils";
 
 // CONFIGURATION
@@ -25,9 +26,12 @@ const translations: Record<string, { translations: TranslationKeys }> = {
   en: {
     translations: en,
   },
+  ru: {
+    translations: ru,
+  },
 };
 const config: InitOptions<HttpBackendOptions> = {
-  supportedLngs: ["es", "en"],
+  supportedLngs: ["es", "en", "ru"],
   ns: ["translations"],
   defaultNS: "translations",
   fallbackLng: "es",

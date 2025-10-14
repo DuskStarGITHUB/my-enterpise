@@ -17,7 +17,7 @@ const Client = (): JSX.Element => {
   const { t } = useTranslation();
   return (
     <span className="flex items-center justify-center h-screen w-screen">
-      <Tag border="rounded" color="green" textType="bold" />
+      <Tag border="rounded" color="green" text={t("global.language")} textType="bold" />
     </span>
   );
 };
