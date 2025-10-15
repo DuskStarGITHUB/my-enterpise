@@ -23,6 +23,7 @@ const NotFoundPage = lazy(() => import("@/pages/not-found"));
 const Login = lazy(() => import("@/pages/link/Login"));
 const Register = lazy(() => import("@/pages/link/Register"));
 const Client = lazy(() => import("@/pages/client/Client"));
+const TestPage = lazy(()=> import("@/pages/TestPage"))
 
 // ROUTES
 const CheckUser = () => {
@@ -39,7 +40,6 @@ const CheckUser = () => {
           <Home />
         ),
     },
-    { path: "/me", element: <Home /> },
     {
       path: "/login",
       element: (
@@ -49,6 +49,8 @@ const CheckUser = () => {
       ),
     },
     { path: "/register", element: <Register /> },
+    { path: "/me", element: <Home /> },
+    { path: "/test", element: <TestPage /> },
     { path: "*", element: <NotFoundPage /> },
   ];
   return useRoutes(routes);
