@@ -1597,15 +1597,15 @@ export namespace Prisma {
    */
 
   export type UsersCountOutputType = {
-    tokens: number
-    logs: number
     logins: number
+    logs: number
+    tokens: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    tokens?: boolean | UsersCountOutputTypeCountTokensArgs
-    logs?: boolean | UsersCountOutputTypeCountLogsArgs
     logins?: boolean | UsersCountOutputTypeCountLoginsArgs
+    logs?: boolean | UsersCountOutputTypeCountLogsArgs
+    tokens?: boolean | UsersCountOutputTypeCountTokensArgs
   }
 
   // Custom InputTypes
@@ -1622,8 +1622,8 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: tokensWhereInput
+  export type UsersCountOutputTypeCountLoginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: loginsWhereInput
   }
 
   /**
@@ -1636,8 +1636,8 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountLoginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: loginsWhereInput
+  export type UsersCountOutputTypeCountTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: tokensWhereInput
   }
 
 
@@ -1659,12 +1659,10 @@ export namespace Prisma {
 
   export type EntitiesAvgAggregateOutputType = {
     id_entity: number | null
-    active: number | null
   }
 
   export type EntitiesSumAggregateOutputType = {
     id_entity: number | null
-    active: number | null
   }
 
   export type EntitiesMinAggregateOutputType = {
@@ -1675,7 +1673,7 @@ export namespace Prisma {
     number: string | null
     size: string | null
     logo_url: string | null
-    active: number | null
+    active: boolean | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -1688,7 +1686,7 @@ export namespace Prisma {
     number: string | null
     size: string | null
     logo_url: string | null
-    active: number | null
+    active: boolean | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -1710,12 +1708,10 @@ export namespace Prisma {
 
   export type EntitiesAvgAggregateInputType = {
     id_entity?: true
-    active?: true
   }
 
   export type EntitiesSumAggregateInputType = {
     id_entity?: true
-    active?: true
   }
 
   export type EntitiesMinAggregateInputType = {
@@ -1852,7 +1848,7 @@ export namespace Prisma {
     number: string | null
     size: string | null
     logo_url: string | null
-    active: number
+    active: boolean | null
     created_at: Date | null
     updated_at: Date | null
     _count: EntitiesCountAggregateOutputType | null
@@ -1928,7 +1924,7 @@ export namespace Prisma {
       number: string | null
       size: string | null
       logo_url: string | null
-      active: number
+      active: boolean | null
       created_at: Date | null
       updated_at: Date | null
     }, ExtArgs["result"]["entities"]>
@@ -2309,7 +2305,7 @@ export namespace Prisma {
     readonly number: FieldRef<"entities", 'String'>
     readonly size: FieldRef<"entities", 'String'>
     readonly logo_url: FieldRef<"entities", 'String'>
-    readonly active: FieldRef<"entities", 'Int'>
+    readonly active: FieldRef<"entities", 'Boolean'>
     readonly created_at: FieldRef<"entities", 'DateTime'>
     readonly updated_at: FieldRef<"entities", 'DateTime'>
   }
@@ -4747,13 +4743,11 @@ export namespace Prisma {
   export type SpotsAvgAggregateOutputType = {
     id_spot: number | null
     entity_id: number | null
-    active: number | null
   }
 
   export type SpotsSumAggregateOutputType = {
     id_spot: number | null
     entity_id: number | null
-    active: number | null
   }
 
   export type SpotsMinAggregateOutputType = {
@@ -4761,7 +4755,7 @@ export namespace Prisma {
     entity_id: number | null
     name: string | null
     description: string | null
-    active: number | null
+    active: boolean | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -4771,7 +4765,7 @@ export namespace Prisma {
     entity_id: number | null
     name: string | null
     description: string | null
-    active: number | null
+    active: boolean | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -4791,13 +4785,11 @@ export namespace Prisma {
   export type SpotsAvgAggregateInputType = {
     id_spot?: true
     entity_id?: true
-    active?: true
   }
 
   export type SpotsSumAggregateInputType = {
     id_spot?: true
     entity_id?: true
-    active?: true
   }
 
   export type SpotsMinAggregateInputType = {
@@ -4922,7 +4914,7 @@ export namespace Prisma {
     entity_id: number
     name: string
     description: string | null
-    active: number
+    active: boolean | null
     created_at: Date | null
     updated_at: Date | null
     _count: SpotsCountAggregateOutputType | null
@@ -4989,7 +4981,7 @@ export namespace Prisma {
       entity_id: number
       name: string
       description: string | null
-      active: number
+      active: boolean | null
       created_at: Date | null
       updated_at: Date | null
     }, ExtArgs["result"]["spots"]>
@@ -5367,7 +5359,7 @@ export namespace Prisma {
     readonly entity_id: FieldRef<"spots", 'Int'>
     readonly name: FieldRef<"spots", 'String'>
     readonly description: FieldRef<"spots", 'String'>
-    readonly active: FieldRef<"spots", 'Int'>
+    readonly active: FieldRef<"spots", 'Boolean'>
     readonly created_at: FieldRef<"spots", 'DateTime'>
     readonly updated_at: FieldRef<"spots", 'DateTime'>
   }
@@ -5770,15 +5762,11 @@ export namespace Prisma {
   export type TokensAvgAggregateOutputType = {
     id_token: number | null
     user_id: number | null
-    revoked: number | null
-    active: number | null
   }
 
   export type TokensSumAggregateOutputType = {
     id_token: number | null
     user_id: number | null
-    revoked: number | null
-    active: number | null
   }
 
   export type TokensMinAggregateOutputType = {
@@ -5787,10 +5775,10 @@ export namespace Prisma {
     r_token: string | null
     access_token: string | null
     exec_token: string | null
-    revoked: number | null
+    revoked: boolean | null
     expires_at: Date | null
     status: string | null
-    active: number | null
+    active: boolean | null
     created_at: Date | null
   }
 
@@ -5800,10 +5788,10 @@ export namespace Prisma {
     r_token: string | null
     access_token: string | null
     exec_token: string | null
-    revoked: number | null
+    revoked: boolean | null
     expires_at: Date | null
     status: string | null
-    active: number | null
+    active: boolean | null
     created_at: Date | null
   }
 
@@ -5825,15 +5813,11 @@ export namespace Prisma {
   export type TokensAvgAggregateInputType = {
     id_token?: true
     user_id?: true
-    revoked?: true
-    active?: true
   }
 
   export type TokensSumAggregateInputType = {
     id_token?: true
     user_id?: true
-    revoked?: true
-    active?: true
   }
 
   export type TokensMinAggregateInputType = {
@@ -5968,10 +5952,10 @@ export namespace Prisma {
     r_token: string
     access_token: string | null
     exec_token: string | null
-    revoked: number
+    revoked: boolean | null
     expires_at: Date | null
     status: string | null
-    active: number
+    active: boolean | null
     created_at: Date | null
     _count: TokensCountAggregateOutputType | null
     _avg: TokensAvgAggregateOutputType | null
@@ -6005,8 +5989,8 @@ export namespace Prisma {
     status?: boolean
     active?: boolean
     created_at?: boolean
-    users?: boolean | usersDefaultArgs<ExtArgs>
     logins?: boolean | tokens$loginsArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
     _count?: boolean | TokensCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tokens"]>
 
@@ -6027,16 +6011,16 @@ export namespace Prisma {
 
   export type tokensOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_token" | "user_id" | "r_token" | "access_token" | "exec_token" | "revoked" | "expires_at" | "status" | "active" | "created_at", ExtArgs["result"]["tokens"]>
   export type tokensInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | usersDefaultArgs<ExtArgs>
     logins?: boolean | tokens$loginsArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
     _count?: boolean | TokensCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $tokensPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "tokens"
     objects: {
-      users: Prisma.$usersPayload<ExtArgs>
       logins: Prisma.$loginsPayload<ExtArgs>[]
+      users: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id_token: number
@@ -6044,10 +6028,10 @@ export namespace Prisma {
       r_token: string
       access_token: string | null
       exec_token: string | null
-      revoked: number
+      revoked: boolean | null
       expires_at: Date | null
       status: string | null
-      active: number
+      active: boolean | null
       created_at: Date | null
     }, ExtArgs["result"]["tokens"]>
     composites: {}
@@ -6389,8 +6373,8 @@ export namespace Prisma {
    */
   export interface Prisma__tokensClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     logins<T extends tokens$loginsArgs<ExtArgs> = {}>(args?: Subset<T, tokens$loginsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6425,10 +6409,10 @@ export namespace Prisma {
     readonly r_token: FieldRef<"tokens", 'String'>
     readonly access_token: FieldRef<"tokens", 'String'>
     readonly exec_token: FieldRef<"tokens", 'String'>
-    readonly revoked: FieldRef<"tokens", 'Int'>
+    readonly revoked: FieldRef<"tokens", 'Boolean'>
     readonly expires_at: FieldRef<"tokens", 'DateTime'>
     readonly status: FieldRef<"tokens", 'String'>
-    readonly active: FieldRef<"tokens", 'Int'>
+    readonly active: FieldRef<"tokens", 'Boolean'>
     readonly created_at: FieldRef<"tokens", 'DateTime'>
   }
     
@@ -7069,13 +7053,13 @@ export namespace Prisma {
     last_login_at?: boolean
     created_at?: boolean
     updated_at?: boolean
-    tokens?: boolean | users$tokensArgs<ExtArgs>
-    logs?: boolean | users$logsArgs<ExtArgs>
     logins?: boolean | users$loginsArgs<ExtArgs>
-    entities?: boolean | entitiesDefaultArgs<ExtArgs>
-    profiles?: boolean | users$profilesArgs<ExtArgs>
+    logs?: boolean | users$logsArgs<ExtArgs>
+    tokens?: boolean | users$tokensArgs<ExtArgs>
     roles?: boolean | rolesDefaultArgs<ExtArgs>
+    entities?: boolean | entitiesDefaultArgs<ExtArgs>
     spots?: boolean | users$spotsArgs<ExtArgs>
+    profiles?: boolean | users$profilesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
 
@@ -7096,26 +7080,26 @@ export namespace Prisma {
 
   export type usersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_user" | "email" | "password" | "role_id" | "entity_id" | "spot_id" | "profile_id" | "last_login_at" | "created_at" | "updated_at", ExtArgs["result"]["users"]>
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    tokens?: boolean | users$tokensArgs<ExtArgs>
-    logs?: boolean | users$logsArgs<ExtArgs>
     logins?: boolean | users$loginsArgs<ExtArgs>
-    entities?: boolean | entitiesDefaultArgs<ExtArgs>
-    profiles?: boolean | users$profilesArgs<ExtArgs>
+    logs?: boolean | users$logsArgs<ExtArgs>
+    tokens?: boolean | users$tokensArgs<ExtArgs>
     roles?: boolean | rolesDefaultArgs<ExtArgs>
+    entities?: boolean | entitiesDefaultArgs<ExtArgs>
     spots?: boolean | users$spotsArgs<ExtArgs>
+    profiles?: boolean | users$profilesArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $usersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "users"
     objects: {
-      tokens: Prisma.$tokensPayload<ExtArgs>[]
-      logs: Prisma.$logsPayload<ExtArgs>[]
       logins: Prisma.$loginsPayload<ExtArgs>[]
-      entities: Prisma.$entitiesPayload<ExtArgs>
-      profiles: Prisma.$profilesPayload<ExtArgs> | null
+      logs: Prisma.$logsPayload<ExtArgs>[]
+      tokens: Prisma.$tokensPayload<ExtArgs>[]
       roles: Prisma.$rolesPayload<ExtArgs>
+      entities: Prisma.$entitiesPayload<ExtArgs>
       spots: Prisma.$spotsPayload<ExtArgs> | null
+      profiles: Prisma.$profilesPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id_user: number
@@ -7468,13 +7452,13 @@ export namespace Prisma {
    */
   export interface Prisma__usersClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    tokens<T extends users$tokensArgs<ExtArgs> = {}>(args?: Subset<T, users$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tokensPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    logs<T extends users$logsArgs<ExtArgs> = {}>(args?: Subset<T, users$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     logins<T extends users$loginsArgs<ExtArgs> = {}>(args?: Subset<T, users$loginsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    entities<T extends entitiesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, entitiesDefaultArgs<ExtArgs>>): Prisma__entitiesClient<$Result.GetResult<Prisma.$entitiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    profiles<T extends users$profilesArgs<ExtArgs> = {}>(args?: Subset<T, users$profilesArgs<ExtArgs>>): Prisma__profilesClient<$Result.GetResult<Prisma.$profilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    logs<T extends users$logsArgs<ExtArgs> = {}>(args?: Subset<T, users$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    tokens<T extends users$tokensArgs<ExtArgs> = {}>(args?: Subset<T, users$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tokensPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     roles<T extends rolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, rolesDefaultArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    entities<T extends entitiesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, entitiesDefaultArgs<ExtArgs>>): Prisma__entitiesClient<$Result.GetResult<Prisma.$entitiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     spots<T extends users$spotsArgs<ExtArgs> = {}>(args?: Subset<T, users$spotsArgs<ExtArgs>>): Prisma__spotsClient<$Result.GetResult<Prisma.$spotsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    profiles<T extends users$profilesArgs<ExtArgs> = {}>(args?: Subset<T, users$profilesArgs<ExtArgs>>): Prisma__profilesClient<$Result.GetResult<Prisma.$profilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7857,27 +7841,27 @@ export namespace Prisma {
   }
 
   /**
-   * users.tokens
+   * users.logins
    */
-  export type users$tokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users$loginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the tokens
+     * Select specific fields to fetch from the logins
      */
-    select?: tokensSelect<ExtArgs> | null
+    select?: loginsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the tokens
+     * Omit specific fields from the logins
      */
-    omit?: tokensOmit<ExtArgs> | null
+    omit?: loginsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: tokensInclude<ExtArgs> | null
-    where?: tokensWhereInput
-    orderBy?: tokensOrderByWithRelationInput | tokensOrderByWithRelationInput[]
-    cursor?: tokensWhereUniqueInput
+    include?: loginsInclude<ExtArgs> | null
+    where?: loginsWhereInput
+    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
+    cursor?: loginsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: TokensScalarFieldEnum | TokensScalarFieldEnum[]
+    distinct?: LoginsScalarFieldEnum | LoginsScalarFieldEnum[]
   }
 
   /**
@@ -7905,46 +7889,27 @@ export namespace Prisma {
   }
 
   /**
-   * users.logins
+   * users.tokens
    */
-  export type users$loginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type users$tokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logins
+     * Select specific fields to fetch from the tokens
      */
-    select?: loginsSelect<ExtArgs> | null
+    select?: tokensSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the logins
+     * Omit specific fields from the tokens
      */
-    omit?: loginsOmit<ExtArgs> | null
+    omit?: tokensOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: loginsInclude<ExtArgs> | null
-    where?: loginsWhereInput
-    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
-    cursor?: loginsWhereUniqueInput
+    include?: tokensInclude<ExtArgs> | null
+    where?: tokensWhereInput
+    orderBy?: tokensOrderByWithRelationInput | tokensOrderByWithRelationInput[]
+    cursor?: tokensWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: LoginsScalarFieldEnum | LoginsScalarFieldEnum[]
-  }
-
-  /**
-   * users.profiles
-   */
-  export type users$profilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the profiles
-     */
-    select?: profilesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the profiles
-     */
-    omit?: profilesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: profilesInclude<ExtArgs> | null
-    where?: profilesWhereInput
+    distinct?: TokensScalarFieldEnum | TokensScalarFieldEnum[]
   }
 
   /**
@@ -7964,6 +7929,25 @@ export namespace Prisma {
      */
     include?: spotsInclude<ExtArgs> | null
     where?: spotsWhereInput
+  }
+
+  /**
+   * users.profiles
+   */
+  export type users$profilesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the profiles
+     */
+    select?: profilesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the profiles
+     */
+    omit?: profilesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: profilesInclude<ExtArgs> | null
+    where?: profilesWhereInput
   }
 
   /**
@@ -9003,8 +8987,8 @@ export namespace Prisma {
     id_token: number | null
     attempts: number | null
     state: string | null
-    created_at: Date | null
     updated_at: Date | null
+    created_at: Date | null
   }
 
   export type LoginsMaxAggregateOutputType = {
@@ -9013,8 +8997,8 @@ export namespace Prisma {
     id_token: number | null
     attempts: number | null
     state: string | null
-    created_at: Date | null
     updated_at: Date | null
+    created_at: Date | null
   }
 
   export type LoginsCountAggregateOutputType = {
@@ -9023,8 +9007,8 @@ export namespace Prisma {
     id_token: number
     attempts: number
     state: number
-    created_at: number
     updated_at: number
+    created_at: number
     _all: number
   }
 
@@ -9049,8 +9033,8 @@ export namespace Prisma {
     id_token?: true
     attempts?: true
     state?: true
-    created_at?: true
     updated_at?: true
+    created_at?: true
   }
 
   export type LoginsMaxAggregateInputType = {
@@ -9059,8 +9043,8 @@ export namespace Prisma {
     id_token?: true
     attempts?: true
     state?: true
-    created_at?: true
     updated_at?: true
+    created_at?: true
   }
 
   export type LoginsCountAggregateInputType = {
@@ -9069,8 +9053,8 @@ export namespace Prisma {
     id_token?: true
     attempts?: true
     state?: true
-    created_at?: true
     updated_at?: true
+    created_at?: true
     _all?: true
   }
 
@@ -9164,10 +9148,10 @@ export namespace Prisma {
     id_login: number
     id_user: number
     id_token: number | null
-    attempts: number
+    attempts: number | null
     state: string
-    created_at: Date | null
     updated_at: Date | null
+    created_at: Date | null
     _count: LoginsCountAggregateOutputType | null
     _avg: LoginsAvgAggregateOutputType | null
     _sum: LoginsSumAggregateOutputType | null
@@ -9195,10 +9179,10 @@ export namespace Prisma {
     id_token?: boolean
     attempts?: boolean
     state?: boolean
-    created_at?: boolean
     updated_at?: boolean
-    users?: boolean | usersDefaultArgs<ExtArgs>
+    created_at?: boolean
     tokens?: boolean | logins$tokensArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["logins"]>
 
 
@@ -9209,30 +9193,30 @@ export namespace Prisma {
     id_token?: boolean
     attempts?: boolean
     state?: boolean
-    created_at?: boolean
     updated_at?: boolean
+    created_at?: boolean
   }
 
-  export type loginsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_login" | "id_user" | "id_token" | "attempts" | "state" | "created_at" | "updated_at", ExtArgs["result"]["logins"]>
+  export type loginsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_login" | "id_user" | "id_token" | "attempts" | "state" | "updated_at" | "created_at", ExtArgs["result"]["logins"]>
   export type loginsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    users?: boolean | usersDefaultArgs<ExtArgs>
     tokens?: boolean | logins$tokensArgs<ExtArgs>
+    users?: boolean | usersDefaultArgs<ExtArgs>
   }
 
   export type $loginsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "logins"
     objects: {
-      users: Prisma.$usersPayload<ExtArgs>
       tokens: Prisma.$tokensPayload<ExtArgs> | null
+      users: Prisma.$usersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id_login: number
       id_user: number
       id_token: number | null
-      attempts: number
+      attempts: number | null
       state: string
-      created_at: Date | null
       updated_at: Date | null
+      created_at: Date | null
     }, ExtArgs["result"]["logins"]>
     composites: {}
   }
@@ -9573,8 +9557,8 @@ export namespace Prisma {
    */
   export interface Prisma__loginsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     tokens<T extends logins$tokensArgs<ExtArgs> = {}>(args?: Subset<T, logins$tokensArgs<ExtArgs>>): Prisma__tokensClient<$Result.GetResult<Prisma.$tokensPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9609,8 +9593,8 @@ export namespace Prisma {
     readonly id_token: FieldRef<"logins", 'Int'>
     readonly attempts: FieldRef<"logins", 'Int'>
     readonly state: FieldRef<"logins", 'String'>
-    readonly created_at: FieldRef<"logins", 'DateTime'>
     readonly updated_at: FieldRef<"logins", 'DateTime'>
+    readonly created_at: FieldRef<"logins", 'DateTime'>
   }
     
 
@@ -10108,8 +10092,8 @@ export namespace Prisma {
     id_token: 'id_token',
     attempts: 'attempts',
     state: 'state',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
+    updated_at: 'updated_at',
+    created_at: 'created_at'
   };
 
   export type LoginsScalarFieldEnum = (typeof LoginsScalarFieldEnum)[keyof typeof LoginsScalarFieldEnum]
@@ -10223,6 +10207,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -10250,7 +10241,7 @@ export namespace Prisma {
     number?: StringNullableFilter<"entities"> | string | null
     size?: StringNullableFilter<"entities"> | string | null
     logo_url?: StringNullableFilter<"entities"> | string | null
-    active?: IntFilter<"entities"> | number
+    active?: BoolNullableFilter<"entities"> | boolean | null
     created_at?: DateTimeNullableFilter<"entities"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"entities"> | Date | string | null
     spots?: SpotsListRelationFilter
@@ -10265,7 +10256,7 @@ export namespace Prisma {
     number?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
     logo_url?: SortOrderInput | SortOrder
-    active?: SortOrder
+    active?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     spots?: spotsOrderByRelationAggregateInput
@@ -10284,7 +10275,7 @@ export namespace Prisma {
     number?: StringNullableFilter<"entities"> | string | null
     size?: StringNullableFilter<"entities"> | string | null
     logo_url?: StringNullableFilter<"entities"> | string | null
-    active?: IntFilter<"entities"> | number
+    active?: BoolNullableFilter<"entities"> | boolean | null
     created_at?: DateTimeNullableFilter<"entities"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"entities"> | Date | string | null
     spots?: SpotsListRelationFilter
@@ -10299,7 +10290,7 @@ export namespace Prisma {
     number?: SortOrderInput | SortOrder
     size?: SortOrderInput | SortOrder
     logo_url?: SortOrderInput | SortOrder
-    active?: SortOrder
+    active?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     _count?: entitiesCountOrderByAggregateInput
@@ -10320,7 +10311,7 @@ export namespace Prisma {
     number?: StringNullableWithAggregatesFilter<"entities"> | string | null
     size?: StringNullableWithAggregatesFilter<"entities"> | string | null
     logo_url?: StringNullableWithAggregatesFilter<"entities"> | string | null
-    active?: IntWithAggregatesFilter<"entities"> | number
+    active?: BoolNullableWithAggregatesFilter<"entities"> | boolean | null
     created_at?: DateTimeNullableWithAggregatesFilter<"entities"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"entities"> | Date | string | null
   }
@@ -10464,7 +10455,7 @@ export namespace Prisma {
     entity_id?: IntFilter<"spots"> | number
     name?: StringFilter<"spots"> | string
     description?: StringNullableFilter<"spots"> | string | null
-    active?: IntFilter<"spots"> | number
+    active?: BoolNullableFilter<"spots"> | boolean | null
     created_at?: DateTimeNullableFilter<"spots"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"spots"> | Date | string | null
     entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
@@ -10476,7 +10467,7 @@ export namespace Prisma {
     entity_id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    active?: SortOrder
+    active?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     entities?: entitiesOrderByWithRelationInput
@@ -10492,7 +10483,7 @@ export namespace Prisma {
     entity_id?: IntFilter<"spots"> | number
     name?: StringFilter<"spots"> | string
     description?: StringNullableFilter<"spots"> | string | null
-    active?: IntFilter<"spots"> | number
+    active?: BoolNullableFilter<"spots"> | boolean | null
     created_at?: DateTimeNullableFilter<"spots"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"spots"> | Date | string | null
     entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
@@ -10504,7 +10495,7 @@ export namespace Prisma {
     entity_id?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
-    active?: SortOrder
+    active?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     _count?: spotsCountOrderByAggregateInput
@@ -10522,7 +10513,7 @@ export namespace Prisma {
     entity_id?: IntWithAggregatesFilter<"spots"> | number
     name?: StringWithAggregatesFilter<"spots"> | string
     description?: StringNullableWithAggregatesFilter<"spots"> | string | null
-    active?: IntWithAggregatesFilter<"spots"> | number
+    active?: BoolNullableWithAggregatesFilter<"spots"> | boolean | null
     created_at?: DateTimeNullableWithAggregatesFilter<"spots"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"spots"> | Date | string | null
   }
@@ -10536,13 +10527,13 @@ export namespace Prisma {
     r_token?: StringFilter<"tokens"> | string
     access_token?: StringNullableFilter<"tokens"> | string | null
     exec_token?: StringNullableFilter<"tokens"> | string | null
-    revoked?: IntFilter<"tokens"> | number
+    revoked?: BoolNullableFilter<"tokens"> | boolean | null
     expires_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
     status?: StringNullableFilter<"tokens"> | string | null
-    active?: IntFilter<"tokens"> | number
+    active?: BoolNullableFilter<"tokens"> | boolean | null
     created_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
-    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     logins?: LoginsListRelationFilter
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type tokensOrderByWithRelationInput = {
@@ -10551,13 +10542,13 @@ export namespace Prisma {
     r_token?: SortOrder
     access_token?: SortOrderInput | SortOrder
     exec_token?: SortOrderInput | SortOrder
-    revoked?: SortOrder
+    revoked?: SortOrderInput | SortOrder
     expires_at?: SortOrderInput | SortOrder
     status?: SortOrderInput | SortOrder
-    active?: SortOrder
+    active?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
-    users?: usersOrderByWithRelationInput
     logins?: loginsOrderByRelationAggregateInput
+    users?: usersOrderByWithRelationInput
     _relevance?: tokensOrderByRelevanceInput
   }
 
@@ -10570,13 +10561,13 @@ export namespace Prisma {
     r_token?: StringFilter<"tokens"> | string
     access_token?: StringNullableFilter<"tokens"> | string | null
     exec_token?: StringNullableFilter<"tokens"> | string | null
-    revoked?: IntFilter<"tokens"> | number
+    revoked?: BoolNullableFilter<"tokens"> | boolean | null
     expires_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
     status?: StringNullableFilter<"tokens"> | string | null
-    active?: IntFilter<"tokens"> | number
+    active?: BoolNullableFilter<"tokens"> | boolean | null
     created_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
-    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
     logins?: LoginsListRelationFilter
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }, "id_token">
 
   export type tokensOrderByWithAggregationInput = {
@@ -10585,10 +10576,10 @@ export namespace Prisma {
     r_token?: SortOrder
     access_token?: SortOrderInput | SortOrder
     exec_token?: SortOrderInput | SortOrder
-    revoked?: SortOrder
+    revoked?: SortOrderInput | SortOrder
     expires_at?: SortOrderInput | SortOrder
     status?: SortOrderInput | SortOrder
-    active?: SortOrder
+    active?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     _count?: tokensCountOrderByAggregateInput
     _avg?: tokensAvgOrderByAggregateInput
@@ -10606,10 +10597,10 @@ export namespace Prisma {
     r_token?: StringWithAggregatesFilter<"tokens"> | string
     access_token?: StringNullableWithAggregatesFilter<"tokens"> | string | null
     exec_token?: StringNullableWithAggregatesFilter<"tokens"> | string | null
-    revoked?: IntWithAggregatesFilter<"tokens"> | number
+    revoked?: BoolNullableWithAggregatesFilter<"tokens"> | boolean | null
     expires_at?: DateTimeNullableWithAggregatesFilter<"tokens"> | Date | string | null
     status?: StringNullableWithAggregatesFilter<"tokens"> | string | null
-    active?: IntWithAggregatesFilter<"tokens"> | number
+    active?: BoolNullableWithAggregatesFilter<"tokens"> | boolean | null
     created_at?: DateTimeNullableWithAggregatesFilter<"tokens"> | Date | string | null
   }
 
@@ -10627,13 +10618,13 @@ export namespace Prisma {
     last_login_at?: DateTimeNullableFilter<"users"> | Date | string | null
     created_at?: DateTimeNullableFilter<"users"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"users"> | Date | string | null
-    tokens?: TokensListRelationFilter
-    logs?: LogsListRelationFilter
     logins?: LoginsListRelationFilter
-    entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
-    profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
+    logs?: LogsListRelationFilter
+    tokens?: TokensListRelationFilter
     roles?: XOR<RolesScalarRelationFilter, rolesWhereInput>
+    entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
     spots?: XOR<SpotsNullableScalarRelationFilter, spotsWhereInput> | null
+    profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
   }
 
   export type usersOrderByWithRelationInput = {
@@ -10647,13 +10638,13 @@ export namespace Prisma {
     last_login_at?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
-    tokens?: tokensOrderByRelationAggregateInput
-    logs?: logsOrderByRelationAggregateInput
     logins?: loginsOrderByRelationAggregateInput
-    entities?: entitiesOrderByWithRelationInput
-    profiles?: profilesOrderByWithRelationInput
+    logs?: logsOrderByRelationAggregateInput
+    tokens?: tokensOrderByRelationAggregateInput
     roles?: rolesOrderByWithRelationInput
+    entities?: entitiesOrderByWithRelationInput
     spots?: spotsOrderByWithRelationInput
+    profiles?: profilesOrderByWithRelationInput
     _relevance?: usersOrderByRelevanceInput
   }
 
@@ -10671,13 +10662,13 @@ export namespace Prisma {
     last_login_at?: DateTimeNullableFilter<"users"> | Date | string | null
     created_at?: DateTimeNullableFilter<"users"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"users"> | Date | string | null
-    tokens?: TokensListRelationFilter
-    logs?: LogsListRelationFilter
     logins?: LoginsListRelationFilter
-    entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
-    profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
+    logs?: LogsListRelationFilter
+    tokens?: TokensListRelationFilter
     roles?: XOR<RolesScalarRelationFilter, rolesWhereInput>
+    entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
     spots?: XOR<SpotsNullableScalarRelationFilter, spotsWhereInput> | null
+    profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
   }, "id_user" | "email">
 
   export type usersOrderByWithAggregationInput = {
@@ -10779,50 +10770,50 @@ export namespace Prisma {
     id_login?: IntFilter<"logins"> | number
     id_user?: IntFilter<"logins"> | number
     id_token?: IntNullableFilter<"logins"> | number | null
-    attempts?: IntFilter<"logins"> | number
+    attempts?: IntNullableFilter<"logins"> | number | null
     state?: StringFilter<"logins"> | string
-    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"logins"> | Date | string | null
-    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
     tokens?: XOR<TokensNullableScalarRelationFilter, tokensWhereInput> | null
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
   }
 
   export type loginsOrderByWithRelationInput = {
     id_login?: SortOrder
     id_user?: SortOrder
     id_token?: SortOrderInput | SortOrder
-    attempts?: SortOrder
+    attempts?: SortOrderInput | SortOrder
     state?: SortOrder
-    created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
-    users?: usersOrderByWithRelationInput
+    created_at?: SortOrderInput | SortOrder
     tokens?: tokensOrderByWithRelationInput
+    users?: usersOrderByWithRelationInput
     _relevance?: loginsOrderByRelevanceInput
   }
 
   export type loginsWhereUniqueInput = Prisma.AtLeast<{
     id_login?: number
-    id_user?: number
     AND?: loginsWhereInput | loginsWhereInput[]
     OR?: loginsWhereInput[]
     NOT?: loginsWhereInput | loginsWhereInput[]
+    id_user?: IntFilter<"logins"> | number
     id_token?: IntNullableFilter<"logins"> | number | null
-    attempts?: IntFilter<"logins"> | number
+    attempts?: IntNullableFilter<"logins"> | number | null
     state?: StringFilter<"logins"> | string
-    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"logins"> | Date | string | null
-    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
     tokens?: XOR<TokensNullableScalarRelationFilter, tokensWhereInput> | null
-  }, "id_login" | "id_user">
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+  }, "id_login">
 
   export type loginsOrderByWithAggregationInput = {
     id_login?: SortOrder
     id_user?: SortOrder
     id_token?: SortOrderInput | SortOrder
-    attempts?: SortOrder
+    attempts?: SortOrderInput | SortOrder
     state?: SortOrder
-    created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
     _count?: loginsCountOrderByAggregateInput
     _avg?: loginsAvgOrderByAggregateInput
     _max?: loginsMaxOrderByAggregateInput
@@ -10837,10 +10828,10 @@ export namespace Prisma {
     id_login?: IntWithAggregatesFilter<"logins"> | number
     id_user?: IntWithAggregatesFilter<"logins"> | number
     id_token?: IntNullableWithAggregatesFilter<"logins"> | number | null
-    attempts?: IntWithAggregatesFilter<"logins"> | number
+    attempts?: IntNullableWithAggregatesFilter<"logins"> | number | null
     state?: StringWithAggregatesFilter<"logins"> | string
-    created_at?: DateTimeNullableWithAggregatesFilter<"logins"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"logins"> | Date | string | null
+    created_at?: DateTimeNullableWithAggregatesFilter<"logins"> | Date | string | null
   }
 
   export type entitiesCreateInput = {
@@ -10850,7 +10841,7 @@ export namespace Prisma {
     number?: string | null
     size?: string | null
     logo_url?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     spots?: spotsCreateNestedManyWithoutEntitiesInput
@@ -10865,7 +10856,7 @@ export namespace Prisma {
     number?: string | null
     size?: string | null
     logo_url?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     spots?: spotsUncheckedCreateNestedManyWithoutEntitiesInput
@@ -10879,7 +10870,7 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     spots?: spotsUpdateManyWithoutEntitiesNestedInput
@@ -10894,7 +10885,7 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     spots?: spotsUncheckedUpdateManyWithoutEntitiesNestedInput
@@ -10909,7 +10900,7 @@ export namespace Prisma {
     number?: string | null
     size?: string | null
     logo_url?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
   }
@@ -10921,7 +10912,7 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10934,7 +10925,7 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11077,7 +11068,7 @@ export namespace Prisma {
   export type spotsCreateInput = {
     name: string
     description?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     entities: entitiesCreateNestedOneWithoutSpotsInput
@@ -11089,7 +11080,7 @@ export namespace Prisma {
     entity_id: number
     name: string
     description?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     users?: usersUncheckedCreateNestedManyWithoutSpotsInput
@@ -11098,7 +11089,7 @@ export namespace Prisma {
   export type spotsUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     entities?: entitiesUpdateOneRequiredWithoutSpotsNestedInput
@@ -11110,7 +11101,7 @@ export namespace Prisma {
     entity_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUncheckedUpdateManyWithoutSpotsNestedInput
@@ -11121,7 +11112,7 @@ export namespace Prisma {
     entity_id: number
     name: string
     description?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
   }
@@ -11129,7 +11120,7 @@ export namespace Prisma {
   export type spotsUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11139,7 +11130,7 @@ export namespace Prisma {
     entity_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -11148,13 +11139,13 @@ export namespace Prisma {
     r_token: string
     access_token?: string | null
     exec_token?: string | null
-    revoked?: number
+    revoked?: boolean | null
     expires_at?: Date | string | null
     status?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
-    users: usersCreateNestedOneWithoutTokensInput
     logins?: loginsCreateNestedManyWithoutTokensInput
+    users: usersCreateNestedOneWithoutTokensInput
   }
 
   export type tokensUncheckedCreateInput = {
@@ -11163,10 +11154,10 @@ export namespace Prisma {
     r_token: string
     access_token?: string | null
     exec_token?: string | null
-    revoked?: number
+    revoked?: boolean | null
     expires_at?: Date | string | null
     status?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     logins?: loginsUncheckedCreateNestedManyWithoutTokensInput
   }
@@ -11175,13 +11166,13 @@ export namespace Prisma {
     r_token?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: usersUpdateOneRequiredWithoutTokensNestedInput
     logins?: loginsUpdateManyWithoutTokensNestedInput
+    users?: usersUpdateOneRequiredWithoutTokensNestedInput
   }
 
   export type tokensUncheckedUpdateInput = {
@@ -11190,10 +11181,10 @@ export namespace Prisma {
     r_token?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     logins?: loginsUncheckedUpdateManyWithoutTokensNestedInput
   }
@@ -11204,10 +11195,10 @@ export namespace Prisma {
     r_token: string
     access_token?: string | null
     exec_token?: string | null
-    revoked?: number
+    revoked?: boolean | null
     expires_at?: Date | string | null
     status?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
   }
 
@@ -11215,10 +11206,10 @@ export namespace Prisma {
     r_token?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -11228,10 +11219,10 @@ export namespace Prisma {
     r_token?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
     exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
     expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -11241,13 +11232,13 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensCreateNestedManyWithoutUsersInput
-    logs?: logsCreateNestedManyWithoutUsersInput
     logins?: loginsCreateNestedManyWithoutUsersInput
-    entities: entitiesCreateNestedOneWithoutUsersInput
-    profiles?: profilesCreateNestedOneWithoutUsersInput
+    logs?: logsCreateNestedManyWithoutUsersInput
+    tokens?: tokensCreateNestedManyWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
+    entities: entitiesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
   }
 
   export type usersUncheckedCreateInput = {
@@ -11261,9 +11252,9 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
-    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
     logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
+    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersUpdateInput = {
@@ -11272,13 +11263,13 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateManyWithoutUsersNestedInput
-    logs?: logsUpdateManyWithoutUsersNestedInput
     logins?: loginsUpdateManyWithoutUsersNestedInput
-    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
-    profiles?: profilesUpdateOneWithoutUsersNestedInput
+    logs?: logsUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
+    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateInput = {
@@ -11292,9 +11283,9 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
-    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
     logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -11384,68 +11375,68 @@ export namespace Prisma {
   }
 
   export type loginsCreateInput = {
-    attempts?: number
+    attempts?: number | null
     state: string
-    created_at?: Date | string | null
     updated_at?: Date | string | null
-    users: usersCreateNestedOneWithoutLoginsInput
+    created_at?: Date | string | null
     tokens?: tokensCreateNestedOneWithoutLoginsInput
+    users: usersCreateNestedOneWithoutLoginsInput
   }
 
   export type loginsUncheckedCreateInput = {
     id_login?: number
     id_user: number
     id_token?: number | null
-    attempts?: number
+    attempts?: number | null
     state: string
-    created_at?: Date | string | null
     updated_at?: Date | string | null
+    created_at?: Date | string | null
   }
 
   export type loginsUpdateInput = {
-    attempts?: IntFieldUpdateOperationsInput | number
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
     state?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: usersUpdateOneRequiredWithoutLoginsNestedInput
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUpdateOneWithoutLoginsNestedInput
+    users?: usersUpdateOneRequiredWithoutLoginsNestedInput
   }
 
   export type loginsUncheckedUpdateInput = {
     id_login?: IntFieldUpdateOperationsInput | number
     id_user?: IntFieldUpdateOperationsInput | number
     id_token?: NullableIntFieldUpdateOperationsInput | number | null
-    attempts?: IntFieldUpdateOperationsInput | number
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
     state?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type loginsCreateManyInput = {
     id_login?: number
     id_user: number
     id_token?: number | null
-    attempts?: number
+    attempts?: number | null
     state: string
-    created_at?: Date | string | null
     updated_at?: Date | string | null
+    created_at?: Date | string | null
   }
 
   export type loginsUpdateManyMutationInput = {
-    attempts?: IntFieldUpdateOperationsInput | number
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
     state?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type loginsUncheckedUpdateManyInput = {
     id_login?: IntFieldUpdateOperationsInput | number
     id_user?: IntFieldUpdateOperationsInput | number
     id_token?: NullableIntFieldUpdateOperationsInput | number | null
-    attempts?: IntFieldUpdateOperationsInput | number
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
     state?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -11487,6 +11478,11 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
@@ -11546,7 +11542,6 @@ export namespace Prisma {
 
   export type entitiesAvgOrderByAggregateInput = {
     id_entity?: SortOrder
-    active?: SortOrder
   }
 
   export type entitiesMaxOrderByAggregateInput = {
@@ -11577,7 +11572,6 @@ export namespace Prisma {
 
   export type entitiesSumOrderByAggregateInput = {
     id_entity?: SortOrder
-    active?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -11630,6 +11624,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11755,7 +11757,6 @@ export namespace Prisma {
   export type spotsAvgOrderByAggregateInput = {
     id_spot?: SortOrder
     entity_id?: SortOrder
-    active?: SortOrder
   }
 
   export type spotsMaxOrderByAggregateInput = {
@@ -11781,18 +11782,17 @@ export namespace Prisma {
   export type spotsSumOrderByAggregateInput = {
     id_spot?: SortOrder
     entity_id?: SortOrder
-    active?: SortOrder
-  }
-
-  export type UsersScalarRelationFilter = {
-    is?: usersWhereInput
-    isNot?: usersWhereInput
   }
 
   export type LoginsListRelationFilter = {
     every?: loginsWhereInput
     some?: loginsWhereInput
     none?: loginsWhereInput
+  }
+
+  export type UsersScalarRelationFilter = {
+    is?: usersWhereInput
+    isNot?: usersWhereInput
   }
 
   export type loginsOrderByRelationAggregateInput = {
@@ -11821,8 +11821,6 @@ export namespace Prisma {
   export type tokensAvgOrderByAggregateInput = {
     id_token?: SortOrder
     user_id?: SortOrder
-    revoked?: SortOrder
-    active?: SortOrder
   }
 
   export type tokensMaxOrderByAggregateInput = {
@@ -11854,8 +11852,6 @@ export namespace Prisma {
   export type tokensSumOrderByAggregateInput = {
     id_token?: SortOrder
     user_id?: SortOrder
-    revoked?: SortOrder
-    active?: SortOrder
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -11869,21 +11865,16 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type TokensListRelationFilter = {
-    every?: tokensWhereInput
-    some?: tokensWhereInput
-    none?: tokensWhereInput
-  }
-
   export type LogsListRelationFilter = {
     every?: logsWhereInput
     some?: logsWhereInput
     none?: logsWhereInput
   }
 
-  export type ProfilesNullableScalarRelationFilter = {
-    is?: profilesWhereInput | null
-    isNot?: profilesWhereInput | null
+  export type TokensListRelationFilter = {
+    every?: tokensWhereInput
+    some?: tokensWhereInput
+    none?: tokensWhereInput
   }
 
   export type RolesScalarRelationFilter = {
@@ -11896,11 +11887,16 @@ export namespace Prisma {
     isNot?: spotsWhereInput | null
   }
 
-  export type tokensOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type ProfilesNullableScalarRelationFilter = {
+    is?: profilesWhereInput | null
+    isNot?: profilesWhereInput | null
   }
 
   export type logsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type tokensOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12043,8 +12039,8 @@ export namespace Prisma {
     id_token?: SortOrder
     attempts?: SortOrder
     state?: SortOrder
-    created_at?: SortOrder
     updated_at?: SortOrder
+    created_at?: SortOrder
   }
 
   export type loginsAvgOrderByAggregateInput = {
@@ -12060,8 +12056,8 @@ export namespace Prisma {
     id_token?: SortOrder
     attempts?: SortOrder
     state?: SortOrder
-    created_at?: SortOrder
     updated_at?: SortOrder
+    created_at?: SortOrder
   }
 
   export type loginsMinOrderByAggregateInput = {
@@ -12070,8 +12066,8 @@ export namespace Prisma {
     id_token?: SortOrder
     attempts?: SortOrder
     state?: SortOrder
-    created_at?: SortOrder
     updated_at?: SortOrder
+    created_at?: SortOrder
   }
 
   export type loginsSumOrderByAggregateInput = {
@@ -12117,12 +12113,8 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -12155,6 +12147,14 @@ export namespace Prisma {
     update?: usersUpdateWithWhereUniqueWithoutEntitiesInput | usersUpdateWithWhereUniqueWithoutEntitiesInput[]
     updateMany?: usersUpdateManyWithWhereWithoutEntitiesInput | usersUpdateManyWithWhereWithoutEntitiesInput[]
     deleteMany?: usersScalarWhereInput | usersScalarWhereInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type spotsUncheckedUpdateManyWithoutEntitiesNestedInput = {
@@ -12325,12 +12325,6 @@ export namespace Prisma {
     deleteMany?: usersScalarWhereInput | usersScalarWhereInput[]
   }
 
-  export type usersCreateNestedOneWithoutTokensInput = {
-    create?: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
-    connectOrCreate?: usersCreateOrConnectWithoutTokensInput
-    connect?: usersWhereUniqueInput
-  }
-
   export type loginsCreateNestedManyWithoutTokensInput = {
     create?: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput> | loginsCreateWithoutTokensInput[] | loginsUncheckedCreateWithoutTokensInput[]
     connectOrCreate?: loginsCreateOrConnectWithoutTokensInput | loginsCreateOrConnectWithoutTokensInput[]
@@ -12338,19 +12332,17 @@ export namespace Prisma {
     connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
   }
 
+  export type usersCreateNestedOneWithoutTokensInput = {
+    create?: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
+    connectOrCreate?: usersCreateOrConnectWithoutTokensInput
+    connect?: usersWhereUniqueInput
+  }
+
   export type loginsUncheckedCreateNestedManyWithoutTokensInput = {
     create?: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput> | loginsCreateWithoutTokensInput[] | loginsUncheckedCreateWithoutTokensInput[]
     connectOrCreate?: loginsCreateOrConnectWithoutTokensInput | loginsCreateOrConnectWithoutTokensInput[]
     createMany?: loginsCreateManyTokensInputEnvelope
     connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
-  }
-
-  export type usersUpdateOneRequiredWithoutTokensNestedInput = {
-    create?: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
-    connectOrCreate?: usersCreateOrConnectWithoutTokensInput
-    upsert?: usersUpsertWithoutTokensInput
-    connect?: usersWhereUniqueInput
-    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutTokensInput, usersUpdateWithoutTokensInput>, usersUncheckedUpdateWithoutTokensInput>
   }
 
   export type loginsUpdateManyWithoutTokensNestedInput = {
@@ -12367,6 +12359,14 @@ export namespace Prisma {
     deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
   }
 
+  export type usersUpdateOneRequiredWithoutTokensNestedInput = {
+    create?: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
+    connectOrCreate?: usersCreateOrConnectWithoutTokensInput
+    upsert?: usersUpsertWithoutTokensInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutTokensInput, usersUpdateWithoutTokensInput>, usersUncheckedUpdateWithoutTokensInput>
+  }
+
   export type loginsUncheckedUpdateManyWithoutTokensNestedInput = {
     create?: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput> | loginsCreateWithoutTokensInput[] | loginsUncheckedCreateWithoutTokensInput[]
     connectOrCreate?: loginsCreateOrConnectWithoutTokensInput | loginsCreateOrConnectWithoutTokensInput[]
@@ -12381,11 +12381,11 @@ export namespace Prisma {
     deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
   }
 
-  export type tokensCreateNestedManyWithoutUsersInput = {
-    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
-    createMany?: tokensCreateManyUsersInputEnvelope
-    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+  export type loginsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
+    createMany?: loginsCreateManyUsersInputEnvelope
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
   }
 
   export type logsCreateNestedManyWithoutUsersInput = {
@@ -12395,23 +12395,11 @@ export namespace Prisma {
     connect?: logsWhereUniqueInput | logsWhereUniqueInput[]
   }
 
-  export type loginsCreateNestedManyWithoutUsersInput = {
-    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
-    createMany?: loginsCreateManyUsersInputEnvelope
-    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
-  }
-
-  export type entitiesCreateNestedOneWithoutUsersInput = {
-    create?: XOR<entitiesCreateWithoutUsersInput, entitiesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: entitiesCreateOrConnectWithoutUsersInput
-    connect?: entitiesWhereUniqueInput
-  }
-
-  export type profilesCreateNestedOneWithoutUsersInput = {
-    create?: XOR<profilesCreateWithoutUsersInput, profilesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: profilesCreateOrConnectWithoutUsersInput
-    connect?: profilesWhereUniqueInput
+  export type tokensCreateNestedManyWithoutUsersInput = {
+    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
+    createMany?: tokensCreateManyUsersInputEnvelope
+    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
   }
 
   export type rolesCreateNestedOneWithoutUsersInput = {
@@ -12420,24 +12408,22 @@ export namespace Prisma {
     connect?: rolesWhereUniqueInput
   }
 
+  export type entitiesCreateNestedOneWithoutUsersInput = {
+    create?: XOR<entitiesCreateWithoutUsersInput, entitiesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: entitiesCreateOrConnectWithoutUsersInput
+    connect?: entitiesWhereUniqueInput
+  }
+
   export type spotsCreateNestedOneWithoutUsersInput = {
     create?: XOR<spotsCreateWithoutUsersInput, spotsUncheckedCreateWithoutUsersInput>
     connectOrCreate?: spotsCreateOrConnectWithoutUsersInput
     connect?: spotsWhereUniqueInput
   }
 
-  export type tokensUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
-    createMany?: tokensCreateManyUsersInputEnvelope
-    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-  }
-
-  export type logsUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<logsCreateWithoutUsersInput, logsUncheckedCreateWithoutUsersInput> | logsCreateWithoutUsersInput[] | logsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: logsCreateOrConnectWithoutUsersInput | logsCreateOrConnectWithoutUsersInput[]
-    createMany?: logsCreateManyUsersInputEnvelope
-    connect?: logsWhereUniqueInput | logsWhereUniqueInput[]
+  export type profilesCreateNestedOneWithoutUsersInput = {
+    create?: XOR<profilesCreateWithoutUsersInput, profilesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: profilesCreateOrConnectWithoutUsersInput
+    connect?: profilesWhereUniqueInput
   }
 
   export type loginsUncheckedCreateNestedManyWithoutUsersInput = {
@@ -12447,32 +12433,18 @@ export namespace Prisma {
     connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
   }
 
-  export type tokensUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
-    upsert?: tokensUpsertWithWhereUniqueWithoutUsersInput | tokensUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: tokensCreateManyUsersInputEnvelope
-    set?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    disconnect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    delete?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    update?: tokensUpdateWithWhereUniqueWithoutUsersInput | tokensUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: tokensUpdateManyWithWhereWithoutUsersInput | tokensUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: tokensScalarWhereInput | tokensScalarWhereInput[]
-  }
-
-  export type logsUpdateManyWithoutUsersNestedInput = {
+  export type logsUncheckedCreateNestedManyWithoutUsersInput = {
     create?: XOR<logsCreateWithoutUsersInput, logsUncheckedCreateWithoutUsersInput> | logsCreateWithoutUsersInput[] | logsUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: logsCreateOrConnectWithoutUsersInput | logsCreateOrConnectWithoutUsersInput[]
-    upsert?: logsUpsertWithWhereUniqueWithoutUsersInput | logsUpsertWithWhereUniqueWithoutUsersInput[]
     createMany?: logsCreateManyUsersInputEnvelope
-    set?: logsWhereUniqueInput | logsWhereUniqueInput[]
-    disconnect?: logsWhereUniqueInput | logsWhereUniqueInput[]
-    delete?: logsWhereUniqueInput | logsWhereUniqueInput[]
     connect?: logsWhereUniqueInput | logsWhereUniqueInput[]
-    update?: logsUpdateWithWhereUniqueWithoutUsersInput | logsUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: logsUpdateManyWithWhereWithoutUsersInput | logsUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: logsScalarWhereInput | logsScalarWhereInput[]
+  }
+
+  export type tokensUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
+    createMany?: tokensCreateManyUsersInputEnvelope
+    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
   }
 
   export type loginsUpdateManyWithoutUsersNestedInput = {
@@ -12489,22 +12461,32 @@ export namespace Prisma {
     deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
   }
 
-  export type entitiesUpdateOneRequiredWithoutUsersNestedInput = {
-    create?: XOR<entitiesCreateWithoutUsersInput, entitiesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: entitiesCreateOrConnectWithoutUsersInput
-    upsert?: entitiesUpsertWithoutUsersInput
-    connect?: entitiesWhereUniqueInput
-    update?: XOR<XOR<entitiesUpdateToOneWithWhereWithoutUsersInput, entitiesUpdateWithoutUsersInput>, entitiesUncheckedUpdateWithoutUsersInput>
+  export type logsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<logsCreateWithoutUsersInput, logsUncheckedCreateWithoutUsersInput> | logsCreateWithoutUsersInput[] | logsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: logsCreateOrConnectWithoutUsersInput | logsCreateOrConnectWithoutUsersInput[]
+    upsert?: logsUpsertWithWhereUniqueWithoutUsersInput | logsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: logsCreateManyUsersInputEnvelope
+    set?: logsWhereUniqueInput | logsWhereUniqueInput[]
+    disconnect?: logsWhereUniqueInput | logsWhereUniqueInput[]
+    delete?: logsWhereUniqueInput | logsWhereUniqueInput[]
+    connect?: logsWhereUniqueInput | logsWhereUniqueInput[]
+    update?: logsUpdateWithWhereUniqueWithoutUsersInput | logsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: logsUpdateManyWithWhereWithoutUsersInput | logsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: logsScalarWhereInput | logsScalarWhereInput[]
   }
 
-  export type profilesUpdateOneWithoutUsersNestedInput = {
-    create?: XOR<profilesCreateWithoutUsersInput, profilesUncheckedCreateWithoutUsersInput>
-    connectOrCreate?: profilesCreateOrConnectWithoutUsersInput
-    upsert?: profilesUpsertWithoutUsersInput
-    disconnect?: profilesWhereInput | boolean
-    delete?: profilesWhereInput | boolean
-    connect?: profilesWhereUniqueInput
-    update?: XOR<XOR<profilesUpdateToOneWithWhereWithoutUsersInput, profilesUpdateWithoutUsersInput>, profilesUncheckedUpdateWithoutUsersInput>
+  export type tokensUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
+    upsert?: tokensUpsertWithWhereUniqueWithoutUsersInput | tokensUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: tokensCreateManyUsersInputEnvelope
+    set?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    disconnect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    delete?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    update?: tokensUpdateWithWhereUniqueWithoutUsersInput | tokensUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: tokensUpdateManyWithWhereWithoutUsersInput | tokensUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: tokensScalarWhereInput | tokensScalarWhereInput[]
   }
 
   export type rolesUpdateOneRequiredWithoutUsersNestedInput = {
@@ -12513,6 +12495,14 @@ export namespace Prisma {
     upsert?: rolesUpsertWithoutUsersInput
     connect?: rolesWhereUniqueInput
     update?: XOR<XOR<rolesUpdateToOneWithWhereWithoutUsersInput, rolesUpdateWithoutUsersInput>, rolesUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type entitiesUpdateOneRequiredWithoutUsersNestedInput = {
+    create?: XOR<entitiesCreateWithoutUsersInput, entitiesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: entitiesCreateOrConnectWithoutUsersInput
+    upsert?: entitiesUpsertWithoutUsersInput
+    connect?: entitiesWhereUniqueInput
+    update?: XOR<XOR<entitiesUpdateToOneWithWhereWithoutUsersInput, entitiesUpdateWithoutUsersInput>, entitiesUncheckedUpdateWithoutUsersInput>
   }
 
   export type spotsUpdateOneWithoutUsersNestedInput = {
@@ -12525,6 +12515,16 @@ export namespace Prisma {
     update?: XOR<XOR<spotsUpdateToOneWithWhereWithoutUsersInput, spotsUpdateWithoutUsersInput>, spotsUncheckedUpdateWithoutUsersInput>
   }
 
+  export type profilesUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<profilesCreateWithoutUsersInput, profilesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: profilesCreateOrConnectWithoutUsersInput
+    upsert?: profilesUpsertWithoutUsersInput
+    disconnect?: profilesWhereInput | boolean
+    delete?: profilesWhereInput | boolean
+    connect?: profilesWhereUniqueInput
+    update?: XOR<XOR<profilesUpdateToOneWithWhereWithoutUsersInput, profilesUpdateWithoutUsersInput>, profilesUncheckedUpdateWithoutUsersInput>
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -12533,18 +12533,18 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type tokensUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
-    upsert?: tokensUpsertWithWhereUniqueWithoutUsersInput | tokensUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: tokensCreateManyUsersInputEnvelope
-    set?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    disconnect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    delete?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
-    update?: tokensUpdateWithWhereUniqueWithoutUsersInput | tokensUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: tokensUpdateManyWithWhereWithoutUsersInput | tokensUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: tokensScalarWhereInput | tokensScalarWhereInput[]
+  export type loginsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
+    upsert?: loginsUpsertWithWhereUniqueWithoutUsersInput | loginsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: loginsCreateManyUsersInputEnvelope
+    set?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    disconnect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    delete?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    update?: loginsUpdateWithWhereUniqueWithoutUsersInput | loginsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: loginsUpdateManyWithWhereWithoutUsersInput | loginsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
   }
 
   export type logsUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -12561,18 +12561,18 @@ export namespace Prisma {
     deleteMany?: logsScalarWhereInput | logsScalarWhereInput[]
   }
 
-  export type loginsUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
-    upsert?: loginsUpsertWithWhereUniqueWithoutUsersInput | loginsUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: loginsCreateManyUsersInputEnvelope
-    set?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
-    disconnect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
-    delete?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
-    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
-    update?: loginsUpdateWithWhereUniqueWithoutUsersInput | loginsUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: loginsUpdateManyWithWhereWithoutUsersInput | loginsUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
+  export type tokensUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
+    upsert?: tokensUpsertWithWhereUniqueWithoutUsersInput | tokensUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: tokensCreateManyUsersInputEnvelope
+    set?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    disconnect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    delete?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    connect?: tokensWhereUniqueInput | tokensWhereUniqueInput[]
+    update?: tokensUpdateWithWhereUniqueWithoutUsersInput | tokensUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: tokensUpdateManyWithWhereWithoutUsersInput | tokensUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: tokensScalarWhereInput | tokensScalarWhereInput[]
   }
 
   export type usersCreateNestedOneWithoutLogsInput = {
@@ -12591,24 +12591,16 @@ export namespace Prisma {
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutLogsInput, usersUpdateWithoutLogsInput>, usersUncheckedUpdateWithoutLogsInput>
   }
 
-  export type usersCreateNestedOneWithoutLoginsInput = {
-    create?: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
-    connectOrCreate?: usersCreateOrConnectWithoutLoginsInput
-    connect?: usersWhereUniqueInput
-  }
-
   export type tokensCreateNestedOneWithoutLoginsInput = {
     create?: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
     connectOrCreate?: tokensCreateOrConnectWithoutLoginsInput
     connect?: tokensWhereUniqueInput
   }
 
-  export type usersUpdateOneRequiredWithoutLoginsNestedInput = {
+  export type usersCreateNestedOneWithoutLoginsInput = {
     create?: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
     connectOrCreate?: usersCreateOrConnectWithoutLoginsInput
-    upsert?: usersUpsertWithoutLoginsInput
     connect?: usersWhereUniqueInput
-    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutLoginsInput, usersUpdateWithoutLoginsInput>, usersUncheckedUpdateWithoutLoginsInput>
   }
 
   export type tokensUpdateOneWithoutLoginsNestedInput = {
@@ -12619,6 +12611,14 @@ export namespace Prisma {
     delete?: tokensWhereInput | boolean
     connect?: tokensWhereUniqueInput
     update?: XOR<XOR<tokensUpdateToOneWithWhereWithoutLoginsInput, tokensUpdateWithoutLoginsInput>, tokensUncheckedUpdateWithoutLoginsInput>
+  }
+
+  export type usersUpdateOneRequiredWithoutLoginsNestedInput = {
+    create?: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
+    connectOrCreate?: usersCreateOrConnectWithoutLoginsInput
+    upsert?: usersUpsertWithoutLoginsInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutLoginsInput, usersUpdateWithoutLoginsInput>, usersUncheckedUpdateWithoutLoginsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -12660,6 +12660,11 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
@@ -12747,6 +12752,14 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -12791,7 +12804,7 @@ export namespace Prisma {
   export type spotsCreateWithoutEntitiesInput = {
     name: string
     description?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     users?: usersCreateNestedManyWithoutSpotsInput
@@ -12801,7 +12814,7 @@ export namespace Prisma {
     id_spot?: number
     name: string
     description?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     users?: usersUncheckedCreateNestedManyWithoutSpotsInput
@@ -12823,12 +12836,12 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensCreateNestedManyWithoutUsersInput
-    logs?: logsCreateNestedManyWithoutUsersInput
     logins?: loginsCreateNestedManyWithoutUsersInput
-    profiles?: profilesCreateNestedOneWithoutUsersInput
+    logs?: logsCreateNestedManyWithoutUsersInput
+    tokens?: tokensCreateNestedManyWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutEntitiesInput = {
@@ -12841,9 +12854,9 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
-    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
     logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
+    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutEntitiesInput = {
@@ -12880,7 +12893,7 @@ export namespace Prisma {
     entity_id?: IntFilter<"spots"> | number
     name?: StringFilter<"spots"> | string
     description?: StringNullableFilter<"spots"> | string | null
-    active?: IntFilter<"spots"> | number
+    active?: BoolNullableFilter<"spots"> | boolean | null
     created_at?: DateTimeNullableFilter<"spots"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"spots"> | Date | string | null
   }
@@ -12923,11 +12936,11 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensCreateNestedManyWithoutUsersInput
-    logs?: logsCreateNestedManyWithoutUsersInput
     logins?: loginsCreateNestedManyWithoutUsersInput
-    entities: entitiesCreateNestedOneWithoutUsersInput
+    logs?: logsCreateNestedManyWithoutUsersInput
+    tokens?: tokensCreateNestedManyWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
+    entities: entitiesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
   }
 
@@ -12941,9 +12954,9 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
-    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
     logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
+    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutProfilesInput = {
@@ -12978,12 +12991,12 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensCreateNestedManyWithoutUsersInput
-    logs?: logsCreateNestedManyWithoutUsersInput
     logins?: loginsCreateNestedManyWithoutUsersInput
+    logs?: logsCreateNestedManyWithoutUsersInput
+    tokens?: tokensCreateNestedManyWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
-    profiles?: profilesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutRolesInput = {
@@ -12996,9 +13009,9 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
-    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
     logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
+    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutRolesInput = {
@@ -13034,7 +13047,7 @@ export namespace Prisma {
     number?: string | null
     size?: string | null
     logo_url?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     users?: usersCreateNestedManyWithoutEntitiesInput
@@ -13048,7 +13061,7 @@ export namespace Prisma {
     number?: string | null
     size?: string | null
     logo_url?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     users?: usersUncheckedCreateNestedManyWithoutEntitiesInput
@@ -13065,12 +13078,12 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensCreateNestedManyWithoutUsersInput
-    logs?: logsCreateNestedManyWithoutUsersInput
     logins?: loginsCreateNestedManyWithoutUsersInput
+    logs?: logsCreateNestedManyWithoutUsersInput
+    tokens?: tokensCreateNestedManyWithoutUsersInput
+    roles: rolesCreateNestedOneWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
-    roles: rolesCreateNestedOneWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutSpotsInput = {
@@ -13083,9 +13096,9 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
-    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
     logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
+    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutSpotsInput = {
@@ -13116,7 +13129,7 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateManyWithoutEntitiesNestedInput
@@ -13130,7 +13143,7 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUncheckedUpdateManyWithoutEntitiesNestedInput
@@ -13152,18 +13165,45 @@ export namespace Prisma {
     data: XOR<usersUpdateManyMutationInput, usersUncheckedUpdateManyWithoutSpotsInput>
   }
 
+  export type loginsCreateWithoutTokensInput = {
+    attempts?: number | null
+    state: string
+    updated_at?: Date | string | null
+    created_at?: Date | string | null
+    users: usersCreateNestedOneWithoutLoginsInput
+  }
+
+  export type loginsUncheckedCreateWithoutTokensInput = {
+    id_login?: number
+    id_user: number
+    attempts?: number | null
+    state: string
+    updated_at?: Date | string | null
+    created_at?: Date | string | null
+  }
+
+  export type loginsCreateOrConnectWithoutTokensInput = {
+    where: loginsWhereUniqueInput
+    create: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput>
+  }
+
+  export type loginsCreateManyTokensInputEnvelope = {
+    data: loginsCreateManyTokensInput | loginsCreateManyTokensInput[]
+    skipDuplicates?: boolean
+  }
+
   export type usersCreateWithoutTokensInput = {
     email: string
     password: string
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    logs?: logsCreateNestedManyWithoutUsersInput
     logins?: loginsCreateNestedManyWithoutUsersInput
-    entities: entitiesCreateNestedOneWithoutUsersInput
-    profiles?: profilesCreateNestedOneWithoutUsersInput
+    logs?: logsCreateNestedManyWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
+    entities: entitiesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutTokensInput = {
@@ -13177,80 +13217,13 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
     logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
+    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutTokensInput = {
     where: usersWhereUniqueInput
     create: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
-  }
-
-  export type loginsCreateWithoutTokensInput = {
-    attempts?: number
-    state: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    users: usersCreateNestedOneWithoutLoginsInput
-  }
-
-  export type loginsUncheckedCreateWithoutTokensInput = {
-    id_login?: number
-    id_user: number
-    attempts?: number
-    state: string
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-  }
-
-  export type loginsCreateOrConnectWithoutTokensInput = {
-    where: loginsWhereUniqueInput
-    create: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput>
-  }
-
-  export type loginsCreateManyTokensInputEnvelope = {
-    data: loginsCreateManyTokensInput | loginsCreateManyTokensInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type usersUpsertWithoutTokensInput = {
-    update: XOR<usersUpdateWithoutTokensInput, usersUncheckedUpdateWithoutTokensInput>
-    create: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
-    where?: usersWhereInput
-  }
-
-  export type usersUpdateToOneWithWhereWithoutTokensInput = {
-    where?: usersWhereInput
-    data: XOR<usersUpdateWithoutTokensInput, usersUncheckedUpdateWithoutTokensInput>
-  }
-
-  export type usersUpdateWithoutTokensInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    logs?: logsUpdateManyWithoutUsersNestedInput
-    logins?: loginsUpdateManyWithoutUsersNestedInput
-    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
-    profiles?: profilesUpdateOneWithoutUsersNestedInput
-    roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
-    spots?: spotsUpdateOneWithoutUsersNestedInput
-  }
-
-  export type usersUncheckedUpdateWithoutTokensInput = {
-    id_user?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role_id?: IntFieldUpdateOperationsInput | number
-    entity_id?: IntFieldUpdateOperationsInput | number
-    spot_id?: NullableIntFieldUpdateOperationsInput | number | null
-    profile_id?: NullableIntFieldUpdateOperationsInput | number | null
-    last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
-    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type loginsUpsertWithWhereUniqueWithoutTokensInput = {
@@ -13276,44 +13249,76 @@ export namespace Prisma {
     id_login?: IntFilter<"logins"> | number
     id_user?: IntFilter<"logins"> | number
     id_token?: IntNullableFilter<"logins"> | number | null
-    attempts?: IntFilter<"logins"> | number
+    attempts?: IntNullableFilter<"logins"> | number | null
     state?: StringFilter<"logins"> | string
-    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"logins"> | Date | string | null
+    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
   }
 
-  export type tokensCreateWithoutUsersInput = {
-    r_token: string
-    access_token?: string | null
-    exec_token?: string | null
-    revoked?: number
-    expires_at?: Date | string | null
-    status?: string | null
-    active?: number
+  export type usersUpsertWithoutTokensInput = {
+    update: XOR<usersUpdateWithoutTokensInput, usersUncheckedUpdateWithoutTokensInput>
+    create: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutTokensInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutTokensInput, usersUncheckedUpdateWithoutTokensInput>
+  }
+
+  export type usersUpdateWithoutTokensInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logins?: loginsUpdateManyWithoutUsersNestedInput
+    logs?: logsUpdateManyWithoutUsersNestedInput
+    roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
+    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
+    spots?: spotsUpdateOneWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutTokensInput = {
+    id_user?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
+    entity_id?: IntFieldUpdateOperationsInput | number
+    spot_id?: NullableIntFieldUpdateOperationsInput | number | null
+    profile_id?: NullableIntFieldUpdateOperationsInput | number | null
+    last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type loginsCreateWithoutUsersInput = {
+    attempts?: number | null
+    state: string
+    updated_at?: Date | string | null
     created_at?: Date | string | null
-    logins?: loginsCreateNestedManyWithoutTokensInput
+    tokens?: tokensCreateNestedOneWithoutLoginsInput
   }
 
-  export type tokensUncheckedCreateWithoutUsersInput = {
-    id_token?: number
-    r_token: string
-    access_token?: string | null
-    exec_token?: string | null
-    revoked?: number
-    expires_at?: Date | string | null
-    status?: string | null
-    active?: number
+  export type loginsUncheckedCreateWithoutUsersInput = {
+    id_login?: number
+    id_token?: number | null
+    attempts?: number | null
+    state: string
+    updated_at?: Date | string | null
     created_at?: Date | string | null
-    logins?: loginsUncheckedCreateNestedManyWithoutTokensInput
   }
 
-  export type tokensCreateOrConnectWithoutUsersInput = {
-    where: tokensWhereUniqueInput
-    create: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput>
+  export type loginsCreateOrConnectWithoutUsersInput = {
+    where: loginsWhereUniqueInput
+    create: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput>
   }
 
-  export type tokensCreateManyUsersInputEnvelope = {
-    data: tokensCreateManyUsersInput | tokensCreateManyUsersInput[]
+  export type loginsCreateManyUsersInputEnvelope = {
+    data: loginsCreateManyUsersInput | loginsCreateManyUsersInput[]
     skipDuplicates?: boolean
   }
 
@@ -13340,31 +13345,59 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type loginsCreateWithoutUsersInput = {
-    attempts?: number
-    state: string
+  export type tokensCreateWithoutUsersInput = {
+    r_token: string
+    access_token?: string | null
+    exec_token?: string | null
+    revoked?: boolean | null
+    expires_at?: Date | string | null
+    status?: string | null
+    active?: boolean | null
     created_at?: Date | string | null
-    updated_at?: Date | string | null
-    tokens?: tokensCreateNestedOneWithoutLoginsInput
+    logins?: loginsCreateNestedManyWithoutTokensInput
   }
 
-  export type loginsUncheckedCreateWithoutUsersInput = {
-    id_login?: number
-    id_token?: number | null
-    attempts?: number
-    state: string
+  export type tokensUncheckedCreateWithoutUsersInput = {
+    id_token?: number
+    r_token: string
+    access_token?: string | null
+    exec_token?: string | null
+    revoked?: boolean | null
+    expires_at?: Date | string | null
+    status?: string | null
+    active?: boolean | null
     created_at?: Date | string | null
-    updated_at?: Date | string | null
+    logins?: loginsUncheckedCreateNestedManyWithoutTokensInput
   }
 
-  export type loginsCreateOrConnectWithoutUsersInput = {
-    where: loginsWhereUniqueInput
-    create: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput>
+  export type tokensCreateOrConnectWithoutUsersInput = {
+    where: tokensWhereUniqueInput
+    create: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput>
   }
 
-  export type loginsCreateManyUsersInputEnvelope = {
-    data: loginsCreateManyUsersInput | loginsCreateManyUsersInput[]
+  export type tokensCreateManyUsersInputEnvelope = {
+    data: tokensCreateManyUsersInput | tokensCreateManyUsersInput[]
     skipDuplicates?: boolean
+  }
+
+  export type rolesCreateWithoutUsersInput = {
+    name: string
+    description?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type rolesUncheckedCreateWithoutUsersInput = {
+    id_role?: number
+    name: string
+    description?: string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type rolesCreateOrConnectWithoutUsersInput = {
+    where: rolesWhereUniqueInput
+    create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
   }
 
   export type entitiesCreateWithoutUsersInput = {
@@ -13374,7 +13407,7 @@ export namespace Prisma {
     number?: string | null
     size?: string | null
     logo_url?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     spots?: spotsCreateNestedManyWithoutEntitiesInput
@@ -13388,7 +13421,7 @@ export namespace Prisma {
     number?: string | null
     size?: string | null
     logo_url?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     spots?: spotsUncheckedCreateNestedManyWithoutEntitiesInput
@@ -13397,6 +13430,30 @@ export namespace Prisma {
   export type entitiesCreateOrConnectWithoutUsersInput = {
     where: entitiesWhereUniqueInput
     create: XOR<entitiesCreateWithoutUsersInput, entitiesUncheckedCreateWithoutUsersInput>
+  }
+
+  export type spotsCreateWithoutUsersInput = {
+    name: string
+    description?: string | null
+    active?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    entities: entitiesCreateNestedOneWithoutSpotsInput
+  }
+
+  export type spotsUncheckedCreateWithoutUsersInput = {
+    id_spot?: number
+    entity_id: number
+    name: string
+    description?: string | null
+    active?: boolean | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type spotsCreateOrConnectWithoutUsersInput = {
+    where: spotsWhereUniqueInput
+    create: XOR<spotsCreateWithoutUsersInput, spotsUncheckedCreateWithoutUsersInput>
   }
 
   export type profilesCreateWithoutUsersInput = {
@@ -13425,80 +13482,20 @@ export namespace Prisma {
     create: XOR<profilesCreateWithoutUsersInput, profilesUncheckedCreateWithoutUsersInput>
   }
 
-  export type rolesCreateWithoutUsersInput = {
-    name: string
-    description?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
+  export type loginsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: loginsWhereUniqueInput
+    update: XOR<loginsUpdateWithoutUsersInput, loginsUncheckedUpdateWithoutUsersInput>
+    create: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput>
   }
 
-  export type rolesUncheckedCreateWithoutUsersInput = {
-    id_role?: number
-    name: string
-    description?: string | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
+  export type loginsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: loginsWhereUniqueInput
+    data: XOR<loginsUpdateWithoutUsersInput, loginsUncheckedUpdateWithoutUsersInput>
   }
 
-  export type rolesCreateOrConnectWithoutUsersInput = {
-    where: rolesWhereUniqueInput
-    create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
-  }
-
-  export type spotsCreateWithoutUsersInput = {
-    name: string
-    description?: string | null
-    active?: number
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    entities: entitiesCreateNestedOneWithoutSpotsInput
-  }
-
-  export type spotsUncheckedCreateWithoutUsersInput = {
-    id_spot?: number
-    entity_id: number
-    name: string
-    description?: string | null
-    active?: number
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-  }
-
-  export type spotsCreateOrConnectWithoutUsersInput = {
-    where: spotsWhereUniqueInput
-    create: XOR<spotsCreateWithoutUsersInput, spotsUncheckedCreateWithoutUsersInput>
-  }
-
-  export type tokensUpsertWithWhereUniqueWithoutUsersInput = {
-    where: tokensWhereUniqueInput
-    update: XOR<tokensUpdateWithoutUsersInput, tokensUncheckedUpdateWithoutUsersInput>
-    create: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput>
-  }
-
-  export type tokensUpdateWithWhereUniqueWithoutUsersInput = {
-    where: tokensWhereUniqueInput
-    data: XOR<tokensUpdateWithoutUsersInput, tokensUncheckedUpdateWithoutUsersInput>
-  }
-
-  export type tokensUpdateManyWithWhereWithoutUsersInput = {
-    where: tokensScalarWhereInput
-    data: XOR<tokensUpdateManyMutationInput, tokensUncheckedUpdateManyWithoutUsersInput>
-  }
-
-  export type tokensScalarWhereInput = {
-    AND?: tokensScalarWhereInput | tokensScalarWhereInput[]
-    OR?: tokensScalarWhereInput[]
-    NOT?: tokensScalarWhereInput | tokensScalarWhereInput[]
-    id_token?: IntFilter<"tokens"> | number
-    user_id?: IntFilter<"tokens"> | number
-    r_token?: StringFilter<"tokens"> | string
-    access_token?: StringNullableFilter<"tokens"> | string | null
-    exec_token?: StringNullableFilter<"tokens"> | string | null
-    revoked?: IntFilter<"tokens"> | number
-    expires_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
-    status?: StringNullableFilter<"tokens"> | string | null
-    active?: IntFilter<"tokens"> | number
-    created_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
+  export type loginsUpdateManyWithWhereWithoutUsersInput = {
+    where: loginsScalarWhereInput
+    data: XOR<loginsUpdateManyMutationInput, loginsUncheckedUpdateManyWithoutUsersInput>
   }
 
   export type logsUpsertWithWhereUniqueWithoutUsersInput = {
@@ -13528,20 +13525,62 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"logs"> | Date | string | null
   }
 
-  export type loginsUpsertWithWhereUniqueWithoutUsersInput = {
-    where: loginsWhereUniqueInput
-    update: XOR<loginsUpdateWithoutUsersInput, loginsUncheckedUpdateWithoutUsersInput>
-    create: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput>
+  export type tokensUpsertWithWhereUniqueWithoutUsersInput = {
+    where: tokensWhereUniqueInput
+    update: XOR<tokensUpdateWithoutUsersInput, tokensUncheckedUpdateWithoutUsersInput>
+    create: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput>
   }
 
-  export type loginsUpdateWithWhereUniqueWithoutUsersInput = {
-    where: loginsWhereUniqueInput
-    data: XOR<loginsUpdateWithoutUsersInput, loginsUncheckedUpdateWithoutUsersInput>
+  export type tokensUpdateWithWhereUniqueWithoutUsersInput = {
+    where: tokensWhereUniqueInput
+    data: XOR<tokensUpdateWithoutUsersInput, tokensUncheckedUpdateWithoutUsersInput>
   }
 
-  export type loginsUpdateManyWithWhereWithoutUsersInput = {
-    where: loginsScalarWhereInput
-    data: XOR<loginsUpdateManyMutationInput, loginsUncheckedUpdateManyWithoutUsersInput>
+  export type tokensUpdateManyWithWhereWithoutUsersInput = {
+    where: tokensScalarWhereInput
+    data: XOR<tokensUpdateManyMutationInput, tokensUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type tokensScalarWhereInput = {
+    AND?: tokensScalarWhereInput | tokensScalarWhereInput[]
+    OR?: tokensScalarWhereInput[]
+    NOT?: tokensScalarWhereInput | tokensScalarWhereInput[]
+    id_token?: IntFilter<"tokens"> | number
+    user_id?: IntFilter<"tokens"> | number
+    r_token?: StringFilter<"tokens"> | string
+    access_token?: StringNullableFilter<"tokens"> | string | null
+    exec_token?: StringNullableFilter<"tokens"> | string | null
+    revoked?: BoolNullableFilter<"tokens"> | boolean | null
+    expires_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
+    status?: StringNullableFilter<"tokens"> | string | null
+    active?: BoolNullableFilter<"tokens"> | boolean | null
+    created_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
+  }
+
+  export type rolesUpsertWithoutUsersInput = {
+    update: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
+    create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
+    where?: rolesWhereInput
+  }
+
+  export type rolesUpdateToOneWithWhereWithoutUsersInput = {
+    where?: rolesWhereInput
+    data: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type rolesUpdateWithoutUsersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type rolesUncheckedUpdateWithoutUsersInput = {
+    id_role?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type entitiesUpsertWithoutUsersInput = {
@@ -13562,7 +13601,7 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     spots?: spotsUpdateManyWithoutEntitiesNestedInput
@@ -13576,10 +13615,40 @@ export namespace Prisma {
     number?: NullableStringFieldUpdateOperationsInput | string | null
     size?: NullableStringFieldUpdateOperationsInput | string | null
     logo_url?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     spots?: spotsUncheckedUpdateManyWithoutEntitiesNestedInput
+  }
+
+  export type spotsUpsertWithoutUsersInput = {
+    update: XOR<spotsUpdateWithoutUsersInput, spotsUncheckedUpdateWithoutUsersInput>
+    create: XOR<spotsCreateWithoutUsersInput, spotsUncheckedCreateWithoutUsersInput>
+    where?: spotsWhereInput
+  }
+
+  export type spotsUpdateToOneWithWhereWithoutUsersInput = {
+    where?: spotsWhereInput
+    data: XOR<spotsUpdateWithoutUsersInput, spotsUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type spotsUpdateWithoutUsersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    entities?: entitiesUpdateOneRequiredWithoutSpotsNestedInput
+  }
+
+  export type spotsUncheckedUpdateWithoutUsersInput = {
+    id_spot?: IntFieldUpdateOperationsInput | number
+    entity_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type profilesUpsertWithoutUsersInput = {
@@ -13614,74 +13683,18 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type rolesUpsertWithoutUsersInput = {
-    update: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
-    create: XOR<rolesCreateWithoutUsersInput, rolesUncheckedCreateWithoutUsersInput>
-    where?: rolesWhereInput
-  }
-
-  export type rolesUpdateToOneWithWhereWithoutUsersInput = {
-    where?: rolesWhereInput
-    data: XOR<rolesUpdateWithoutUsersInput, rolesUncheckedUpdateWithoutUsersInput>
-  }
-
-  export type rolesUpdateWithoutUsersInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type rolesUncheckedUpdateWithoutUsersInput = {
-    id_role?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type spotsUpsertWithoutUsersInput = {
-    update: XOR<spotsUpdateWithoutUsersInput, spotsUncheckedUpdateWithoutUsersInput>
-    create: XOR<spotsCreateWithoutUsersInput, spotsUncheckedCreateWithoutUsersInput>
-    where?: spotsWhereInput
-  }
-
-  export type spotsUpdateToOneWithWhereWithoutUsersInput = {
-    where?: spotsWhereInput
-    data: XOR<spotsUpdateWithoutUsersInput, spotsUncheckedUpdateWithoutUsersInput>
-  }
-
-  export type spotsUpdateWithoutUsersInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    entities?: entitiesUpdateOneRequiredWithoutSpotsNestedInput
-  }
-
-  export type spotsUncheckedUpdateWithoutUsersInput = {
-    id_spot?: IntFieldUpdateOperationsInput | number
-    entity_id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
   export type usersCreateWithoutLogsInput = {
     email: string
     password: string
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensCreateNestedManyWithoutUsersInput
     logins?: loginsCreateNestedManyWithoutUsersInput
-    entities: entitiesCreateNestedOneWithoutUsersInput
-    profiles?: profilesCreateNestedOneWithoutUsersInput
+    tokens?: tokensCreateNestedManyWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
+    entities: entitiesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutLogsInput = {
@@ -13695,8 +13708,8 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
     logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutLogsInput = {
@@ -13721,12 +13734,12 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateManyWithoutUsersNestedInput
     logins?: loginsUpdateManyWithoutUsersNestedInput
-    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
-    profiles?: profilesUpdateOneWithoutUsersNestedInput
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
+    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutLogsInput = {
@@ -13740,8 +13753,38 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
     logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type tokensCreateWithoutLoginsInput = {
+    r_token: string
+    access_token?: string | null
+    exec_token?: string | null
+    revoked?: boolean | null
+    expires_at?: Date | string | null
+    status?: string | null
+    active?: boolean | null
+    created_at?: Date | string | null
+    users: usersCreateNestedOneWithoutTokensInput
+  }
+
+  export type tokensUncheckedCreateWithoutLoginsInput = {
+    id_token?: number
+    user_id: number
+    r_token: string
+    access_token?: string | null
+    exec_token?: string | null
+    revoked?: boolean | null
+    expires_at?: Date | string | null
+    status?: string | null
+    active?: boolean | null
+    created_at?: Date | string | null
+  }
+
+  export type tokensCreateOrConnectWithoutLoginsInput = {
+    where: tokensWhereUniqueInput
+    create: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
   }
 
   export type usersCreateWithoutLoginsInput = {
@@ -13750,12 +13793,12 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensCreateNestedManyWithoutUsersInput
     logs?: logsCreateNestedManyWithoutUsersInput
-    entities: entitiesCreateNestedOneWithoutUsersInput
-    profiles?: profilesCreateNestedOneWithoutUsersInput
+    tokens?: tokensCreateNestedManyWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
+    entities: entitiesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
   }
 
   export type usersUncheckedCreateWithoutLoginsInput = {
@@ -13769,8 +13812,8 @@ export namespace Prisma {
     last_login_at?: Date | string | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
     logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutLoginsInput = {
@@ -13778,34 +13821,40 @@ export namespace Prisma {
     create: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
   }
 
-  export type tokensCreateWithoutLoginsInput = {
-    r_token: string
-    access_token?: string | null
-    exec_token?: string | null
-    revoked?: number
-    expires_at?: Date | string | null
-    status?: string | null
-    active?: number
-    created_at?: Date | string | null
-    users: usersCreateNestedOneWithoutTokensInput
-  }
-
-  export type tokensUncheckedCreateWithoutLoginsInput = {
-    id_token?: number
-    user_id: number
-    r_token: string
-    access_token?: string | null
-    exec_token?: string | null
-    revoked?: number
-    expires_at?: Date | string | null
-    status?: string | null
-    active?: number
-    created_at?: Date | string | null
-  }
-
-  export type tokensCreateOrConnectWithoutLoginsInput = {
-    where: tokensWhereUniqueInput
+  export type tokensUpsertWithoutLoginsInput = {
+    update: XOR<tokensUpdateWithoutLoginsInput, tokensUncheckedUpdateWithoutLoginsInput>
     create: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
+    where?: tokensWhereInput
+  }
+
+  export type tokensUpdateToOneWithWhereWithoutLoginsInput = {
+    where?: tokensWhereInput
+    data: XOR<tokensUpdateWithoutLoginsInput, tokensUncheckedUpdateWithoutLoginsInput>
+  }
+
+  export type tokensUpdateWithoutLoginsInput = {
+    r_token?: StringFieldUpdateOperationsInput | string
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    users?: usersUpdateOneRequiredWithoutTokensNestedInput
+  }
+
+  export type tokensUncheckedUpdateWithoutLoginsInput = {
+    id_token?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    r_token?: StringFieldUpdateOperationsInput | string
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type usersUpsertWithoutLoginsInput = {
@@ -13825,12 +13874,12 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateManyWithoutUsersNestedInput
     logs?: logsUpdateManyWithoutUsersNestedInput
-    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
-    profiles?: profilesUpdateOneWithoutUsersNestedInput
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
+    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutLoginsInput = {
@@ -13844,51 +13893,15 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
     logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
-  }
-
-  export type tokensUpsertWithoutLoginsInput = {
-    update: XOR<tokensUpdateWithoutLoginsInput, tokensUncheckedUpdateWithoutLoginsInput>
-    create: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
-    where?: tokensWhereInput
-  }
-
-  export type tokensUpdateToOneWithWhereWithoutLoginsInput = {
-    where?: tokensWhereInput
-    data: XOR<tokensUpdateWithoutLoginsInput, tokensUncheckedUpdateWithoutLoginsInput>
-  }
-
-  export type tokensUpdateWithoutLoginsInput = {
-    r_token?: StringFieldUpdateOperationsInput | string
-    access_token?: NullableStringFieldUpdateOperationsInput | string | null
-    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    users?: usersUpdateOneRequiredWithoutTokensNestedInput
-  }
-
-  export type tokensUncheckedUpdateWithoutLoginsInput = {
-    id_token?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    r_token?: StringFieldUpdateOperationsInput | string
-    access_token?: NullableStringFieldUpdateOperationsInput | string | null
-    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type spotsCreateManyEntitiesInput = {
     id_spot?: number
     name: string
     description?: string | null
-    active?: number
+    active?: boolean | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
   }
@@ -13908,7 +13921,7 @@ export namespace Prisma {
   export type spotsUpdateWithoutEntitiesInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateManyWithoutSpotsNestedInput
@@ -13918,7 +13931,7 @@ export namespace Prisma {
     id_spot?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUncheckedUpdateManyWithoutSpotsNestedInput
@@ -13928,7 +13941,7 @@ export namespace Prisma {
     id_spot?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13939,12 +13952,12 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateManyWithoutUsersNestedInput
-    logs?: logsUpdateManyWithoutUsersNestedInput
     logins?: loginsUpdateManyWithoutUsersNestedInput
-    profiles?: profilesUpdateOneWithoutUsersNestedInput
+    logs?: logsUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutEntitiesInput = {
@@ -13957,9 +13970,9 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
-    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
     logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutEntitiesInput = {
@@ -13992,11 +14005,11 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateManyWithoutUsersNestedInput
-    logs?: logsUpdateManyWithoutUsersNestedInput
     logins?: loginsUpdateManyWithoutUsersNestedInput
-    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
+    logs?: logsUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
+    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
   }
 
@@ -14010,9 +14023,9 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
-    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
     logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutProfilesInput = {
@@ -14045,12 +14058,12 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateManyWithoutUsersNestedInput
-    logs?: logsUpdateManyWithoutUsersNestedInput
     logins?: loginsUpdateManyWithoutUsersNestedInput
+    logs?: logsUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
-    profiles?: profilesUpdateOneWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutRolesInput = {
@@ -14063,9 +14076,9 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
-    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
     logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutRolesInput = {
@@ -14098,12 +14111,12 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateManyWithoutUsersNestedInput
-    logs?: logsUpdateManyWithoutUsersNestedInput
     logins?: loginsUpdateManyWithoutUsersNestedInput
+    logs?: logsUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
+    roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
-    roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateWithoutSpotsInput = {
@@ -14116,9 +14129,9 @@ export namespace Prisma {
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
-    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
     logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutSpotsInput = {
@@ -14136,47 +14149,44 @@ export namespace Prisma {
   export type loginsCreateManyTokensInput = {
     id_login?: number
     id_user: number
-    attempts?: number
+    attempts?: number | null
     state: string
-    created_at?: Date | string | null
     updated_at?: Date | string | null
+    created_at?: Date | string | null
   }
 
   export type loginsUpdateWithoutTokensInput = {
-    attempts?: IntFieldUpdateOperationsInput | number
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
     state?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneRequiredWithoutLoginsNestedInput
   }
 
   export type loginsUncheckedUpdateWithoutTokensInput = {
     id_login?: IntFieldUpdateOperationsInput | number
     id_user?: IntFieldUpdateOperationsInput | number
-    attempts?: IntFieldUpdateOperationsInput | number
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
     state?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type loginsUncheckedUpdateManyWithoutTokensInput = {
     id_login?: IntFieldUpdateOperationsInput | number
     id_user?: IntFieldUpdateOperationsInput | number
-    attempts?: IntFieldUpdateOperationsInput | number
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
     state?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type tokensCreateManyUsersInput = {
-    id_token?: number
-    r_token: string
-    access_token?: string | null
-    exec_token?: string | null
-    revoked?: number
-    expires_at?: Date | string | null
-    status?: string | null
-    active?: number
+  export type loginsCreateManyUsersInput = {
+    id_login?: number
+    id_token?: number | null
+    attempts?: number | null
+    state: string
+    updated_at?: Date | string | null
     created_at?: Date | string | null
   }
 
@@ -14187,49 +14197,41 @@ export namespace Prisma {
     created_at?: Date | string | null
   }
 
-  export type loginsCreateManyUsersInput = {
-    id_login?: number
-    id_token?: number | null
-    attempts?: number
-    state: string
+  export type tokensCreateManyUsersInput = {
+    id_token?: number
+    r_token: string
+    access_token?: string | null
+    exec_token?: string | null
+    revoked?: boolean | null
+    expires_at?: Date | string | null
+    status?: string | null
+    active?: boolean | null
     created_at?: Date | string | null
-    updated_at?: Date | string | null
   }
 
-  export type tokensUpdateWithoutUsersInput = {
-    r_token?: StringFieldUpdateOperationsInput | string
-    access_token?: NullableStringFieldUpdateOperationsInput | string | null
-    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+  export type loginsUpdateWithoutUsersInput = {
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
+    state?: StringFieldUpdateOperationsInput | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    logins?: loginsUpdateManyWithoutTokensNestedInput
+    tokens?: tokensUpdateOneWithoutLoginsNestedInput
   }
 
-  export type tokensUncheckedUpdateWithoutUsersInput = {
-    id_token?: IntFieldUpdateOperationsInput | number
-    r_token?: StringFieldUpdateOperationsInput | string
-    access_token?: NullableStringFieldUpdateOperationsInput | string | null
-    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+  export type loginsUncheckedUpdateWithoutUsersInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_token?: NullableIntFieldUpdateOperationsInput | number | null
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
+    state?: StringFieldUpdateOperationsInput | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    logins?: loginsUncheckedUpdateManyWithoutTokensNestedInput
   }
 
-  export type tokensUncheckedUpdateManyWithoutUsersInput = {
-    id_token?: IntFieldUpdateOperationsInput | number
-    r_token?: StringFieldUpdateOperationsInput | string
-    access_token?: NullableStringFieldUpdateOperationsInput | string | null
-    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
-    revoked?: IntFieldUpdateOperationsInput | number
-    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    active?: IntFieldUpdateOperationsInput | number
+  export type loginsUncheckedUpdateManyWithoutUsersInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_token?: NullableIntFieldUpdateOperationsInput | number | null
+    attempts?: NullableIntFieldUpdateOperationsInput | number | null
+    state?: StringFieldUpdateOperationsInput | string
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
@@ -14253,30 +14255,41 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type loginsUpdateWithoutUsersInput = {
-    attempts?: IntFieldUpdateOperationsInput | number
-    state?: StringFieldUpdateOperationsInput | string
+  export type tokensUpdateWithoutUsersInput = {
+    r_token?: StringFieldUpdateOperationsInput | string
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tokens?: tokensUpdateOneWithoutLoginsNestedInput
+    logins?: loginsUpdateManyWithoutTokensNestedInput
   }
 
-  export type loginsUncheckedUpdateWithoutUsersInput = {
-    id_login?: IntFieldUpdateOperationsInput | number
-    id_token?: NullableIntFieldUpdateOperationsInput | number | null
-    attempts?: IntFieldUpdateOperationsInput | number
-    state?: StringFieldUpdateOperationsInput | string
+  export type tokensUncheckedUpdateWithoutUsersInput = {
+    id_token?: IntFieldUpdateOperationsInput | number
+    r_token?: StringFieldUpdateOperationsInput | string
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logins?: loginsUncheckedUpdateManyWithoutTokensNestedInput
   }
 
-  export type loginsUncheckedUpdateManyWithoutUsersInput = {
-    id_login?: IntFieldUpdateOperationsInput | number
-    id_token?: NullableIntFieldUpdateOperationsInput | number | null
-    attempts?: IntFieldUpdateOperationsInput | number
-    state?: StringFieldUpdateOperationsInput | string
+  export type tokensUncheckedUpdateManyWithoutUsersInput = {
+    id_token?: IntFieldUpdateOperationsInput | number
+    r_token?: StringFieldUpdateOperationsInput | string
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
+    revoked?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: NullableBoolFieldUpdateOperationsInput | boolean | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -24,12 +22,11 @@ import { users } from '../../prisma/client';
 // SERVICE
 @Injectable()
 export class AuthService {
-  // PRISMA PROPS
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
   ) {}
-  // LOG CREATE
+  // LOGS TABLE
   private async logAction(
     user_id: number | null,
     action: string,
@@ -43,7 +40,7 @@ export class AuthService {
       },
     });
   }
-  // GET USER VALIDATION PASSWORD
+  // VALIDATE USER INFORMATION
   async validateUser(
     email: string,
     password: string,
@@ -51,7 +48,7 @@ export class AuthService {
     if (!email || !password) throw new BadRequestException('DATA UNKNOWN');
     const user = await this.prisma.users.findUnique({ where: { email } });
     if (!user) return null;
-    const loginRecord = await this.prisma.logins.findUnique({
+    const loginRecord = await this.prisma.logins.findFirst({
       where: { id_user: user.id_user },
     });
     if (loginRecord && loginRecord.state === 'block') {
@@ -71,7 +68,7 @@ export class AuthService {
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       if (loginRecord) {
-        const newAttempts = loginRecord.attempts + 1;
+        const newAttempts = (loginRecord.attempts || 0) + 1;
         const newState = newAttempts >= 5 ? 'block' : 'attempt';
         await this.prisma.logins.update({
           where: { id_login: loginRecord.id_login },
@@ -91,7 +88,7 @@ export class AuthService {
     const { password: _, ...result } = user;
     return result;
   }
-  // CREATE A USER ACCOUNT
+  // REGISTER ACCOUNT
   async register(data: {
     email: string;
     password: string;
@@ -113,14 +110,14 @@ export class AuthService {
       },
     });
     const { password, ...result } = user;
-    // await this.logAction(
-    //   user.id_user,
-    //   'register',
-    //   `User registered with email ${user.email}`,
-    // );
+    await this.logAction(
+      result.id_user,
+      'register',
+      `User account for '${data.entity_id}' created`,
+    );
     return result;
   }
-  // CREATE PRYMARY ACCOUNT
+  // REGISTER ENTITIE
   async start(data: {
     entity: {
       name: string;
@@ -130,11 +127,7 @@ export class AuthService {
       size: string;
       logo_url: string;
     };
-    user: {
-      email: string;
-      password: string;
-      last_login_at?: Date;
-    };
+    user: { email: string; password: string; last_login_at?: Date };
   }) {
     const { entity, user } = data;
     const entityFields = [
@@ -145,15 +138,13 @@ export class AuthService {
       'size',
       'logo_url',
     ];
-    for (const field of entityFields) {
+    for (const field of entityFields)
       if (!entity[field])
         throw new BadRequestException(`Entity field '${field}' is required`);
-    }
     const userFields = ['email', 'password'];
-    for (const field of userFields) {
+    for (const field of userFields)
       if (!user[field])
         throw new BadRequestException(`User field '${field}' is required`);
-    }
     if (user.password.length < 8)
       throw new BadRequestException('Password must be at least 8 characters');
     const existsUser = await this.prisma.users.findUnique({
@@ -189,11 +180,11 @@ export class AuthService {
       },
     });
     const { password, ...resultUser } = newUser;
-    // await this.logAction(
-    //   newUser.id_user,
-    //   'start',
-    //   `User created with entity '${newEntity.name}' and startup spot`,
-    // );
+    await this.logAction(
+      resultUser.id_user,
+      'start',
+      `User created and entity '${newEntity.name}' created`,
+    );
     return {
       entity: newEntity,
       spot: newSpot,
@@ -215,40 +206,39 @@ export class AuthService {
     });
     const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
     let tokenRecord;
-    if (existing) {
+    if (existing)
       tokenRecord = await this.prisma.tokens.update({
         where: { id_token: existing.id_token },
         data: {
           r_token,
           access_token,
           exec_token: null,
-          revoked: 0,
+          revoked: false,
           status: 'logged',
-          active: 1,
+          active: true,
           expires_at: expiresAt,
         },
       });
-    } else {
+    else
       tokenRecord = await this.prisma.tokens.create({
         data: {
           user_id: user.id_user,
           r_token,
           access_token,
-          revoked: 0,
+          revoked: false,
           status: 'logged',
-          active: 1,
+          active: true,
           expires_at: expiresAt,
         },
       });
-    }
     await this.prisma.users.update({
       where: { id_user: user.id_user },
       data: { last_login_at: new Date() },
     });
-    const loginRecord = await this.prisma.logins.findUnique({
+    const loginRecord = await this.prisma.logins.findFirst({
       where: { id_user: user.id_user },
     });
-    if (loginRecord) {
+    if (loginRecord)
       await this.prisma.logins.update({
         where: { id_login: loginRecord.id_login },
         data: {
@@ -258,7 +248,7 @@ export class AuthService {
           updated_at: new Date(),
         },
       });
-    } else {
+    else
       await this.prisma.logins.create({
         data: {
           id_user: user.id_user,
@@ -267,15 +257,13 @@ export class AuthService {
           state: 'access',
         },
       });
-    }
-    // await this.logAction(user.id_user, 'login', `User logged`);
     return { access_token, r_token };
   }
-  // REFRESH LOGIN TOKEN
+  // REFRESH TOKEN
   async refreshToken(r_token: string) {
     if (!r_token) throw new BadRequestException('r_token required');
     const record = await this.prisma.tokens.findFirst({
-      where: { r_token, revoked: 0 },
+      where: { r_token, revoked: false },
       include: { users: true },
     });
     if (!record) throw new UnauthorizedException('Invalid refresh token');
@@ -293,19 +281,17 @@ export class AuthService {
         exec_token: record.r_token,
         r_token: new_r,
         status: 'refreshed',
-        revoked: 0,
-        active: 1,
+        revoked: false,
+        active: true,
         expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
       },
     });
-    // await this.logAction(record.user_id, 'refresh_token', `Token refreshed`);
     return { access_token: new_access, r_token: new_r };
   }
-  // REVOKE TOKEN
   async revokeToken(r_token: string) {
     if (!r_token) throw new BadRequestException('r_token required');
     const record = await this.prisma.tokens.findFirst({
-      where: { r_token, revoked: 0 },
+      where: { r_token, revoked: false },
     });
     if (!record) return { revoked: false };
     await this.prisma.tokens.update({
@@ -315,36 +301,26 @@ export class AuthService {
         r_token: '',
         exec_token: r_token,
         status: 'revoked',
-        revoked: 1,
-        active: 0,
+        revoked: true,
+        active: false,
         expires_at: null,
       },
     });
     await this.logAction(record.user_id, 'revoke_token', `Token revoked`);
     return { revoked: true };
   }
-  // VALIDATE TOKEN
+  // VALIDATE TOKEN JWT
   async validateToken(token: string) {
     if (!token) throw new BadRequestException('TOKEN REQUIRE');
     const r = await this.prisma.tokens.findFirst({
-      where: { r_token: token, revoked: 0 },
+      where: { r_token: token, revoked: false },
     });
     const payload = await this.jwtService.verifyAsync(token);
-    if (r)
-      return {
-        valid: true,
-        type: 'r_token',
-        payload: payload,
-      };
+    if (r) return { valid: true, type: 'r_token', payload };
     const a = await this.prisma.tokens.findFirst({
-      where: { access_token: token, revoked: 0 },
+      where: { access_token: token, revoked: false },
     });
-    if (a)
-      return {
-        valid: true,
-        type: 'access_token',
-        payload: payload,
-      };
+    if (a) return { valid: true, type: 'access_token', payload };
     throw new UnauthorizedException('DATA UNKNOWN');
   }
 }

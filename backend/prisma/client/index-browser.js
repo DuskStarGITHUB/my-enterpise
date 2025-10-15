@@ -202,8 +202,8 @@ exports.Prisma.LoginsScalarFieldEnum = {
   id_token: 'id_token',
   attempts: 'attempts',
   state: 'state',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  created_at: 'created_at'
 };
 
 exports.Prisma.SortOrder = {

@@ -16,9 +16,9 @@ model entities {
   number      String?   @db.VarChar(50)
   size        String?   @db.VarChar(50)
   logo_url    String?   @db.VarChar(500)
-  active      Int       @default(1)
-  created_at  DateTime? @default(now()) @db.Timestamp(0)
-  updated_at  DateTime? @default(now()) @db.Timestamp(0)
+  active      Boolean?  @default(true)
+  created_at  DateTime? @default(now()) @db.DateTime(0)
+  updated_at  DateTime? @default(now()) @db.DateTime(0)
   spots       spots[]
   users       users[]
 }
@@ -30,17 +30,17 @@ model profiles {
   phone      String?   @db.VarChar(50)
   avatar_url String?   @db.VarChar(500)
   bio        String?   @db.Text
-  created_at DateTime? @default(now()) @db.Timestamp(0)
-  updated_at DateTime? @default(now()) @db.Timestamp(0)
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  updated_at DateTime? @default(now()) @db.DateTime(0)
   users      users[]
 }
 
 model roles {
   id_role     Int       @id @default(autoincrement())
-  name        String    @unique @db.VarChar(50)
+  name        String    @unique(map: "name") @db.VarChar(50)
   description String?   @db.VarChar(255)
-  created_at  DateTime? @default(now()) @db.Timestamp(0)
-  updated_at  DateTime? @default(now()) @db.Timestamp(0)
+  created_at  DateTime? @default(now()) @db.DateTime(0)
+  updated_at  DateTime? @default(now()) @db.DateTime(0)
   users       users[]
 }
 
@@ -49,13 +49,13 @@ model spots {
   entity_id   Int
   name        String    @db.VarChar(200)
   description String?   @db.VarChar(255)
-  active      Int       @default(1)
-  created_at  DateTime? @default(now()) @db.Timestamp(0)
-  updated_at  DateTime? @default(now()) @db.Timestamp(0)
-  entities    entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade)
+  active      Boolean?  @default(true)
+  created_at  DateTime? @default(now()) @db.DateTime(0)
+  updated_at  DateTime? @default(now()) @db.DateTime(0)
+  entities    entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade, onUpdate: Restrict, map: "spots_ibfk_1")
   users       users[]
 
-  @@index([entity_id])
+  @@index([entity_id], map: "entity_id")
 }
 
 model tokens {
@@ -64,58 +64,64 @@ model tokens {
   r_token      String    @db.VarChar(512)
   access_token String?   @db.VarChar(512)
   exec_token   String?   @db.VarChar(512)
-  revoked      Int       @default(0)
-  expires_at   DateTime?
+  revoked      Boolean?  @default(false)
+  expires_at   DateTime? @db.DateTime(0)
   status       String?   @db.VarChar(50)
-  active       Int       @default(1)
-  created_at   DateTime? @default(now()) @db.Timestamp(0)
-  users        users     @relation(fields: [user_id], references: [id_user], onDelete: Cascade)
+  active       Boolean?  @default(true)
+  created_at   DateTime? @default(now()) @db.DateTime(0)
   logins       logins[]
+  users        users     @relation(fields: [user_id], references: [id_user], onDelete: Cascade, onUpdate: Restrict, map: "tokens_ibfk_1")
 
-  @@index([r_token(length: 191)])
-  @@index([user_id])
+  @@index([user_id], map: "user_id")
 }
 
 model users {
   id_user       Int       @id @default(autoincrement())
-  email         String    @unique
-  password      String
+  email         String    @unique(map: "email") @db.VarChar(255)
+  password      String    @db.VarChar(255)
   role_id       Int
   entity_id     Int
   spot_id       Int?
   profile_id    Int?
-  last_login_at DateTime?
-  created_at    DateTime? @default(now()) @db.Timestamp(0)
-  updated_at    DateTime? @default(now()) @db.Timestamp(0)
-  tokens        tokens[]
+  last_login_at DateTime? @db.DateTime(0)
+  created_at    DateTime? @default(now()) @db.DateTime(0)
+  updated_at    DateTime? @default(now()) @db.DateTime(0)
+  logins        logins?
   logs          logs[]
-  logins        logins[]
-  entities      entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade)
-  profiles      profiles? @relation(fields: [profile_id], references: [id_profile])
-  roles         roles     @relation(fields: [role_id], references: [id_role])
-  spots         spots?    @relation(fields: [spot_id], references: [id_spot])
+  tokens        tokens[]
+  roles         roles     @relation(fields: [role_id], references: [id_role], onUpdate: Restrict, map: "users_ibfk_1")
+  entities      entities  @relation(fields: [entity_id], references: [id_entity], onDelete: Cascade, onUpdate: Restrict, map: "users_ibfk_2")
+  spots         spots?    @relation(fields: [spot_id], references: [id_spot], onDelete: Restrict, onUpdate: Restrict, map: "users_ibfk_3")
+  profiles      profiles? @relation(fields: [profile_id], references: [id_profile], onDelete: Restrict, onUpdate: Restrict, map: "users_ibfk_4")
+
+  @@index([entity_id], map: "entity_id")
+  @@index([profile_id], map: "profile_id")
+  @@index([role_id], map: "role_id")
+  @@index([spot_id], map: "spot_id")
 }
 
 model logs {
   id_log      Int       @id @default(autoincrement())
   user_id     Int?
   action      String    @db.VarChar(50)
-  description String?
-  created_at  DateTime? @default(now()) @db.Timestamp(0)
-  users       users?    @relation(fields: [user_id], references: [id_user], onDelete: SetNull)
+  description String?   @db.Text
+  created_at  DateTime? @default(now()) @db.DateTime(0)
+  users       users?    @relation(fields: [user_id], references: [id_user], onUpdate: Restrict, map: "logs_ibfk_1")
+
+  @@index([user_id], map: "user_id")
 }
 
 model logins {
   id_login   Int       @id @default(autoincrement())
-  id_user    Int       @unique
+  id_user    Int       @unique(map: "id_user")
   id_token   Int?
-  attempts   Int       @default(0)
+  attempts   Int?      @default(0)
   state      String    @db.VarChar(20)
-  created_at DateTime? @default(now()) @db.Timestamp(0)
-  updated_at DateTime? @default(now()) @db.Timestamp(0)
-  users      users     @relation(fields: [id_user], references: [id_user], onDelete: Cascade)
-  tokens     tokens?   @relation(fields: [id_token], references: [id_token], onDelete: SetNull)
+  updated_at DateTime? @default(now()) @db.DateTime(0)
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  tokens     tokens?   @relation(fields: [id_token], references: [id_token], onUpdate: Restrict, map: "fk_logins_token")
+  users      users     @relation(fields: [id_user], references: [id_user], onDelete: Cascade, onUpdate: Restrict, map: "fk_logins_user")
 
-  @@index([id_user])
-  @@index([id_token])
+  @@index([id_token], map: "idx_token")
+  @@index([id_user], map: "idx_user")
 }
