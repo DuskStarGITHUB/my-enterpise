@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.16.2
- * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+ * Prisma Client JS version: 6.17.1
+ * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
  */
 Prisma.prismaVersion = {
-  client: "6.16.2",
-  engine: "1c57fdcd7e44b29b9313256c76699e91c3ac3c43"
+  client: "6.17.1",
+  engine: "272a37d34178c2894197e17273bf937f25acdeac"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -196,6 +196,16 @@ exports.Prisma.LogsScalarFieldEnum = {
   created_at: 'created_at'
 };
 
+exports.Prisma.LoginsScalarFieldEnum = {
+  id_login: 'id_login',
+  id_user: 'id_user',
+  id_token: 'id_token',
+  attempts: 'attempts',
+  state: 'state',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -250,6 +260,10 @@ exports.Prisma.logsOrderByRelevanceFieldEnum = {
   description: 'description'
 };
 
+exports.Prisma.loginsOrderByRelevanceFieldEnum = {
+  state: 'state'
+};
+
 
 exports.Prisma.ModelName = {
   entities: 'entities',
@@ -258,7 +272,8 @@ exports.Prisma.ModelName = {
   spots: 'spots',
   tokens: 'tokens',
   users: 'users',
-  logs: 'logs'
+  logs: 'logs',
+  logins: 'logins'
 };
 
 /**

@@ -48,6 +48,11 @@ export type users = $Result.DefaultSelection<Prisma.$usersPayload>
  * 
  */
 export type logs = $Result.DefaultSelection<Prisma.$logsPayload>
+/**
+ * Model logins
+ * 
+ */
+export type logins = $Result.DefaultSelection<Prisma.$loginsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -236,6 +241,16 @@ export class PrismaClient<
     * ```
     */
   get logs(): Prisma.logsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.logins`: Exposes CRUD operations for the **logins** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Logins
+    * const logins = await prisma.logins.findMany()
+    * ```
+    */
+  get logins(): Prisma.loginsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -294,8 +309,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.16.2
-   * Query Engine version: 1c57fdcd7e44b29b9313256c76699e91c3ac3c43
+   * Prisma Client JS version: 6.17.1
+   * Query Engine version: 272a37d34178c2894197e17273bf937f25acdeac
    */
   export type PrismaVersion = {
     client: string
@@ -682,7 +697,8 @@ export namespace Prisma {
     spots: 'spots',
     tokens: 'tokens',
     users: 'users',
-    logs: 'logs'
+    logs: 'logs',
+    logins: 'logins'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -701,7 +717,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "entities" | "profiles" | "roles" | "spots" | "tokens" | "users" | "logs"
+      modelProps: "entities" | "profiles" | "roles" | "spots" | "tokens" | "users" | "logs" | "logins"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1167,6 +1183,72 @@ export namespace Prisma {
           }
         }
       }
+      logins: {
+        payload: Prisma.$loginsPayload<ExtArgs>
+        fields: Prisma.loginsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.loginsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.loginsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload>
+          }
+          findFirst: {
+            args: Prisma.loginsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.loginsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload>
+          }
+          findMany: {
+            args: Prisma.loginsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload>[]
+          }
+          create: {
+            args: Prisma.loginsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload>
+          }
+          createMany: {
+            args: Prisma.loginsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.loginsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload>
+          }
+          update: {
+            args: Prisma.loginsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload>
+          }
+          deleteMany: {
+            args: Prisma.loginsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.loginsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.loginsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$loginsPayload>
+          }
+          aggregate: {
+            args: Prisma.LoginsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLogins>
+          }
+          groupBy: {
+            args: Prisma.loginsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LoginsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.loginsCountArgs<ExtArgs>
+            result: $Utils.Optional<LoginsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1270,6 +1352,7 @@ export namespace Prisma {
     tokens?: tokensOmit
     users?: usersOmit
     logs?: logsOmit
+    logins?: loginsOmit
   }
 
   /* Types for Logging */
@@ -1479,17 +1562,50 @@ export namespace Prisma {
 
 
   /**
+   * Count Type TokensCountOutputType
+   */
+
+  export type TokensCountOutputType = {
+    logins: number
+  }
+
+  export type TokensCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    logins?: boolean | TokensCountOutputTypeCountLoginsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TokensCountOutputType without action
+   */
+  export type TokensCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TokensCountOutputType
+     */
+    select?: TokensCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TokensCountOutputType without action
+   */
+  export type TokensCountOutputTypeCountLoginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: loginsWhereInput
+  }
+
+
+  /**
    * Count Type UsersCountOutputType
    */
 
   export type UsersCountOutputType = {
     tokens: number
     logs: number
+    logins: number
   }
 
   export type UsersCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tokens?: boolean | UsersCountOutputTypeCountTokensArgs
     logs?: boolean | UsersCountOutputTypeCountLogsArgs
+    logins?: boolean | UsersCountOutputTypeCountLoginsArgs
   }
 
   // Custom InputTypes
@@ -1515,6 +1631,13 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: logsWhereInput
+  }
+
+  /**
+   * UsersCountOutputType without action
+   */
+  export type UsersCountOutputTypeCountLoginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: loginsWhereInput
   }
 
 
@@ -5883,6 +6006,8 @@ export namespace Prisma {
     active?: boolean
     created_at?: boolean
     users?: boolean | usersDefaultArgs<ExtArgs>
+    logins?: boolean | tokens$loginsArgs<ExtArgs>
+    _count?: boolean | TokensCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tokens"]>
 
 
@@ -5903,12 +6028,15 @@ export namespace Prisma {
   export type tokensOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_token" | "user_id" | "r_token" | "access_token" | "exec_token" | "revoked" | "expires_at" | "status" | "active" | "created_at", ExtArgs["result"]["tokens"]>
   export type tokensInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     users?: boolean | usersDefaultArgs<ExtArgs>
+    logins?: boolean | tokens$loginsArgs<ExtArgs>
+    _count?: boolean | TokensCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $tokensPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "tokens"
     objects: {
       users: Prisma.$usersPayload<ExtArgs>
+      logins: Prisma.$loginsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id_token: number
@@ -6262,6 +6390,7 @@ export namespace Prisma {
   export interface Prisma__tokensClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    logins<T extends tokens$loginsArgs<ExtArgs> = {}>(args?: Subset<T, tokens$loginsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6644,6 +6773,30 @@ export namespace Prisma {
   }
 
   /**
+   * tokens.logins
+   */
+  export type tokens$loginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    where?: loginsWhereInput
+    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
+    cursor?: loginsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LoginsScalarFieldEnum | LoginsScalarFieldEnum[]
+  }
+
+  /**
    * tokens without action
    */
   export type tokensDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6918,6 +7071,7 @@ export namespace Prisma {
     updated_at?: boolean
     tokens?: boolean | users$tokensArgs<ExtArgs>
     logs?: boolean | users$logsArgs<ExtArgs>
+    logins?: boolean | users$loginsArgs<ExtArgs>
     entities?: boolean | entitiesDefaultArgs<ExtArgs>
     profiles?: boolean | users$profilesArgs<ExtArgs>
     roles?: boolean | rolesDefaultArgs<ExtArgs>
@@ -6944,6 +7098,7 @@ export namespace Prisma {
   export type usersInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tokens?: boolean | users$tokensArgs<ExtArgs>
     logs?: boolean | users$logsArgs<ExtArgs>
+    logins?: boolean | users$loginsArgs<ExtArgs>
     entities?: boolean | entitiesDefaultArgs<ExtArgs>
     profiles?: boolean | users$profilesArgs<ExtArgs>
     roles?: boolean | rolesDefaultArgs<ExtArgs>
@@ -6956,6 +7111,7 @@ export namespace Prisma {
     objects: {
       tokens: Prisma.$tokensPayload<ExtArgs>[]
       logs: Prisma.$logsPayload<ExtArgs>[]
+      logins: Prisma.$loginsPayload<ExtArgs>[]
       entities: Prisma.$entitiesPayload<ExtArgs>
       profiles: Prisma.$profilesPayload<ExtArgs> | null
       roles: Prisma.$rolesPayload<ExtArgs>
@@ -7314,6 +7470,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tokens<T extends users$tokensArgs<ExtArgs> = {}>(args?: Subset<T, users$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$tokensPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     logs<T extends users$logsArgs<ExtArgs> = {}>(args?: Subset<T, users$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    logins<T extends users$loginsArgs<ExtArgs> = {}>(args?: Subset<T, users$loginsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     entities<T extends entitiesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, entitiesDefaultArgs<ExtArgs>>): Prisma__entitiesClient<$Result.GetResult<Prisma.$entitiesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     profiles<T extends users$profilesArgs<ExtArgs> = {}>(args?: Subset<T, users$profilesArgs<ExtArgs>>): Prisma__profilesClient<$Result.GetResult<Prisma.$profilesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     roles<T extends rolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, rolesDefaultArgs<ExtArgs>>): Prisma__rolesClient<$Result.GetResult<Prisma.$rolesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -7745,6 +7902,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LogsScalarFieldEnum | LogsScalarFieldEnum[]
+  }
+
+  /**
+   * users.logins
+   */
+  export type users$loginsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    where?: loginsWhereInput
+    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
+    cursor?: loginsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LoginsScalarFieldEnum | LoginsScalarFieldEnum[]
   }
 
   /**
@@ -8791,6 +8972,1026 @@ export namespace Prisma {
 
 
   /**
+   * Model logins
+   */
+
+  export type AggregateLogins = {
+    _count: LoginsCountAggregateOutputType | null
+    _avg: LoginsAvgAggregateOutputType | null
+    _sum: LoginsSumAggregateOutputType | null
+    _min: LoginsMinAggregateOutputType | null
+    _max: LoginsMaxAggregateOutputType | null
+  }
+
+  export type LoginsAvgAggregateOutputType = {
+    id_login: number | null
+    id_user: number | null
+    id_token: number | null
+    attempts: number | null
+  }
+
+  export type LoginsSumAggregateOutputType = {
+    id_login: number | null
+    id_user: number | null
+    id_token: number | null
+    attempts: number | null
+  }
+
+  export type LoginsMinAggregateOutputType = {
+    id_login: number | null
+    id_user: number | null
+    id_token: number | null
+    attempts: number | null
+    state: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type LoginsMaxAggregateOutputType = {
+    id_login: number | null
+    id_user: number | null
+    id_token: number | null
+    attempts: number | null
+    state: string | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type LoginsCountAggregateOutputType = {
+    id_login: number
+    id_user: number
+    id_token: number
+    attempts: number
+    state: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type LoginsAvgAggregateInputType = {
+    id_login?: true
+    id_user?: true
+    id_token?: true
+    attempts?: true
+  }
+
+  export type LoginsSumAggregateInputType = {
+    id_login?: true
+    id_user?: true
+    id_token?: true
+    attempts?: true
+  }
+
+  export type LoginsMinAggregateInputType = {
+    id_login?: true
+    id_user?: true
+    id_token?: true
+    attempts?: true
+    state?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type LoginsMaxAggregateInputType = {
+    id_login?: true
+    id_user?: true
+    id_token?: true
+    attempts?: true
+    state?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type LoginsCountAggregateInputType = {
+    id_login?: true
+    id_user?: true
+    id_token?: true
+    attempts?: true
+    state?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type LoginsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which logins to aggregate.
+     */
+    where?: loginsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logins to fetch.
+     */
+    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: loginsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned logins
+    **/
+    _count?: true | LoginsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LoginsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LoginsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LoginsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LoginsMaxAggregateInputType
+  }
+
+  export type GetLoginsAggregateType<T extends LoginsAggregateArgs> = {
+        [P in keyof T & keyof AggregateLogins]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLogins[P]>
+      : GetScalarType<T[P], AggregateLogins[P]>
+  }
+
+
+
+
+  export type loginsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: loginsWhereInput
+    orderBy?: loginsOrderByWithAggregationInput | loginsOrderByWithAggregationInput[]
+    by: LoginsScalarFieldEnum[] | LoginsScalarFieldEnum
+    having?: loginsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LoginsCountAggregateInputType | true
+    _avg?: LoginsAvgAggregateInputType
+    _sum?: LoginsSumAggregateInputType
+    _min?: LoginsMinAggregateInputType
+    _max?: LoginsMaxAggregateInputType
+  }
+
+  export type LoginsGroupByOutputType = {
+    id_login: number
+    id_user: number
+    id_token: number | null
+    attempts: number
+    state: string
+    created_at: Date | null
+    updated_at: Date | null
+    _count: LoginsCountAggregateOutputType | null
+    _avg: LoginsAvgAggregateOutputType | null
+    _sum: LoginsSumAggregateOutputType | null
+    _min: LoginsMinAggregateOutputType | null
+    _max: LoginsMaxAggregateOutputType | null
+  }
+
+  type GetLoginsGroupByPayload<T extends loginsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LoginsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LoginsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LoginsGroupByOutputType[P]>
+            : GetScalarType<T[P], LoginsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type loginsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id_login?: boolean
+    id_user?: boolean
+    id_token?: boolean
+    attempts?: boolean
+    state?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    users?: boolean | usersDefaultArgs<ExtArgs>
+    tokens?: boolean | logins$tokensArgs<ExtArgs>
+  }, ExtArgs["result"]["logins"]>
+
+
+
+  export type loginsSelectScalar = {
+    id_login?: boolean
+    id_user?: boolean
+    id_token?: boolean
+    attempts?: boolean
+    state?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type loginsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id_login" | "id_user" | "id_token" | "attempts" | "state" | "created_at" | "updated_at", ExtArgs["result"]["logins"]>
+  export type loginsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | usersDefaultArgs<ExtArgs>
+    tokens?: boolean | logins$tokensArgs<ExtArgs>
+  }
+
+  export type $loginsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "logins"
+    objects: {
+      users: Prisma.$usersPayload<ExtArgs>
+      tokens: Prisma.$tokensPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id_login: number
+      id_user: number
+      id_token: number | null
+      attempts: number
+      state: string
+      created_at: Date | null
+      updated_at: Date | null
+    }, ExtArgs["result"]["logins"]>
+    composites: {}
+  }
+
+  type loginsGetPayload<S extends boolean | null | undefined | loginsDefaultArgs> = $Result.GetResult<Prisma.$loginsPayload, S>
+
+  type loginsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<loginsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LoginsCountAggregateInputType | true
+    }
+
+  export interface loginsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['logins'], meta: { name: 'logins' } }
+    /**
+     * Find zero or one Logins that matches the filter.
+     * @param {loginsFindUniqueArgs} args - Arguments to find a Logins
+     * @example
+     * // Get one Logins
+     * const logins = await prisma.logins.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends loginsFindUniqueArgs>(args: SelectSubset<T, loginsFindUniqueArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Logins that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {loginsFindUniqueOrThrowArgs} args - Arguments to find a Logins
+     * @example
+     * // Get one Logins
+     * const logins = await prisma.logins.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends loginsFindUniqueOrThrowArgs>(args: SelectSubset<T, loginsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Logins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {loginsFindFirstArgs} args - Arguments to find a Logins
+     * @example
+     * // Get one Logins
+     * const logins = await prisma.logins.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends loginsFindFirstArgs>(args?: SelectSubset<T, loginsFindFirstArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Logins that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {loginsFindFirstOrThrowArgs} args - Arguments to find a Logins
+     * @example
+     * // Get one Logins
+     * const logins = await prisma.logins.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends loginsFindFirstOrThrowArgs>(args?: SelectSubset<T, loginsFindFirstOrThrowArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Logins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {loginsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Logins
+     * const logins = await prisma.logins.findMany()
+     * 
+     * // Get first 10 Logins
+     * const logins = await prisma.logins.findMany({ take: 10 })
+     * 
+     * // Only select the `id_login`
+     * const loginsWithId_loginOnly = await prisma.logins.findMany({ select: { id_login: true } })
+     * 
+     */
+    findMany<T extends loginsFindManyArgs>(args?: SelectSubset<T, loginsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Logins.
+     * @param {loginsCreateArgs} args - Arguments to create a Logins.
+     * @example
+     * // Create one Logins
+     * const Logins = await prisma.logins.create({
+     *   data: {
+     *     // ... data to create a Logins
+     *   }
+     * })
+     * 
+     */
+    create<T extends loginsCreateArgs>(args: SelectSubset<T, loginsCreateArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Logins.
+     * @param {loginsCreateManyArgs} args - Arguments to create many Logins.
+     * @example
+     * // Create many Logins
+     * const logins = await prisma.logins.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends loginsCreateManyArgs>(args?: SelectSubset<T, loginsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Logins.
+     * @param {loginsDeleteArgs} args - Arguments to delete one Logins.
+     * @example
+     * // Delete one Logins
+     * const Logins = await prisma.logins.delete({
+     *   where: {
+     *     // ... filter to delete one Logins
+     *   }
+     * })
+     * 
+     */
+    delete<T extends loginsDeleteArgs>(args: SelectSubset<T, loginsDeleteArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Logins.
+     * @param {loginsUpdateArgs} args - Arguments to update one Logins.
+     * @example
+     * // Update one Logins
+     * const logins = await prisma.logins.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends loginsUpdateArgs>(args: SelectSubset<T, loginsUpdateArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Logins.
+     * @param {loginsDeleteManyArgs} args - Arguments to filter Logins to delete.
+     * @example
+     * // Delete a few Logins
+     * const { count } = await prisma.logins.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends loginsDeleteManyArgs>(args?: SelectSubset<T, loginsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Logins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {loginsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Logins
+     * const logins = await prisma.logins.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends loginsUpdateManyArgs>(args: SelectSubset<T, loginsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Logins.
+     * @param {loginsUpsertArgs} args - Arguments to update or create a Logins.
+     * @example
+     * // Update or create a Logins
+     * const logins = await prisma.logins.upsert({
+     *   create: {
+     *     // ... data to create a Logins
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Logins we want to update
+     *   }
+     * })
+     */
+    upsert<T extends loginsUpsertArgs>(args: SelectSubset<T, loginsUpsertArgs<ExtArgs>>): Prisma__loginsClient<$Result.GetResult<Prisma.$loginsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Logins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {loginsCountArgs} args - Arguments to filter Logins to count.
+     * @example
+     * // Count the number of Logins
+     * const count = await prisma.logins.count({
+     *   where: {
+     *     // ... the filter for the Logins we want to count
+     *   }
+     * })
+    **/
+    count<T extends loginsCountArgs>(
+      args?: Subset<T, loginsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LoginsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Logins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoginsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LoginsAggregateArgs>(args: Subset<T, LoginsAggregateArgs>): Prisma.PrismaPromise<GetLoginsAggregateType<T>>
+
+    /**
+     * Group by Logins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {loginsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends loginsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: loginsGroupByArgs['orderBy'] }
+        : { orderBy?: loginsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, loginsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLoginsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the logins model
+   */
+  readonly fields: loginsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for logins.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__loginsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    users<T extends usersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, usersDefaultArgs<ExtArgs>>): Prisma__usersClient<$Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    tokens<T extends logins$tokensArgs<ExtArgs> = {}>(args?: Subset<T, logins$tokensArgs<ExtArgs>>): Prisma__tokensClient<$Result.GetResult<Prisma.$tokensPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the logins model
+   */
+  interface loginsFieldRefs {
+    readonly id_login: FieldRef<"logins", 'Int'>
+    readonly id_user: FieldRef<"logins", 'Int'>
+    readonly id_token: FieldRef<"logins", 'Int'>
+    readonly attempts: FieldRef<"logins", 'Int'>
+    readonly state: FieldRef<"logins", 'String'>
+    readonly created_at: FieldRef<"logins", 'DateTime'>
+    readonly updated_at: FieldRef<"logins", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * logins findUnique
+   */
+  export type loginsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * Filter, which logins to fetch.
+     */
+    where: loginsWhereUniqueInput
+  }
+
+  /**
+   * logins findUniqueOrThrow
+   */
+  export type loginsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * Filter, which logins to fetch.
+     */
+    where: loginsWhereUniqueInput
+  }
+
+  /**
+   * logins findFirst
+   */
+  export type loginsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * Filter, which logins to fetch.
+     */
+    where?: loginsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logins to fetch.
+     */
+    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for logins.
+     */
+    cursor?: loginsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of logins.
+     */
+    distinct?: LoginsScalarFieldEnum | LoginsScalarFieldEnum[]
+  }
+
+  /**
+   * logins findFirstOrThrow
+   */
+  export type loginsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * Filter, which logins to fetch.
+     */
+    where?: loginsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logins to fetch.
+     */
+    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for logins.
+     */
+    cursor?: loginsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of logins.
+     */
+    distinct?: LoginsScalarFieldEnum | LoginsScalarFieldEnum[]
+  }
+
+  /**
+   * logins findMany
+   */
+  export type loginsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * Filter, which logins to fetch.
+     */
+    where?: loginsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logins to fetch.
+     */
+    orderBy?: loginsOrderByWithRelationInput | loginsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing logins.
+     */
+    cursor?: loginsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logins.
+     */
+    skip?: number
+    distinct?: LoginsScalarFieldEnum | LoginsScalarFieldEnum[]
+  }
+
+  /**
+   * logins create
+   */
+  export type loginsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a logins.
+     */
+    data: XOR<loginsCreateInput, loginsUncheckedCreateInput>
+  }
+
+  /**
+   * logins createMany
+   */
+  export type loginsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many logins.
+     */
+    data: loginsCreateManyInput | loginsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * logins update
+   */
+  export type loginsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a logins.
+     */
+    data: XOR<loginsUpdateInput, loginsUncheckedUpdateInput>
+    /**
+     * Choose, which logins to update.
+     */
+    where: loginsWhereUniqueInput
+  }
+
+  /**
+   * logins updateMany
+   */
+  export type loginsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update logins.
+     */
+    data: XOR<loginsUpdateManyMutationInput, loginsUncheckedUpdateManyInput>
+    /**
+     * Filter which logins to update
+     */
+    where?: loginsWhereInput
+    /**
+     * Limit how many logins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * logins upsert
+   */
+  export type loginsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the logins to update in case it exists.
+     */
+    where: loginsWhereUniqueInput
+    /**
+     * In case the logins found by the `where` argument doesn't exist, create a new logins with this data.
+     */
+    create: XOR<loginsCreateInput, loginsUncheckedCreateInput>
+    /**
+     * In case the logins was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<loginsUpdateInput, loginsUncheckedUpdateInput>
+  }
+
+  /**
+   * logins delete
+   */
+  export type loginsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+    /**
+     * Filter which logins to delete.
+     */
+    where: loginsWhereUniqueInput
+  }
+
+  /**
+   * logins deleteMany
+   */
+  export type loginsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which logins to delete
+     */
+    where?: loginsWhereInput
+    /**
+     * Limit how many logins to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * logins.tokens
+   */
+  export type logins$tokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the tokens
+     */
+    select?: tokensSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the tokens
+     */
+    omit?: tokensOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: tokensInclude<ExtArgs> | null
+    where?: tokensWhereInput
+  }
+
+  /**
+   * logins without action
+   */
+  export type loginsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logins
+     */
+    select?: loginsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the logins
+     */
+    omit?: loginsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: loginsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -8901,6 +10102,19 @@ export namespace Prisma {
   export type LogsScalarFieldEnum = (typeof LogsScalarFieldEnum)[keyof typeof LogsScalarFieldEnum]
 
 
+  export const LoginsScalarFieldEnum: {
+    id_login: 'id_login',
+    id_user: 'id_user',
+    id_token: 'id_token',
+    attempts: 'attempts',
+    state: 'state',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type LoginsScalarFieldEnum = (typeof LoginsScalarFieldEnum)[keyof typeof LoginsScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -8980,6 +10194,13 @@ export namespace Prisma {
   };
 
   export type logsOrderByRelevanceFieldEnum = (typeof logsOrderByRelevanceFieldEnum)[keyof typeof logsOrderByRelevanceFieldEnum]
+
+
+  export const loginsOrderByRelevanceFieldEnum: {
+    state: 'state'
+  };
+
+  export type loginsOrderByRelevanceFieldEnum = (typeof loginsOrderByRelevanceFieldEnum)[keyof typeof loginsOrderByRelevanceFieldEnum]
 
 
   /**
@@ -9321,6 +10542,7 @@ export namespace Prisma {
     active?: IntFilter<"tokens"> | number
     created_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    logins?: LoginsListRelationFilter
   }
 
   export type tokensOrderByWithRelationInput = {
@@ -9335,6 +10557,7 @@ export namespace Prisma {
     active?: SortOrder
     created_at?: SortOrderInput | SortOrder
     users?: usersOrderByWithRelationInput
+    logins?: loginsOrderByRelationAggregateInput
     _relevance?: tokensOrderByRelevanceInput
   }
 
@@ -9353,6 +10576,7 @@ export namespace Prisma {
     active?: IntFilter<"tokens"> | number
     created_at?: DateTimeNullableFilter<"tokens"> | Date | string | null
     users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    logins?: LoginsListRelationFilter
   }, "id_token">
 
   export type tokensOrderByWithAggregationInput = {
@@ -9405,6 +10629,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"users"> | Date | string | null
     tokens?: TokensListRelationFilter
     logs?: LogsListRelationFilter
+    logins?: LoginsListRelationFilter
     entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
     profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
     roles?: XOR<RolesScalarRelationFilter, rolesWhereInput>
@@ -9424,6 +10649,7 @@ export namespace Prisma {
     updated_at?: SortOrderInput | SortOrder
     tokens?: tokensOrderByRelationAggregateInput
     logs?: logsOrderByRelationAggregateInput
+    logins?: loginsOrderByRelationAggregateInput
     entities?: entitiesOrderByWithRelationInput
     profiles?: profilesOrderByWithRelationInput
     roles?: rolesOrderByWithRelationInput
@@ -9447,6 +10673,7 @@ export namespace Prisma {
     updated_at?: DateTimeNullableFilter<"users"> | Date | string | null
     tokens?: TokensListRelationFilter
     logs?: LogsListRelationFilter
+    logins?: LoginsListRelationFilter
     entities?: XOR<EntitiesScalarRelationFilter, entitiesWhereInput>
     profiles?: XOR<ProfilesNullableScalarRelationFilter, profilesWhereInput> | null
     roles?: XOR<RolesScalarRelationFilter, rolesWhereInput>
@@ -9543,6 +10770,77 @@ export namespace Prisma {
     action?: StringWithAggregatesFilter<"logs"> | string
     description?: StringNullableWithAggregatesFilter<"logs"> | string | null
     created_at?: DateTimeNullableWithAggregatesFilter<"logs"> | Date | string | null
+  }
+
+  export type loginsWhereInput = {
+    AND?: loginsWhereInput | loginsWhereInput[]
+    OR?: loginsWhereInput[]
+    NOT?: loginsWhereInput | loginsWhereInput[]
+    id_login?: IntFilter<"logins"> | number
+    id_user?: IntFilter<"logins"> | number
+    id_token?: IntNullableFilter<"logins"> | number | null
+    attempts?: IntFilter<"logins"> | number
+    state?: StringFilter<"logins"> | string
+    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"logins"> | Date | string | null
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    tokens?: XOR<TokensNullableScalarRelationFilter, tokensWhereInput> | null
+  }
+
+  export type loginsOrderByWithRelationInput = {
+    id_login?: SortOrder
+    id_user?: SortOrder
+    id_token?: SortOrderInput | SortOrder
+    attempts?: SortOrder
+    state?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    users?: usersOrderByWithRelationInput
+    tokens?: tokensOrderByWithRelationInput
+    _relevance?: loginsOrderByRelevanceInput
+  }
+
+  export type loginsWhereUniqueInput = Prisma.AtLeast<{
+    id_login?: number
+    id_user?: number
+    AND?: loginsWhereInput | loginsWhereInput[]
+    OR?: loginsWhereInput[]
+    NOT?: loginsWhereInput | loginsWhereInput[]
+    id_token?: IntNullableFilter<"logins"> | number | null
+    attempts?: IntFilter<"logins"> | number
+    state?: StringFilter<"logins"> | string
+    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"logins"> | Date | string | null
+    users?: XOR<UsersScalarRelationFilter, usersWhereInput>
+    tokens?: XOR<TokensNullableScalarRelationFilter, tokensWhereInput> | null
+  }, "id_login" | "id_user">
+
+  export type loginsOrderByWithAggregationInput = {
+    id_login?: SortOrder
+    id_user?: SortOrder
+    id_token?: SortOrderInput | SortOrder
+    attempts?: SortOrder
+    state?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    _count?: loginsCountOrderByAggregateInput
+    _avg?: loginsAvgOrderByAggregateInput
+    _max?: loginsMaxOrderByAggregateInput
+    _min?: loginsMinOrderByAggregateInput
+    _sum?: loginsSumOrderByAggregateInput
+  }
+
+  export type loginsScalarWhereWithAggregatesInput = {
+    AND?: loginsScalarWhereWithAggregatesInput | loginsScalarWhereWithAggregatesInput[]
+    OR?: loginsScalarWhereWithAggregatesInput[]
+    NOT?: loginsScalarWhereWithAggregatesInput | loginsScalarWhereWithAggregatesInput[]
+    id_login?: IntWithAggregatesFilter<"logins"> | number
+    id_user?: IntWithAggregatesFilter<"logins"> | number
+    id_token?: IntNullableWithAggregatesFilter<"logins"> | number | null
+    attempts?: IntWithAggregatesFilter<"logins"> | number
+    state?: StringWithAggregatesFilter<"logins"> | string
+    created_at?: DateTimeNullableWithAggregatesFilter<"logins"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"logins"> | Date | string | null
   }
 
   export type entitiesCreateInput = {
@@ -9856,6 +11154,7 @@ export namespace Prisma {
     active?: number
     created_at?: Date | string | null
     users: usersCreateNestedOneWithoutTokensInput
+    logins?: loginsCreateNestedManyWithoutTokensInput
   }
 
   export type tokensUncheckedCreateInput = {
@@ -9869,6 +11168,7 @@ export namespace Prisma {
     status?: string | null
     active?: number
     created_at?: Date | string | null
+    logins?: loginsUncheckedCreateNestedManyWithoutTokensInput
   }
 
   export type tokensUpdateInput = {
@@ -9881,6 +11181,7 @@ export namespace Prisma {
     active?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     users?: usersUpdateOneRequiredWithoutTokensNestedInput
+    logins?: loginsUpdateManyWithoutTokensNestedInput
   }
 
   export type tokensUncheckedUpdateInput = {
@@ -9894,6 +11195,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     active?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logins?: loginsUncheckedUpdateManyWithoutTokensNestedInput
   }
 
   export type tokensCreateManyInput = {
@@ -9941,6 +11243,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensCreateNestedManyWithoutUsersInput
     logs?: logsCreateNestedManyWithoutUsersInput
+    logins?: loginsCreateNestedManyWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
@@ -9960,6 +11263,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
     logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersUpdateInput = {
@@ -9970,6 +11274,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUpdateManyWithoutUsersNestedInput
     logs?: logsUpdateManyWithoutUsersNestedInput
+    logins?: loginsUpdateManyWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
@@ -9989,6 +11294,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
     logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersCreateManyInput = {
@@ -10075,6 +11381,71 @@ export namespace Prisma {
     action?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type loginsCreateInput = {
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    users: usersCreateNestedOneWithoutLoginsInput
+    tokens?: tokensCreateNestedOneWithoutLoginsInput
+  }
+
+  export type loginsUncheckedCreateInput = {
+    id_login?: number
+    id_user: number
+    id_token?: number | null
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type loginsUpdateInput = {
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    users?: usersUpdateOneRequiredWithoutLoginsNestedInput
+    tokens?: tokensUpdateOneWithoutLoginsNestedInput
+  }
+
+  export type loginsUncheckedUpdateInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_user?: IntFieldUpdateOperationsInput | number
+    id_token?: NullableIntFieldUpdateOperationsInput | number | null
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type loginsCreateManyInput = {
+    id_login?: number
+    id_user: number
+    id_token?: number | null
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type loginsUpdateManyMutationInput = {
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type loginsUncheckedUpdateManyInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_user?: IntFieldUpdateOperationsInput | number
+    id_token?: NullableIntFieldUpdateOperationsInput | number | null
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -10418,6 +11789,16 @@ export namespace Prisma {
     isNot?: usersWhereInput
   }
 
+  export type LoginsListRelationFilter = {
+    every?: loginsWhereInput
+    some?: loginsWhereInput
+    none?: loginsWhereInput
+  }
+
+  export type loginsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type tokensOrderByRelevanceInput = {
     fields: tokensOrderByRelevanceFieldEnum | tokensOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -10643,6 +12024,61 @@ export namespace Prisma {
   export type logsSumOrderByAggregateInput = {
     id_log?: SortOrder
     user_id?: SortOrder
+  }
+
+  export type TokensNullableScalarRelationFilter = {
+    is?: tokensWhereInput | null
+    isNot?: tokensWhereInput | null
+  }
+
+  export type loginsOrderByRelevanceInput = {
+    fields: loginsOrderByRelevanceFieldEnum | loginsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type loginsCountOrderByAggregateInput = {
+    id_login?: SortOrder
+    id_user?: SortOrder
+    id_token?: SortOrder
+    attempts?: SortOrder
+    state?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type loginsAvgOrderByAggregateInput = {
+    id_login?: SortOrder
+    id_user?: SortOrder
+    id_token?: SortOrder
+    attempts?: SortOrder
+  }
+
+  export type loginsMaxOrderByAggregateInput = {
+    id_login?: SortOrder
+    id_user?: SortOrder
+    id_token?: SortOrder
+    attempts?: SortOrder
+    state?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type loginsMinOrderByAggregateInput = {
+    id_login?: SortOrder
+    id_user?: SortOrder
+    id_token?: SortOrder
+    attempts?: SortOrder
+    state?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type loginsSumOrderByAggregateInput = {
+    id_login?: SortOrder
+    id_user?: SortOrder
+    id_token?: SortOrder
+    attempts?: SortOrder
   }
 
   export type spotsCreateNestedManyWithoutEntitiesInput = {
@@ -10895,12 +12331,54 @@ export namespace Prisma {
     connect?: usersWhereUniqueInput
   }
 
+  export type loginsCreateNestedManyWithoutTokensInput = {
+    create?: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput> | loginsCreateWithoutTokensInput[] | loginsUncheckedCreateWithoutTokensInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutTokensInput | loginsCreateOrConnectWithoutTokensInput[]
+    createMany?: loginsCreateManyTokensInputEnvelope
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+  }
+
+  export type loginsUncheckedCreateNestedManyWithoutTokensInput = {
+    create?: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput> | loginsCreateWithoutTokensInput[] | loginsUncheckedCreateWithoutTokensInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutTokensInput | loginsCreateOrConnectWithoutTokensInput[]
+    createMany?: loginsCreateManyTokensInputEnvelope
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+  }
+
   export type usersUpdateOneRequiredWithoutTokensNestedInput = {
     create?: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
     connectOrCreate?: usersCreateOrConnectWithoutTokensInput
     upsert?: usersUpsertWithoutTokensInput
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutTokensInput, usersUpdateWithoutTokensInput>, usersUncheckedUpdateWithoutTokensInput>
+  }
+
+  export type loginsUpdateManyWithoutTokensNestedInput = {
+    create?: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput> | loginsCreateWithoutTokensInput[] | loginsUncheckedCreateWithoutTokensInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutTokensInput | loginsCreateOrConnectWithoutTokensInput[]
+    upsert?: loginsUpsertWithWhereUniqueWithoutTokensInput | loginsUpsertWithWhereUniqueWithoutTokensInput[]
+    createMany?: loginsCreateManyTokensInputEnvelope
+    set?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    disconnect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    delete?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    update?: loginsUpdateWithWhereUniqueWithoutTokensInput | loginsUpdateWithWhereUniqueWithoutTokensInput[]
+    updateMany?: loginsUpdateManyWithWhereWithoutTokensInput | loginsUpdateManyWithWhereWithoutTokensInput[]
+    deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
+  }
+
+  export type loginsUncheckedUpdateManyWithoutTokensNestedInput = {
+    create?: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput> | loginsCreateWithoutTokensInput[] | loginsUncheckedCreateWithoutTokensInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutTokensInput | loginsCreateOrConnectWithoutTokensInput[]
+    upsert?: loginsUpsertWithWhereUniqueWithoutTokensInput | loginsUpsertWithWhereUniqueWithoutTokensInput[]
+    createMany?: loginsCreateManyTokensInputEnvelope
+    set?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    disconnect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    delete?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    update?: loginsUpdateWithWhereUniqueWithoutTokensInput | loginsUpdateWithWhereUniqueWithoutTokensInput[]
+    updateMany?: loginsUpdateManyWithWhereWithoutTokensInput | loginsUpdateManyWithWhereWithoutTokensInput[]
+    deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
   }
 
   export type tokensCreateNestedManyWithoutUsersInput = {
@@ -10915,6 +12393,13 @@ export namespace Prisma {
     connectOrCreate?: logsCreateOrConnectWithoutUsersInput | logsCreateOrConnectWithoutUsersInput[]
     createMany?: logsCreateManyUsersInputEnvelope
     connect?: logsWhereUniqueInput | logsWhereUniqueInput[]
+  }
+
+  export type loginsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
+    createMany?: loginsCreateManyUsersInputEnvelope
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
   }
 
   export type entitiesCreateNestedOneWithoutUsersInput = {
@@ -10955,6 +12440,13 @@ export namespace Prisma {
     connect?: logsWhereUniqueInput | logsWhereUniqueInput[]
   }
 
+  export type loginsUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
+    createMany?: loginsCreateManyUsersInputEnvelope
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+  }
+
   export type tokensUpdateManyWithoutUsersNestedInput = {
     create?: XOR<tokensCreateWithoutUsersInput, tokensUncheckedCreateWithoutUsersInput> | tokensCreateWithoutUsersInput[] | tokensUncheckedCreateWithoutUsersInput[]
     connectOrCreate?: tokensCreateOrConnectWithoutUsersInput | tokensCreateOrConnectWithoutUsersInput[]
@@ -10981,6 +12473,20 @@ export namespace Prisma {
     update?: logsUpdateWithWhereUniqueWithoutUsersInput | logsUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: logsUpdateManyWithWhereWithoutUsersInput | logsUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: logsScalarWhereInput | logsScalarWhereInput[]
+  }
+
+  export type loginsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
+    upsert?: loginsUpsertWithWhereUniqueWithoutUsersInput | loginsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: loginsCreateManyUsersInputEnvelope
+    set?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    disconnect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    delete?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    update?: loginsUpdateWithWhereUniqueWithoutUsersInput | loginsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: loginsUpdateManyWithWhereWithoutUsersInput | loginsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
   }
 
   export type entitiesUpdateOneRequiredWithoutUsersNestedInput = {
@@ -11055,6 +12561,20 @@ export namespace Prisma {
     deleteMany?: logsScalarWhereInput | logsScalarWhereInput[]
   }
 
+  export type loginsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput> | loginsCreateWithoutUsersInput[] | loginsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: loginsCreateOrConnectWithoutUsersInput | loginsCreateOrConnectWithoutUsersInput[]
+    upsert?: loginsUpsertWithWhereUniqueWithoutUsersInput | loginsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: loginsCreateManyUsersInputEnvelope
+    set?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    disconnect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    delete?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    connect?: loginsWhereUniqueInput | loginsWhereUniqueInput[]
+    update?: loginsUpdateWithWhereUniqueWithoutUsersInput | loginsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: loginsUpdateManyWithWhereWithoutUsersInput | loginsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: loginsScalarWhereInput | loginsScalarWhereInput[]
+  }
+
   export type usersCreateNestedOneWithoutLogsInput = {
     create?: XOR<usersCreateWithoutLogsInput, usersUncheckedCreateWithoutLogsInput>
     connectOrCreate?: usersCreateOrConnectWithoutLogsInput
@@ -11069,6 +12589,36 @@ export namespace Prisma {
     delete?: usersWhereInput | boolean
     connect?: usersWhereUniqueInput
     update?: XOR<XOR<usersUpdateToOneWithWhereWithoutLogsInput, usersUpdateWithoutLogsInput>, usersUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type usersCreateNestedOneWithoutLoginsInput = {
+    create?: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
+    connectOrCreate?: usersCreateOrConnectWithoutLoginsInput
+    connect?: usersWhereUniqueInput
+  }
+
+  export type tokensCreateNestedOneWithoutLoginsInput = {
+    create?: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
+    connectOrCreate?: tokensCreateOrConnectWithoutLoginsInput
+    connect?: tokensWhereUniqueInput
+  }
+
+  export type usersUpdateOneRequiredWithoutLoginsNestedInput = {
+    create?: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
+    connectOrCreate?: usersCreateOrConnectWithoutLoginsInput
+    upsert?: usersUpsertWithoutLoginsInput
+    connect?: usersWhereUniqueInput
+    update?: XOR<XOR<usersUpdateToOneWithWhereWithoutLoginsInput, usersUpdateWithoutLoginsInput>, usersUncheckedUpdateWithoutLoginsInput>
+  }
+
+  export type tokensUpdateOneWithoutLoginsNestedInput = {
+    create?: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
+    connectOrCreate?: tokensCreateOrConnectWithoutLoginsInput
+    upsert?: tokensUpsertWithoutLoginsInput
+    disconnect?: tokensWhereInput | boolean
+    delete?: tokensWhereInput | boolean
+    connect?: tokensWhereUniqueInput
+    update?: XOR<XOR<tokensUpdateToOneWithWhereWithoutLoginsInput, tokensUpdateWithoutLoginsInput>, tokensUncheckedUpdateWithoutLoginsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -11275,6 +12825,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensCreateNestedManyWithoutUsersInput
     logs?: logsCreateNestedManyWithoutUsersInput
+    logins?: loginsCreateNestedManyWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
@@ -11292,6 +12843,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
     logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutEntitiesInput = {
@@ -11373,6 +12925,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensCreateNestedManyWithoutUsersInput
     logs?: logsCreateNestedManyWithoutUsersInput
+    logins?: loginsCreateNestedManyWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
@@ -11390,6 +12943,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
     logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutProfilesInput = {
@@ -11426,6 +12980,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensCreateNestedManyWithoutUsersInput
     logs?: logsCreateNestedManyWithoutUsersInput
+    logins?: loginsCreateNestedManyWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
     spots?: spotsCreateNestedOneWithoutUsersInput
@@ -11443,6 +12998,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
     logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutRolesInput = {
@@ -11511,6 +13067,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensCreateNestedManyWithoutUsersInput
     logs?: logsCreateNestedManyWithoutUsersInput
+    logins?: loginsCreateNestedManyWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
@@ -11528,6 +13085,7 @@ export namespace Prisma {
     updated_at?: Date | string | null
     tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
     logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutSpotsInput = {
@@ -11601,6 +13159,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     logs?: logsCreateNestedManyWithoutUsersInput
+    logins?: loginsCreateNestedManyWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
@@ -11619,11 +13178,39 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+    logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutTokensInput = {
     where: usersWhereUniqueInput
     create: XOR<usersCreateWithoutTokensInput, usersUncheckedCreateWithoutTokensInput>
+  }
+
+  export type loginsCreateWithoutTokensInput = {
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    users: usersCreateNestedOneWithoutLoginsInput
+  }
+
+  export type loginsUncheckedCreateWithoutTokensInput = {
+    id_login?: number
+    id_user: number
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type loginsCreateOrConnectWithoutTokensInput = {
+    where: loginsWhereUniqueInput
+    create: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput>
+  }
+
+  export type loginsCreateManyTokensInputEnvelope = {
+    data: loginsCreateManyTokensInput | loginsCreateManyTokensInput[]
+    skipDuplicates?: boolean
   }
 
   export type usersUpsertWithoutTokensInput = {
@@ -11644,6 +13231,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     logs?: logsUpdateManyWithoutUsersNestedInput
+    logins?: loginsUpdateManyWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
@@ -11662,6 +13250,36 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type loginsUpsertWithWhereUniqueWithoutTokensInput = {
+    where: loginsWhereUniqueInput
+    update: XOR<loginsUpdateWithoutTokensInput, loginsUncheckedUpdateWithoutTokensInput>
+    create: XOR<loginsCreateWithoutTokensInput, loginsUncheckedCreateWithoutTokensInput>
+  }
+
+  export type loginsUpdateWithWhereUniqueWithoutTokensInput = {
+    where: loginsWhereUniqueInput
+    data: XOR<loginsUpdateWithoutTokensInput, loginsUncheckedUpdateWithoutTokensInput>
+  }
+
+  export type loginsUpdateManyWithWhereWithoutTokensInput = {
+    where: loginsScalarWhereInput
+    data: XOR<loginsUpdateManyMutationInput, loginsUncheckedUpdateManyWithoutTokensInput>
+  }
+
+  export type loginsScalarWhereInput = {
+    AND?: loginsScalarWhereInput | loginsScalarWhereInput[]
+    OR?: loginsScalarWhereInput[]
+    NOT?: loginsScalarWhereInput | loginsScalarWhereInput[]
+    id_login?: IntFilter<"logins"> | number
+    id_user?: IntFilter<"logins"> | number
+    id_token?: IntNullableFilter<"logins"> | number | null
+    attempts?: IntFilter<"logins"> | number
+    state?: StringFilter<"logins"> | string
+    created_at?: DateTimeNullableFilter<"logins"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"logins"> | Date | string | null
   }
 
   export type tokensCreateWithoutUsersInput = {
@@ -11673,6 +13291,7 @@ export namespace Prisma {
     status?: string | null
     active?: number
     created_at?: Date | string | null
+    logins?: loginsCreateNestedManyWithoutTokensInput
   }
 
   export type tokensUncheckedCreateWithoutUsersInput = {
@@ -11685,6 +13304,7 @@ export namespace Prisma {
     status?: string | null
     active?: number
     created_at?: Date | string | null
+    logins?: loginsUncheckedCreateNestedManyWithoutTokensInput
   }
 
   export type tokensCreateOrConnectWithoutUsersInput = {
@@ -11717,6 +13337,33 @@ export namespace Prisma {
 
   export type logsCreateManyUsersInputEnvelope = {
     data: logsCreateManyUsersInput | logsCreateManyUsersInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type loginsCreateWithoutUsersInput = {
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    tokens?: tokensCreateNestedOneWithoutLoginsInput
+  }
+
+  export type loginsUncheckedCreateWithoutUsersInput = {
+    id_login?: number
+    id_token?: number | null
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type loginsCreateOrConnectWithoutUsersInput = {
+    where: loginsWhereUniqueInput
+    create: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type loginsCreateManyUsersInputEnvelope = {
+    data: loginsCreateManyUsersInput | loginsCreateManyUsersInput[]
     skipDuplicates?: boolean
   }
 
@@ -11881,6 +13528,22 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"logs"> | Date | string | null
   }
 
+  export type loginsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: loginsWhereUniqueInput
+    update: XOR<loginsUpdateWithoutUsersInput, loginsUncheckedUpdateWithoutUsersInput>
+    create: XOR<loginsCreateWithoutUsersInput, loginsUncheckedCreateWithoutUsersInput>
+  }
+
+  export type loginsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: loginsWhereUniqueInput
+    data: XOR<loginsUpdateWithoutUsersInput, loginsUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type loginsUpdateManyWithWhereWithoutUsersInput = {
+    where: loginsScalarWhereInput
+    data: XOR<loginsUpdateManyMutationInput, loginsUncheckedUpdateManyWithoutUsersInput>
+  }
+
   export type entitiesUpsertWithoutUsersInput = {
     update: XOR<entitiesUpdateWithoutUsersInput, entitiesUncheckedUpdateWithoutUsersInput>
     create: XOR<entitiesCreateWithoutUsersInput, entitiesUncheckedCreateWithoutUsersInput>
@@ -12014,6 +13677,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     tokens?: tokensCreateNestedManyWithoutUsersInput
+    logins?: loginsCreateNestedManyWithoutUsersInput
     entities: entitiesCreateNestedOneWithoutUsersInput
     profiles?: profilesCreateNestedOneWithoutUsersInput
     roles: rolesCreateNestedOneWithoutUsersInput
@@ -12032,6 +13696,7 @@ export namespace Prisma {
     created_at?: Date | string | null
     updated_at?: Date | string | null
     tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
+    logins?: loginsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type usersCreateOrConnectWithoutLogsInput = {
@@ -12057,6 +13722,7 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUpdateManyWithoutUsersNestedInput
+    logins?: loginsUpdateManyWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
@@ -12075,6 +13741,147 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type usersCreateWithoutLoginsInput = {
+    email: string
+    password: string
+    last_login_at?: Date | string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    tokens?: tokensCreateNestedManyWithoutUsersInput
+    logs?: logsCreateNestedManyWithoutUsersInput
+    entities: entitiesCreateNestedOneWithoutUsersInput
+    profiles?: profilesCreateNestedOneWithoutUsersInput
+    roles: rolesCreateNestedOneWithoutUsersInput
+    spots?: spotsCreateNestedOneWithoutUsersInput
+  }
+
+  export type usersUncheckedCreateWithoutLoginsInput = {
+    id_user?: number
+    email: string
+    password: string
+    role_id: number
+    entity_id: number
+    spot_id?: number | null
+    profile_id?: number | null
+    last_login_at?: Date | string | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    tokens?: tokensUncheckedCreateNestedManyWithoutUsersInput
+    logs?: logsUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type usersCreateOrConnectWithoutLoginsInput = {
+    where: usersWhereUniqueInput
+    create: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
+  }
+
+  export type tokensCreateWithoutLoginsInput = {
+    r_token: string
+    access_token?: string | null
+    exec_token?: string | null
+    revoked?: number
+    expires_at?: Date | string | null
+    status?: string | null
+    active?: number
+    created_at?: Date | string | null
+    users: usersCreateNestedOneWithoutTokensInput
+  }
+
+  export type tokensUncheckedCreateWithoutLoginsInput = {
+    id_token?: number
+    user_id: number
+    r_token: string
+    access_token?: string | null
+    exec_token?: string | null
+    revoked?: number
+    expires_at?: Date | string | null
+    status?: string | null
+    active?: number
+    created_at?: Date | string | null
+  }
+
+  export type tokensCreateOrConnectWithoutLoginsInput = {
+    where: tokensWhereUniqueInput
+    create: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
+  }
+
+  export type usersUpsertWithoutLoginsInput = {
+    update: XOR<usersUpdateWithoutLoginsInput, usersUncheckedUpdateWithoutLoginsInput>
+    create: XOR<usersCreateWithoutLoginsInput, usersUncheckedCreateWithoutLoginsInput>
+    where?: usersWhereInput
+  }
+
+  export type usersUpdateToOneWithWhereWithoutLoginsInput = {
+    where?: usersWhereInput
+    data: XOR<usersUpdateWithoutLoginsInput, usersUncheckedUpdateWithoutLoginsInput>
+  }
+
+  export type usersUpdateWithoutLoginsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tokens?: tokensUpdateManyWithoutUsersNestedInput
+    logs?: logsUpdateManyWithoutUsersNestedInput
+    entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
+    profiles?: profilesUpdateOneWithoutUsersNestedInput
+    roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
+    spots?: spotsUpdateOneWithoutUsersNestedInput
+  }
+
+  export type usersUncheckedUpdateWithoutLoginsInput = {
+    id_user?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role_id?: IntFieldUpdateOperationsInput | number
+    entity_id?: IntFieldUpdateOperationsInput | number
+    spot_id?: NullableIntFieldUpdateOperationsInput | number | null
+    profile_id?: NullableIntFieldUpdateOperationsInput | number | null
+    last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
+    logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type tokensUpsertWithoutLoginsInput = {
+    update: XOR<tokensUpdateWithoutLoginsInput, tokensUncheckedUpdateWithoutLoginsInput>
+    create: XOR<tokensCreateWithoutLoginsInput, tokensUncheckedCreateWithoutLoginsInput>
+    where?: tokensWhereInput
+  }
+
+  export type tokensUpdateToOneWithWhereWithoutLoginsInput = {
+    where?: tokensWhereInput
+    data: XOR<tokensUpdateWithoutLoginsInput, tokensUncheckedUpdateWithoutLoginsInput>
+  }
+
+  export type tokensUpdateWithoutLoginsInput = {
+    r_token?: StringFieldUpdateOperationsInput | string
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
+    revoked?: IntFieldUpdateOperationsInput | number
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    users?: usersUpdateOneRequiredWithoutTokensNestedInput
+  }
+
+  export type tokensUncheckedUpdateWithoutLoginsInput = {
+    id_token?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    r_token?: StringFieldUpdateOperationsInput | string
+    access_token?: NullableStringFieldUpdateOperationsInput | string | null
+    exec_token?: NullableStringFieldUpdateOperationsInput | string | null
+    revoked?: IntFieldUpdateOperationsInput | number
+    expires_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    active?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type spotsCreateManyEntitiesInput = {
@@ -12134,6 +13941,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUpdateManyWithoutUsersNestedInput
     logs?: logsUpdateManyWithoutUsersNestedInput
+    logins?: loginsUpdateManyWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
@@ -12151,6 +13959,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
     logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutEntitiesInput = {
@@ -12185,6 +13994,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUpdateManyWithoutUsersNestedInput
     logs?: logsUpdateManyWithoutUsersNestedInput
+    logins?: loginsUpdateManyWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
@@ -12202,6 +14012,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
     logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutProfilesInput = {
@@ -12236,6 +14047,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUpdateManyWithoutUsersNestedInput
     logs?: logsUpdateManyWithoutUsersNestedInput
+    logins?: loginsUpdateManyWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
     spots?: spotsUpdateOneWithoutUsersNestedInput
@@ -12253,6 +14065,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
     logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutRolesInput = {
@@ -12287,6 +14100,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUpdateManyWithoutUsersNestedInput
     logs?: logsUpdateManyWithoutUsersNestedInput
+    logins?: loginsUpdateManyWithoutUsersNestedInput
     entities?: entitiesUpdateOneRequiredWithoutUsersNestedInput
     profiles?: profilesUpdateOneWithoutUsersNestedInput
     roles?: rolesUpdateOneRequiredWithoutUsersNestedInput
@@ -12304,6 +14118,7 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tokens?: tokensUncheckedUpdateManyWithoutUsersNestedInput
     logs?: logsUncheckedUpdateManyWithoutUsersNestedInput
+    logins?: loginsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type usersUncheckedUpdateManyWithoutSpotsInput = {
@@ -12314,6 +14129,41 @@ export namespace Prisma {
     entity_id?: IntFieldUpdateOperationsInput | number
     profile_id?: NullableIntFieldUpdateOperationsInput | number | null
     last_login_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type loginsCreateManyTokensInput = {
+    id_login?: number
+    id_user: number
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type loginsUpdateWithoutTokensInput = {
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    users?: usersUpdateOneRequiredWithoutLoginsNestedInput
+  }
+
+  export type loginsUncheckedUpdateWithoutTokensInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_user?: IntFieldUpdateOperationsInput | number
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type loginsUncheckedUpdateManyWithoutTokensInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_user?: IntFieldUpdateOperationsInput | number
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -12337,6 +14187,15 @@ export namespace Prisma {
     created_at?: Date | string | null
   }
 
+  export type loginsCreateManyUsersInput = {
+    id_login?: number
+    id_token?: number | null
+    attempts?: number
+    state: string
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
   export type tokensUpdateWithoutUsersInput = {
     r_token?: StringFieldUpdateOperationsInput | string
     access_token?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12346,6 +14205,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     active?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logins?: loginsUpdateManyWithoutTokensNestedInput
   }
 
   export type tokensUncheckedUpdateWithoutUsersInput = {
@@ -12358,6 +14218,7 @@ export namespace Prisma {
     status?: NullableStringFieldUpdateOperationsInput | string | null
     active?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logins?: loginsUncheckedUpdateManyWithoutTokensNestedInput
   }
 
   export type tokensUncheckedUpdateManyWithoutUsersInput = {
@@ -12390,6 +14251,32 @@ export namespace Prisma {
     action?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type loginsUpdateWithoutUsersInput = {
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tokens?: tokensUpdateOneWithoutLoginsNestedInput
+  }
+
+  export type loginsUncheckedUpdateWithoutUsersInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_token?: NullableIntFieldUpdateOperationsInput | number | null
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type loginsUncheckedUpdateManyWithoutUsersInput = {
+    id_login?: IntFieldUpdateOperationsInput | number
+    id_token?: NullableIntFieldUpdateOperationsInput | number | null
+    attempts?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
 

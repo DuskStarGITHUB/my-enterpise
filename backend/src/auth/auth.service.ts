@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /**
@@ -48,8 +51,43 @@ export class AuthService {
     if (!email || !password) throw new BadRequestException('DATA UNKNOWN');
     const user = await this.prisma.users.findUnique({ where: { email } });
     if (!user) return null;
+    const loginRecord = await this.prisma.logins.findUnique({
+      where: { id_user: user.id_user },
+    });
+    if (loginRecord && loginRecord.state === 'block') {
+      const lastUpdate = loginRecord.updated_at
+        ? new Date(loginRecord.updated_at)
+        : new Date();
+      const diffHours = (Date.now() - lastUpdate.getTime()) / (1000 * 60 * 60);
+      if (diffHours < 24)
+        throw new UnauthorizedException(
+          'ACCOUNT TEMPORARILY BLOCKED, TRY AGAIN LATER',
+        );
+      await this.prisma.logins.update({
+        where: { id_login: loginRecord.id_login },
+        data: { attempts: 0, state: 'attempt', updated_at: new Date() },
+      });
+    }
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return null;
+    if (!match) {
+      if (loginRecord) {
+        const newAttempts = loginRecord.attempts + 1;
+        const newState = newAttempts >= 5 ? 'block' : 'attempt';
+        await this.prisma.logins.update({
+          where: { id_login: loginRecord.id_login },
+          data: {
+            attempts: newAttempts,
+            state: newState,
+            updated_at: new Date(),
+          },
+        });
+      } else {
+        await this.prisma.logins.create({
+          data: { id_user: user.id_user, attempts: 1, state: 'attempt' },
+        });
+      }
+      return null;
+    }
     const { password: _, ...result } = user;
     return result;
   }
@@ -175,8 +213,10 @@ export class AuthService {
     const existing = await this.prisma.tokens.findFirst({
       where: { user_id: user.id_user },
     });
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+    let tokenRecord;
     if (existing) {
-      await this.prisma.tokens.update({
+      tokenRecord = await this.prisma.tokens.update({
         where: { id_token: existing.id_token },
         data: {
           r_token,
@@ -185,11 +225,11 @@ export class AuthService {
           revoked: 0,
           status: 'logged',
           active: 1,
-          expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          expires_at: expiresAt,
         },
       });
     } else {
-      await this.prisma.tokens.create({
+      tokenRecord = await this.prisma.tokens.create({
         data: {
           user_id: user.id_user,
           r_token,
@@ -197,7 +237,7 @@ export class AuthService {
           revoked: 0,
           status: 'logged',
           active: 1,
-          expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          expires_at: expiresAt,
         },
       });
     }
@@ -205,6 +245,29 @@ export class AuthService {
       where: { id_user: user.id_user },
       data: { last_login_at: new Date() },
     });
+    const loginRecord = await this.prisma.logins.findUnique({
+      where: { id_user: user.id_user },
+    });
+    if (loginRecord) {
+      await this.prisma.logins.update({
+        where: { id_login: loginRecord.id_login },
+        data: {
+          id_token: tokenRecord.id_token,
+          attempts: 0,
+          state: 'access',
+          updated_at: new Date(),
+        },
+      });
+    } else {
+      await this.prisma.logins.create({
+        data: {
+          id_user: user.id_user,
+          id_token: tokenRecord.id_token,
+          attempts: 0,
+          state: 'access',
+        },
+      });
+    }
     // await this.logAction(user.id_user, 'login', `User logged`);
     return { access_token, r_token };
   }
