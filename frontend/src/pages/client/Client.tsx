@@ -10,47 +10,29 @@
 // DEPENDENCIES
 import type { JSX } from "react";
 import { useTranslation } from "react-i18next";
-import GridSelector from "@/components/containers/GridSelector";
-import Tag from "@/components/custom/Tag";
+import Sidebar from "@/components/layout/sidebar/sidebar";
+import useIsCollapsed from "@/hooks/use-is-collapsed";
+import Dashboard from "./modules/dashboard/Dashboard";
 
 // PAGE
 const Client = (): JSX.Element => {
   const { t } = useTranslation();
+  const [isCollapsed, setIsCollapsed] = useIsCollapsed();
   return (
-    <GridSelector
-      className="w-screen h-screen"
-      type={{ columns: ["20vw", "1fr"], rows: ["1fr"] }}
-    >
-      <div className="flex items-center justify-center bg-red-500 h-full">
-        <Tag
-          border="rounded"
-          color="green"
-          text={t("global.language")}
-          textType="bold"
-        />
-      </div>
-      <GridSelector
-        className="h-full w-full"
-        type={{ columns: ["1fr"], rows: ["10vh", "1fr"] }}
+    <div className="relative h-full overflow-hidden bg-background">
+      <Sidebar
+        isCollapsed={isCollapsed}
+        linksData={t}
+        setIsCollapsed={setIsCollapsed}
+      />
+      <div
+        className={`overflow-x-hidden pt-16 transition-[margin] md:overflow-y-hidden md:pt-0 ${
+          isCollapsed ? "md:ml-14" : "md:ml-64"
+        } h-full`}
       >
-        <div className="flex items-center justify-center bg-blue-500 h-full">
-          <Tag
-            border="rounded"
-            color="green"
-            text={t("global.language")}
-            textType="bold"
-          />
-        </div>
-        <div className="flex items-center justify-center bg-white h-full">
-          <Tag
-            border="rounded"
-            color="green"
-            text={t("global.language")}
-            textType="bold"
-          />
-        </div>
-      </GridSelector>
-    </GridSelector>
+        <Dashboard />
+      </div>
+    </div>
   );
 };
 export default Client;

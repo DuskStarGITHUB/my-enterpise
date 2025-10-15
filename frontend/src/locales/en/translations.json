@@ -42,7 +42,18 @@
   "navbar": {
     "home": "Home",
     "dom": "Documentation",
-    "src": "Resources"
+    "src": "Resources",
+    "products": "Products",
+    "chats": "Chats",
+    "order": "Order",
+    "calendar": "Calendar",
+    "tasks": "Tasks",
+    "supports": "Supports",
+    "authentication": "Authentication",
+    "signInEmailPassword": "SignIn",
+    "signUp": "SignUp",
+    "users": "Users",
+    "settings": "Setting"
   },
   "ButtonTheme": {
     "theme": "Theme"
