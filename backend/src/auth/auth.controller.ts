@@ -14,7 +14,6 @@ import {
   Post,
   Body,
   Headers,
-  UnauthorizedException,
   BadRequestException,
   ForbiddenException,
 } from '@nestjs/common';
@@ -38,7 +37,6 @@ export class AuthController {
           data.email,
           data.password,
         );
-        if (!user) throw new UnauthorizedException('INVALID CREDENTIALS');
         return this.authService.login(user);
       }
       // REGISTER USER ACCOUNT

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
@@ -35,14 +34,17 @@ import { useForm } from "react-hook-form";
 import { User, Lock, Gavel } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-
 // PAGE
 const Login = () => {
   const { t } = useTranslation();
   const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
-    const timeout = setTimeout(() => { setFadeIn(true); }, 50);
-    return () => { clearTimeout(timeout); };
+    const timeout = setTimeout(() => {
+      setFadeIn(true);
+    }, 50);
+    return () => {
+      clearTimeout(timeout);
+    };
   }, []);
   const loginSchema = z.object({
     email: z.string().email({ message: t("login.emailInvalid") }),
@@ -70,16 +72,18 @@ const Login = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      if (!res.ok) throw new Error("Credenciales Invalidas");
       const data = await res.json();
+      if (!res.ok)
+        throw new Error(data.message || "SOMETHING HAPPENED, TRY LATER");
       console.table(data);
       localStorage.setItem("access_token", data.access_token);
       localStorage.setItem("r_token", data.r_token);
       localStorage.setItem("hasVisitedBefore", "true");
       window.location.href = "/";
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(error);
-      alert(`Try Again || ${error}`);
+      const message = error instanceof Error ? error.message : String(error);
+      alert(message);
     }
   };
   const handleRegisterClick = () => {

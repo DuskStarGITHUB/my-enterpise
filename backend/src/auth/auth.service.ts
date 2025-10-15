@@ -40,15 +40,14 @@ export class AuthService {
       },
     });
   }
-  // VALIDATE USER INFORMATION
   async validateUser(
     email: string,
     password: string,
-  ): Promise<Omit<users, 'password'> | null> {
+  ): Promise<Omit<users, 'password'>> {
     if (!email || !password) throw new BadRequestException('DATA UNKNOWN');
     const user = await this.prisma.users.findUnique({ where: { email } });
-    if (!user) return null;
-    const loginRecord = await this.prisma.logins.findFirst({
+    if (!user) throw new UnauthorizedException('INVALID CREDENTIALS');
+    let loginRecord = await this.prisma.logins.findFirst({
       where: { id_user: user.id_user },
     });
     if (loginRecord && loginRecord.state === 'block') {
@@ -58,18 +57,21 @@ export class AuthService {
       const diffHours = (Date.now() - lastUpdate.getTime()) / (1000 * 60 * 60);
       if (diffHours < 24)
         throw new UnauthorizedException(
-          'ACCOUNT TEMPORARILY BLOCKED, TRY AGAIN LATER',
+          'ACCOUNT TEMPORARILY BLOCKED, TOO MANY ATTEMPTS, TRY AGAIN LATER',
         );
       await this.prisma.logins.update({
         where: { id_login: loginRecord.id_login },
         data: { attempts: 0, state: 'attempt', updated_at: new Date() },
       });
+      loginRecord = { ...loginRecord, attempts: 0, state: 'attempt' };
     }
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
+      let newAttempts = 1;
+      let newState = 'attempt';
       if (loginRecord) {
-        const newAttempts = (loginRecord.attempts || 0) + 1;
-        const newState = newAttempts >= 5 ? 'block' : 'attempt';
+        newAttempts = (loginRecord.attempts || 0) + 1;
+        newState = newAttempts >= 5 ? 'block' : 'attempt';
         await this.prisma.logins.update({
           where: { id_login: loginRecord.id_login },
           data: {
@@ -78,12 +80,16 @@ export class AuthService {
             updated_at: new Date(),
           },
         });
+        if (newState === 'block')
+          throw new UnauthorizedException(
+            'TOO MANY ATTEMPTS, ACCOUNT TEMPORARILY BLOCKED',
+          );
       } else {
         await this.prisma.logins.create({
           data: { id_user: user.id_user, attempts: 1, state: 'attempt' },
         });
       }
-      return null;
+      throw new UnauthorizedException('INVALID CREDENTIALS');
     }
     const { password: _, ...result } = user;
     return result;
