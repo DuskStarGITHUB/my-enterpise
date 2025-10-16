@@ -4,7 +4,7 @@
  * =====================================================
  *  NAME    : Highlights.tsx
  *  DATE      : 24/09/2025
- *  DATE_MODIFY       : 14/10/2025
+ *  DATE_MODIFY       : 16/10/2025
  *  DESCRIPTION: CONTENT HIGHLIGHTS HOME PAGE
  * =====================================================
  */
@@ -22,7 +22,7 @@ import { useTranslation } from "react-i18next";
 const Highlights = () => {
   const { t } = useTranslation();
   return (
-    <section className="bg-gray-300 w-full text-black dark:bg-muted dark:text-white min-h-[80vh] flex flex-col items-center px-6 justify-center">
+    <section className="bg-gray-300 w-full text-black dark:bg-muted dark:text-white min-h-[65vh] flex flex-col items-center px-6 justify-center border-blur">
       <AnimateOnScroll>
         <span className="h-full w-full flex flex-col items-center justify-center py-10">
           <h2 className="font-light text-4xl sm:text-5xl md:text-6xl lg:text-7xl lilita-one mb-12">
@@ -80,6 +80,7 @@ const Highlights = () => {
               </p>
             </div>
           </div>
+          <span className="border-blur w-full h-full opacity-40 dark:hidden"></span>
         </span>
       </AnimateOnScroll>
     </section>

@@ -110,6 +110,13 @@
   position: relative;
   z-index: 2;
 }
+
+.dark .border-blur::before {
+  content: none !important;
+  background: none !important;
+  filter: none !important;
+}
+
 .border-blur::before {
   content: "";
   position: absolute;
