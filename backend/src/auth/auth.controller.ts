@@ -13,7 +13,6 @@ import {
   Controller,
   Post,
   Body,
-  Headers,
   BadRequestException,
   ForbiddenException,
 } from '@nestjs/common';

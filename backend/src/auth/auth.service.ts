@@ -40,6 +40,7 @@ export class AuthService {
       },
     });
   }
+  // VALIDATE USER STATE
   async validateUser(
     email: string,
     password: string,
@@ -294,6 +295,7 @@ export class AuthService {
     });
     return { access_token: new_access, r_token: new_r };
   }
+  // DENY TOKEN
   async revokeToken(r_token: string) {
     if (!r_token) throw new BadRequestException('r_token required');
     const record = await this.prisma.tokens.findFirst({
@@ -321,12 +323,16 @@ export class AuthService {
     const r = await this.prisma.tokens.findFirst({
       where: { r_token: token, revoked: false },
     });
-    const payload = await this.jwtService.verifyAsync(token);
-    if (r) return { valid: true, type: 'r_token', payload };
-    const a = await this.prisma.tokens.findFirst({
-      where: { access_token: token, revoked: false },
-    });
-    if (a) return { valid: true, type: 'access_token', payload };
-    throw new UnauthorizedException('DATA UNKNOWN');
+    try {
+      const payload = await this.jwtService.verifyAsync(token);
+      if (r) return { valid: true, type: 'r_token', payload };
+      const a = await this.prisma.tokens.findFirst({
+        where: { access_token: token, revoked: false },
+      });
+      if (a) return { valid: true, type: 'access_token', payload };
+      throw new UnauthorizedException('DATA UNKNOWN');
+    } catch {
+      throw new BadRequestException('TOKEN VERIFY ERROR');
+    }
   }
 }
