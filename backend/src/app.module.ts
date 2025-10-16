@@ -11,9 +11,10 @@ import { ServerModule } from './server/server.module';
 import { TestModule } from './test/test.module';
 import { AuthModule } from './auth/auth.module';
 import { PrismaService } from './prisma/prisma.service';
+import { DirectivesModule } from './directives/directives.module';
 // MODULES
 @Module({
-  imports: [ServerModule, TestModule, AuthModule],
+  imports: [ServerModule, TestModule, AuthModule, DirectivesModule],
   providers: [PrismaService],
 })
 export class AppModule {}
