@@ -320,10 +320,10 @@ export class AuthService {
   // VALIDATE TOKEN JWT
   async validateToken(token: string) {
     if (!token) throw new BadRequestException('TOKEN REQUIRE');
-    const r = await this.prisma.tokens.findFirst({
-      where: { r_token: token, revoked: false },
-    });
     try {
+      const r = await this.prisma.tokens.findFirst({
+        where: { r_token: token, revoked: false },
+      });
       const payload = await this.jwtService.verifyAsync(token);
       if (r) return { valid: true, type: 'r_token', payload };
       const a = await this.prisma.tokens.findFirst({
