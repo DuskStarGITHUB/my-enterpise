@@ -1,18 +1,20 @@
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // DEPENDENCIES
 import type { JSX } from "react";
 import {
-  IconBrandProducthunt,
-  IconCalendarWeek,
   IconChecklist,
   IconHelpHexagon,
   IconHexagonNumber1,
+  IconHexagonNumber2,
   IconHexagonNumber3,
   IconHome,
-  IconMessages,
   IconSettings,
-  IconShoppingCart,
   IconUserShield,
+  IconLogin2,
+  IconFile3d,
+  IconPointFilled,
 } from "@tabler/icons-react";
 import { User2Icon } from "lucide-react";
 
@@ -31,19 +33,16 @@ export interface SideLink extends NavLink {
 
 const keys = [
   "home",
-  "products",
-  "product",
-  "addProduct",
-  "chats",
-  "order",
-  "calendar",
-  "tasks",
-  "supports",
-  "authentication",
-  "signInEmailPassword",
-  "signUp",
-  "users",
+  "modules",
+  "options",
+  "account",
+  "profile",
+  "guild",
+  "spot",
+  "out",
+  "sup",
   "settings",
+  "example",
 ] as const;
 
 type Key = (typeof keys)[number];
@@ -51,100 +50,96 @@ type Key = (typeof keys)[number];
 export const getSidelinks = (
   t: ((key: string) => string) | string | Array<string>
 ): Array<SideLink> => {
-  const getText = (key: Key, index: number): string => {
+  const getText = (key: Key | string, index: number): string => {
     if (typeof t === "function") return t(`navbar.${key}`);
     if (Array.isArray(t)) return t[index] ?? key;
     if (typeof t === "string") return t;
     return key;
   };
-  return [
+  let activeModules: Array<string> = [];
+  if (typeof window !== "undefined") {
+    try {
+      const storedModules = localStorage.getItem("activeModules");
+      if (storedModules) {
+        const parsedModules = JSON.parse(storedModules);
+        if (
+          Array.isArray(parsedModules) &&
+          parsedModules.every((item) => typeof item === "string")
+        ) {
+          activeModules = parsedModules;
+        }
+      }
+    } catch (error) {
+      console.error("Error al parsear activeModules de localStorage:", error);
+    }
+  }
+  const links: Array<SideLink> = [
     {
-      title: getText("home", 0),
-      label: "",
+      title: getText("home", 1),
       href: "/",
       icon: <IconHome size={18} />,
     },
     {
-      title: getText("products", 1),
-      label: "",
+      title: getText("modules", 1),
+      href: "/modules",
+      icon: <IconChecklist size={18} />,
+    },
+  ];
+  if (activeModules.length > 0) {
+    links.push({
+      title: getText("options", 1),
       href: "",
-      icon: <IconChecklist size={18} />,
-      sub: [
-        {
-          title: getText("product", 2),
-          label: "",
-          href: "/product",
-          icon: <IconBrandProducthunt size={18} />,
-        },
-        {
-          title: getText("addProduct", 3),
-          label: "",
-          href: "/product/add-product",
-          icon: <IconHexagonNumber1 size={18} />,
-        },
-      ],
-    },
+      icon: <IconFile3d size={18} />,
+      sub: activeModules.map((moduleName, index) => ({
+        title: getText(moduleName, index),
+        href: `/${moduleName.toLowerCase()}`,
+        icon: <IconPointFilled size={18} />,
+      })),
+    });
+  }
+  links.push(
     {
-      title: getText("chats", 4),
-      label: "",
-      href: "/chats",
-      icon: <IconMessages size={18} />,
-    },
-    {
-      title: getText("order", 5),
-      label: "",
-      href: "/order",
-      icon: <IconShoppingCart size={18} />,
-    },
-    {
-      title: getText("calendar", 6),
-      label: "",
-      href: "/calendar",
-      icon: <IconCalendarWeek size={18} />,
-    },
-    {
-      title: getText("tasks", 7),
-      label: "",
-      href: "/tasks",
-      icon: <IconChecklist size={18} />,
-    },
-    {
-      title: getText("supports", 8),
-      label: "",
-      href: "/supports",
-      icon: <IconHelpHexagon size={18} />,
-    },
-    {
-      title: getText("authentication", 9),
-      label: "",
+      title: getText("account", 1),
       href: "",
       icon: <IconUserShield size={18} />,
       sub: [
         {
-          title: getText("signInEmailPassword", 10),
-          label: "",
-          href: "/sign-in",
+          title: getText("profile", 1),
+          href: "/profile",
           icon: <IconHexagonNumber1 size={18} />,
         },
         {
-          title: getText("signUp", 11),
-          label: "",
-          href: "/sign-up",
+          title: getText("guild", 1),
+          href: "/guild",
+          icon: <IconHexagonNumber2 size={18} />,
+        },
+        {
+          title: getText("spot", 1),
+          href: "/spot",
           icon: <IconHexagonNumber3 size={18} />,
+        },
+        {
+          title: getText("account", 1),
+          href: "/account",
+          icon: <User2Icon size={18} />,
+        },
+        {
+          title: getText("out", 1),
+          href: "/logout",
+          icon: <IconLogin2 size={18} />,
         },
       ],
     },
     {
-      title: getText("users", 12),
-      label: "",
-      href: "/users",
-      icon: <User2Icon size={18} />,
+      title: getText("sup", 1),
+      href: "/support",
+      icon: <IconHelpHexagon size={18} />,
     },
     {
-      title: getText("settings", 13),
-      label: "",
+      title: getText("settings", 1),
       href: "/settings",
       icon: <IconSettings size={18} />,
-    },
-  ];
+    }
+  );
+  return links;
 };

@@ -43,17 +43,15 @@
     "home": "Home",
     "dom": "Documentation",
     "src": "Resources",
-    "products": "Products",
-    "chats": "Chats",
-    "order": "Order",
-    "calendar": "Calendar",
-    "tasks": "Tasks",
-    "supports": "Supports",
-    "authentication": "Authentication",
-    "signInEmailPassword": "SignIn",
-    "signUp": "SignUp",
-    "users": "Users",
-    "settings": "Setting"
+    "settings": "Settings",
+    "account": "Account",
+    "profile": "Profile",
+    "guild": "Guild",
+    "spot": "Spot",
+    "out": "Close Session",
+    "modules": "Modules",
+    "sup": "Support",
+    "options": "Options"
   },
   "ButtonTheme": {
     "theme": "Theme"
