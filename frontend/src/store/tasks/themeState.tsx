@@ -1,14 +1,15 @@
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : themeState.tsx
  *  DATE      : 22/09/2025
- *  DATE_MODIFY       : 22/09/2025
  *  DESCRIPTION: THEME SLICE MANAGEMENT USING REDUX TOOLKIT
  * =====================================================
  */
 
 // DEPENDENCIES
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // THEME VARIANTS
 export type Theme = "light" | "dark";

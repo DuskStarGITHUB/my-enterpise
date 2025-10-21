@@ -17,6 +17,7 @@ import { Button } from "./code/button";
 import Nav from "./code/nav";
 import { cn } from "@/lib/utils";
 import { getSidelinks } from "./data/sidelinks";
+import { useGetInfoUserQuery } from "@/services/userApi";
 
 // LOGIC
 interface SidebarProps extends React.HTMLAttributes<HTMLElement> {
@@ -33,6 +34,11 @@ export default function Sidebar({
   linksData,
 }: SidebarProps): JSX.Element {
   const [navOpened, setNavOpened] = useState(false);
+  const { data: userData, isLoading } = useGetInfoUserQuery();
+  const displayName = isLoading
+    ? "Cargando..."
+    : userData?.first_name ?? "My Enterpise";
+  const displayEmail = isLoading ? "" : userData?.email ?? "Error";
   useEffect(() => {
     if (navOpened) {
       document.body.classList.add("overflow-hidden");
@@ -63,14 +69,15 @@ export default function Sidebar({
           className="z-50 flex justify-between px-4 py-3 shadow-sm md:px-4"
         >
           <div className={`flex items-center ${!isCollapsed ? "gap-2" : ""}`}>
-            <img alt="" className="max-h-[60px]" src="/img/logo-w-nobg.png" />
+            <img alt="" className="max-h-[60px] hidden dark:block" src="/img/logo-w-nobg.png" />
+            <img alt="" className="max-h-[60px] block dark:hidden" src="/img/logo-d-nobg.png" />
             <div
               className={`flex flex-col justify-end truncate ${
                 isCollapsed ? "invisible w-0" : "visible w-auto"
               }`}
             >
-              <span className="font-medium">Admin</span>
-              <span className="text-xs">Tan Phat</span>
+              <span className="font-medium">{displayName}</span>
+              <span className="text-xs">{displayEmail}</span>
             </div>
           </div>
           <Button

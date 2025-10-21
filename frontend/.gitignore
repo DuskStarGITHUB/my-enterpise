@@ -31,3 +31,4 @@ dist-ssr
 storybook-static
 # tests
 /coverage/
+.env.local

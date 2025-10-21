@@ -1,3 +1,4 @@
+/* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
  *  NAME    : langState.tsx
@@ -7,7 +8,8 @@
  */
 
 // DEPENDENCIES
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 // TYPES
 export type Lang = "es" | "en";

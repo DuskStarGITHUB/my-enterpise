@@ -49,7 +49,7 @@ export class DirectivesService {
         },
       });
       const finalData = { ...userData, email, ...profileData };
-      return `userData:${JSON.stringify(finalData)}`;
+      return { userData: finalData };
     } catch {
       throw new BadRequestException('DATA REQUEST BAD');
     }

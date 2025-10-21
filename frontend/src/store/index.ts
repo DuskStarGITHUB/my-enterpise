@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable no-duplicate-imports */
 /**
  * =====================================================
- *  NAME    : index.tsx
- *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 13/10/2025
- *  DESCRIPTION: STORE FOR REDUX TOOLKIT
+ * NAME    : index.tsx
+ * DATE      : 20/09/2025
+ * DATE_MODIFY       : 21/10/2025
+ * DESCRIPTION: STORE FOR REDUX TOOLKIT
  * =====================================================
  */
 
@@ -17,16 +15,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./tasks/themeState";
 import langReducer from "./tasks/langState";
 // SERVICES
-import services from "@/services";
+import { userApi } from "@/services/userApi";
 
 // LOGIC
 const reducers: { [KEY: string]: unknown } = {};
 const middleware: Array<Middleware> = [];
-Object.keys(services).forEach((key) => {
-  const service = services[key];
-  reducers[service.reducerPath] = service.reducer;
-  middleware.push(service.middleware);
-});
 
 // STORE
 const store = configureStore({
@@ -34,9 +27,10 @@ const store = configureStore({
     theme: themeReducer,
     lang: langReducer,
     ...reducers,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(middleware),
+    getDefaultMiddleware().concat(middleware).concat(userApi.middleware),
 });
 
 // DISPATCH & STATE TYPES
