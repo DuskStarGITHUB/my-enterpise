@@ -39,6 +39,7 @@ export default function Sidebar({
     ? "Cargando..."
     : userData?.first_name ?? "My Enterpise";
   const displayEmail = isLoading ? "" : userData?.email ?? "Error";
+  const displayAvatar = isLoading ? null : userData?.avatar_url ?? null;
   useEffect(() => {
     if (navOpened) {
       document.body.classList.add("overflow-hidden");
@@ -69,8 +70,26 @@ export default function Sidebar({
           className="z-50 flex justify-between px-4 py-3 shadow-sm md:px-4"
         >
           <div className={`flex items-center ${!isCollapsed ? "gap-2" : ""}`}>
-            <img alt="" className="max-h-[60px] hidden dark:block" src="/img/logo-w-nobg.png" />
-            <img alt="" className="max-h-[60px] block dark:hidden" src="/img/logo-d-nobg.png" />
+            {displayAvatar ? (
+              <img
+                alt="User Avatar"
+                className="max-h-[60px] w-auto rounded-full"
+                src={displayAvatar}
+              />
+            ) : (
+              <div>
+                <img
+                  alt="Logo"
+                  className="max-h-[60px] hidden dark:block"
+                  src="/img/logo-w-nobg.png"
+                />
+                <img
+                  alt="Logo"
+                  className="max-h-[60px] block dark:hidden"
+                  src="/img/logo-d-nobg.png"
+                />
+              </div>
+            )}
             <div
               className={`flex flex-col justify-end truncate ${
                 isCollapsed ? "invisible w-0" : "visible w-auto"
