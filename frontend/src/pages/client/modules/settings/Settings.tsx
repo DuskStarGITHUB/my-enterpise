@@ -2,7 +2,7 @@
  * =====================================================
  *  NAME    : Setting.tsx
  *  DATE      : 21/10/2025
- *  DATE_MODIFY       : 21/10/2025
+ *  DATE_MODIFY       : 10/11/2025
  *  DESCRIPTION: PAGE SETTINGS
  * =====================================================
  */
@@ -12,7 +12,7 @@ import type { JSX } from "react";
 import { useTranslation } from "react-i18next";
 import Sidebar from "@/components/layout/sidebar/sidebar";
 import useIsCollapsed from "@/hooks/use-is-collapsed";
-import Dashboard from "../dashboard/Dashboard";
+import Panel from "@/pages/client/modules/settings/view/Panel";
 
 // PAGE
 const Client = (): JSX.Element => {
@@ -30,7 +30,7 @@ const Client = (): JSX.Element => {
           isCollapsed ? "md:ml-14" : "md:ml-64"
         } h-full`}
       >
-        <Dashboard />
+        <Panel />
       </div>
     </div>
   );

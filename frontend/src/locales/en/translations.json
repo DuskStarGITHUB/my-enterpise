@@ -94,5 +94,8 @@
     "numberPlaceholder": "561223xxxx",
     "submitButton": " Create Account",
     "nameRequired": "Name must be required"
+  },
+  "settings-page": {
+    "title": "Settings"
   }
 }
