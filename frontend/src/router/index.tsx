@@ -4,7 +4,7 @@
  * =====================================================
  *  NAME    : index.tsx
  *  DATE      : 20/09/2025
- *  DATE_MODIFY       : 13/10/2025
+ *  DATE_MODIFY       : 21/10/2025
  *  DESCRIPTION: ROUTER FOR REACT
  * =====================================================
  */
@@ -24,6 +24,7 @@ const Login = lazy(() => import("@/pages/link/Login"));
 const Register = lazy(() => import("@/pages/link/Register"));
 const Client = lazy(() => import("@/pages/client/Client"));
 const TestPage = lazy(()=> import("@/pages/TestPage"))
+const SettingsPage = lazy(()=> import("@/pages/client/modules/settings/Settings"))
 
 // ROUTES
 const CheckUser = () => {
@@ -35,6 +36,17 @@ const CheckUser = () => {
         hasVisitedBefore === "true" ? (
           <ProtectedRoute>
             <Client />
+          </ProtectedRoute>
+        ) : (
+          <Home />
+        ),
+    },
+    {
+      path: "/settings",
+      element:
+        hasVisitedBefore === "true" ? (
+          <ProtectedRoute>
+            <SettingsPage />
           </ProtectedRoute>
         ) : (
           <Home />
