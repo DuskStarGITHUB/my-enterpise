@@ -96,6 +96,19 @@
     "nameRequired": "Name must be required"
   },
   "settings-page": {
-    "title": "Settings"
+    "title": "Settings",
+    "card-title1": "Application Preferencies",
+    "card-sub1": "Settings for application.",
+    "card-title2": "Access Settings",
+    "card-sub2": "Settings for access Bar.",
+    "card-title3": "Performance Application",
+    "card-sub3": "Settings for Components, Modules, Views for drop.",
+    "card-sub4": "Options Modules Listed.",
+    "card-sub5": "No modules found, Add to favorites first.",
+    "card-sub6": "Theme Type",
+    "card-sub7": "Theme Style",
+    "card-sub8": "Current Settings",
+    "card-sub9": "Mode",
+    "card-sub10": "Style"
   }
 }

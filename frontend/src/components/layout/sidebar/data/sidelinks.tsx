@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-redundant-type-constituents */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // DEPENDENCIES
 import type { JSX } from "react";
@@ -61,7 +60,7 @@ export const getSidelinks = (
     try {
       const storedModules = localStorage.getItem("activeModules");
       if (storedModules) {
-        const parsedModules = JSON.parse(storedModules);
+        const parsedModules = storedModules.split(",");
         if (
           Array.isArray(parsedModules) &&
           parsedModules.every((item) => typeof item === "string")
